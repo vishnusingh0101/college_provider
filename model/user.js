@@ -21,7 +21,12 @@ const UserSchema = new Schema({
     birthday: { type: Date, default: null },
     about: { type: mongoose.Schema.Types.ObjectId, ref: 'About' },
     prices: { type: mongoose.Schema.Types.ObjectId, ref: 'Prices' },
-    scheduledCalls: { type: mongoose.Schema.Types.ObjectId, ref: 'ScheduleCall' }
+    scheduledCalls: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'ScheduleCall',
+        default: [],
+    }
+
 });
 
 UserSchema.index({ phone: 1 });

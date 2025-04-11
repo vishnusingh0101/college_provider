@@ -10,16 +10,17 @@ const auth = new google.auth.JWT(
   credentials.client_email,
   null,
   credentials.private_key,
-  ['https://www.googleapis.com/auth/calendar']
+  ['https://www.googleapis.com/auth/calendar'],
+  process.env.GOOGLE_IMPERSONATE_EMAIL // this should be a real Workspace user
 );
 
-const createGoogleMeet = async ({ startTime, endTime, user, participant }) => {
+const createGoogleMeet = async ({ startTime, endTime, title = 'Scheduled Call' }) => {
   await auth.authorize();
   const calendar = google.calendar({ version: 'v3', auth });
 
   const event = {
-    summary: 'Scheduled Call',
-    description: `Call between ${user.name} and ${participant.name}`,
+    summary: title,
+    description: 'This is a scheduled open meeting.',
     start: {
       dateTime: moment(startTime).toISOString(),
       timeZone: 'Asia/Kolkata',
@@ -28,10 +29,6 @@ const createGoogleMeet = async ({ startTime, endTime, user, participant }) => {
       dateTime: moment(endTime).toISOString(),
       timeZone: 'Asia/Kolkata',
     },
-    attendees: [
-      { email: user.email },
-      { email: participant.email }
-    ],
     conferenceData: {
       createRequest: {
         requestId: `meet-${Date.now()}`,
@@ -40,10 +37,11 @@ const createGoogleMeet = async ({ startTime, endTime, user, participant }) => {
         },
       },
     },
+    // attendees: [] // ← remove or leave it out completely
   };
 
   const response = await calendar.events.insert({
-    calendarId: process.env.GOOGLE_CALENDAR_ID,
+    calendarId: process.env.GOOGLE_CALENDAR_ID || 'primary',
     resource: event,
     conferenceDataVersion: 1,
   });
