@@ -3,7 +3,7 @@ const moment = require('moment');
 const path = require('path');
 require('dotenv').config();
 
-const keyPath = path.join(__dirname, '../config/service-account.json');
+const keyPath = path.join(__dirname, '../config/college-connect.json');
 const credentials = require(keyPath);
 
 const auth = new google.auth.JWT(
@@ -11,7 +11,6 @@ const auth = new google.auth.JWT(
   null,
   credentials.private_key,
   ['https://www.googleapis.com/auth/calendar'],
-  process.env.GOOGLE_IMPERSONATE_EMAIL // this should be a real Workspace user
 );
 
 const createGoogleMeet = async ({ startTime, endTime, title = 'Scheduled Call' }) => {
