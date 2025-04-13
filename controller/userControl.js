@@ -446,40 +446,18 @@ exports.scheduleCall = async (req, res) => {
 
 exports.getCalls = async (req, res) => {
     try {
-        const { participantId, date } = req.query;
+        const userId = req.params.id;
 
-        if (!participantId) {
-            return res.status(400).json({ success: false, message: "Participant ID is required" });
+        const user = await User.findById(userId)
+            .populate('scheduledCalls')
+            .exec();
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
         }
 
-        const query = { participant: participantId };
-
-        if (date) {
-            const startOfDay = new Date(date);
-            startOfDay.setHours(0, 0, 0, 0);
-
-            const endOfDay = new Date(date);
-            endOfDay.setHours(23, 59, 59, 999);
-
-            query.dateTime = { $gte: startOfDay, $lte: endOfDay };
-        }
-
-        const calls = await ScheduleCall.find(query)
-            .populate('caller', '-password -otp -otpExpires') 
-            .populate({
-                path: 'participant',
-                model: doc => doc.participantModel,
-                select: '-password -otp -otpExpires'
-            });
-
-        return res.status(200).json({
-            success: true,
-            count: calls.length,
-            data: calls
-        });
-
+        return res.status(200).json({ scheduledCalls: user.scheduledCalls });
     } catch (error) {
-        console.error("Error fetching calls:", error);
-        return res.status(500).json({ success: false, message: "Internal server error" });
+        console.error('Error fetching scheduled calls:', error);
+        return res.status(500).json({ message: 'Server error' });
     }
-};
+  };  
