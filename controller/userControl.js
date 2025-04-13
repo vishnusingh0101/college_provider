@@ -337,6 +337,8 @@ exports.scheduleCall = async (req, res) => {
   try {
     const {
       userId,
+      participantId,
+      participantModel,
       date,
       time,
       duration,
@@ -347,7 +349,10 @@ exports.scheduleCall = async (req, res) => {
       callType,
     } = req.body;
 
-    if (!userId || !date || !time || !duration || !paymentId || !paymentSignature || !transactionId || !amount || !callType) {
+    if (
+      !userId || !participantId || !participantModel || !date || !time ||
+      !duration || !paymentId || !paymentSignature || !transactionId || !amount || !callType
+    ) {
       return res.status(400).json({ success: false, message: "All fields are required." });
     }
 
@@ -356,9 +361,14 @@ exports.scheduleCall = async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid duration." });
     }
 
+    const validModels = ['studentlist', 'alumnilist', 'teacher'];
+    if (!validModels.includes(participantModel)) {
+      return res.status(400).json({ success: false, message: "Invalid participant model." });
+    }
+
     const user = await User.findById(userId);
     if (!user) {
-      return res.status(404).json({ success: false, message: "User not found." });
+      return res.status(404).json({ success: false, message: "Caller not found." });
     }
 
     const startTime = moment(`${date}T${time}`);
@@ -371,7 +381,7 @@ exports.scheduleCall = async (req, res) => {
     });
 
     if (existingCall) {
-      return res.status(400).json({ success: false, message: "User already has a call at this time." });
+      return res.status(400).json({ success: false, message: "You already have a call at this time." });
     }
 
     const generatedSignature = crypto
@@ -387,7 +397,7 @@ exports.scheduleCall = async (req, res) => {
     try {
       meetLink = await createZoomMeeting({
         topic: 'College Connect Call',
-        startTime,
+        startTime: startTime.toISOString(),
         duration,
       });
     } catch (err) {
@@ -395,9 +405,10 @@ exports.scheduleCall = async (req, res) => {
       return res.status(500).json({ success: false, message: "Failed to create Zoom meeting link." });
     }
 
-    // Save call
     const newCall = new ScheduleCall({
       caller: userId,
+      participant: participantId,
+      participantModel,
       dateTime,
       duration,
       callType,
@@ -410,12 +421,11 @@ exports.scheduleCall = async (req, res) => {
         paymentGateway: "Razorpay",
       },
       meetLink,
-      startTime: startTime.toISOString(),
-      endTime: endTime.toISOString(),
     });
 
     await newCall.save();
 
+    if (!user.scheduledCalls) user.scheduledCalls = [];
     user.scheduledCalls.push(newCall._id);
     await user.save();
 
