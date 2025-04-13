@@ -6,7 +6,8 @@ const alumnilist = require('../model/alumnilist');
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 
-const { createGoogleMeet } = require('../utils/googleCalender');
+// const { createGoogleMeet } = require('../utils/googleCalender');
+const { createZoomMeeting } = require('../utils/zoom');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
@@ -331,12 +332,11 @@ exports.login = async (req, res) => {
 //     }
 // };
 
+
 exports.scheduleCall = async (req, res) => {
   try {
     const {
       userId,
-      participantId,
-      participantType,
       date,
       time,
       duration,
@@ -347,24 +347,13 @@ exports.scheduleCall = async (req, res) => {
       callType,
     } = req.body;
 
-    if (!userId || !participantId || !participantType || !date || !time || !duration || !paymentId || !paymentSignature || !transactionId || !amount || !callType) {
+    if (!userId || !date || !time || !duration || !paymentId || !paymentSignature || !transactionId || !amount || !callType) {
       return res.status(400).json({ success: false, message: "All fields are required." });
     }
 
     const allowedDurations = [15, 30, 60];
     if (!allowedDurations.includes(duration)) {
       return res.status(400).json({ success: false, message: "Invalid duration." });
-    }
-
-    const participantMap = { studentlist, alumnilist };
-    const ParticipantCollection = participantMap[participantType.toLowerCase()];
-    if (!ParticipantCollection) {
-      return res.status(400).json({ success: false, message: "Invalid participant type." });
-    }
-
-    const participant = await ParticipantCollection.findById(participantId);
-    if (!participant) {
-      return res.status(404).json({ success: false, message: `${participantType} not found.` });
     }
 
     const user = await User.findById(userId);
@@ -377,12 +366,12 @@ exports.scheduleCall = async (req, res) => {
     const dateTime = startTime.toDate();
 
     const existingCall = await ScheduleCall.findOne({
-      $or: [{ caller: userId }, { participant: participantId }],
+      caller: userId,
       dateTime,
     });
 
     if (existingCall) {
-      return res.status(400).json({ success: false, message: "Already scheduled at this time." });
+      return res.status(400).json({ success: false, message: "User already has a call at this time." });
     }
 
     const generatedSignature = crypto
@@ -396,16 +385,19 @@ exports.scheduleCall = async (req, res) => {
 
     let meetLink;
     try {
-      meetLink = await createGoogleMeet({ startTime, endTime, user, participant });
+      meetLink = await createZoomMeeting({
+        topic: 'College Connect Call',
+        startTime,
+        duration,
+      });
     } catch (err) {
-      console.error("Google Meet error:", err.message);
-      return res.status(500).json({ success: false, message: "Failed to create meeting." });
+      console.error("Zoom meeting creation error:", err.message);
+      return res.status(500).json({ success: false, message: "Failed to create Zoom meeting link." });
     }
 
+    // Save call
     const newCall = new ScheduleCall({
       caller: userId,
-      participant: participantId,
-      participantModel: participantType.toLowerCase(),
       dateTime,
       duration,
       callType,
@@ -418,6 +410,8 @@ exports.scheduleCall = async (req, res) => {
         paymentGateway: "Razorpay",
       },
       meetLink,
+      startTime: startTime.toISOString(),
+      endTime: endTime.toISOString(),
     });
 
     await newCall.save();
@@ -430,6 +424,8 @@ exports.scheduleCall = async (req, res) => {
       message: "Call scheduled successfully!",
       call: newCall,
       meetLink,
+      startTime: startTime.toISOString(),
+      endTime: endTime.toISOString(),
     });
 
   } catch (error) {
