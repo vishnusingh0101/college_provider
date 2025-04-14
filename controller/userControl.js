@@ -31,13 +31,13 @@ const generateToken = (id, name, phone) => {
 // Send OTP using MSG91
 const sendOTP = async (phone, otp) => {
     try {
-        const response = await axios.post('https://control.msg91.com/api/v5/otp', 
+        const response = await axios.post('https://control.msg91.com/api/v5/otp',
             {
                 mobile: `91${phone}`,
                 otp: otp,
-                sender: MSG91_SENDER_ID, 
+                sender: MSG91_SENDER_ID,
                 template_id: MSG91_TEMPLATE_ID
-            }, 
+            },
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -132,10 +132,10 @@ exports.verifyOTP = async (req, res) => {
         // Generate JWT token
         const token = generateToken(user._id, user.name, user.phone);
 
-        return res.status(200).json({ 
-            success: true, 
-            message: "Phone number verified successfully!", 
-            token 
+        return res.status(200).json({
+            success: true,
+            message: "Phone number verified successfully!",
+            token
         });
 
     } catch (error) {
@@ -288,7 +288,7 @@ exports.login = async (req, res) => {
 //             return res.status(400).json({ success: false, message: "Payment ID and Signature are required to schedule the call." });
 //         }
 
-       
+
 //         // const isPaymentVerified = await verifyPayment(paymentId, paymentSignature);
 //         // if (!isPaymentVerified) {
 //         //     return res.status(400).json({ success: false, message: "Payment verification failed." });
@@ -334,119 +334,131 @@ exports.login = async (req, res) => {
 
 
 exports.scheduleCall = async (req, res) => {
-  try {
-    const {
-      userId,
-      participantId,
-      participantModel,
-      date,
-      time,
-      duration,
-      paymentId,
-      paymentSignature,
-      transactionId,
-      amount,
-      callType,
-    } = req.body;
-
-    if (
-      !userId || !participantId || !participantModel || !date || !time ||
-      !duration || !paymentId || !paymentSignature || !transactionId || !amount || !callType
-    ) {
-      return res.status(400).json({ success: false, message: "All fields are required." });
-    }
-
-    const allowedDurations = [15, 30, 60];
-    if (!allowedDurations.includes(duration)) {
-      return res.status(400).json({ success: false, message: "Invalid duration." });
-    }
-
-    const validModels = ['studentlist', 'alumnilist', 'teacher'];
-    if (!validModels.includes(participantModel)) {
-      return res.status(400).json({ success: false, message: "Invalid participant model." });
-    }
-
-    const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({ success: false, message: "Caller not found." });
-    }
-
-    const startTime = moment(`${date}T${time}`);
-    const endTime = startTime.clone().add(duration, 'minutes');
-    const dateTime = startTime.toDate();
-
-    const existingCall = await ScheduleCall.findOne({
-      caller: userId,
-      dateTime,
-    });
-
-    if (existingCall) {
-      return res.status(400).json({ success: false, message: "You already have a call at this time." });
-    }
-
-    const generatedSignature = crypto
-      .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
-      .update(`${transactionId}|${paymentId}`)
-      .digest("hex");
-
-    if (generatedSignature !== paymentSignature) {
-      return res.status(400).json({ success: false, message: "Payment verification failed." });
-    }
-
-    let meetLink;
     try {
-      meetLink = await createZoomMeeting({
-        topic: 'College Connect Call',
-        startTime: startTime.toISOString(),
-        duration,
-      });
-    } catch (err) {
-      console.error("Zoom meeting creation error:", err.message);
-      return res.status(500).json({ success: false, message: "Failed to create Zoom meeting link." });
+        const {
+            userId,
+            participantId,
+            participantModel,
+            date,
+            time,
+            duration,
+            paymentId,
+            paymentSignature,
+            transactionId,
+            amount,
+            callType,
+        } = req.body;
+
+        if (
+            !userId || !participantId || !participantModel || !date || !time ||
+            !duration || !paymentId || !paymentSignature || !transactionId || !amount || !callType
+        ) {
+            return res.status(400).json({ success: false, message: "All fields are required." });
+        }
+
+        const allowedDurations = [15, 30, 60];
+        if (!allowedDurations.includes(duration)) {
+            return res.status(400).json({ success: false, message: "Invalid duration." });
+        }
+
+        const validModels = ['studentlist', 'alumnilist', 'teacher'];
+        if (!validModels.includes(participantModel)) {
+            return res.status(400).json({ success: false, message: "Invalid participant model." });
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "Caller not found." });
+        }
+
+        const startTime = moment(`${date}T${time}`);
+        const endTime = startTime.clone().add(duration, 'minutes');
+        const dateTime = startTime.toDate();
+
+        const existingCall = await ScheduleCall.findOne({
+            caller: userId,
+            dateTime,
+        });
+
+        if (existingCall) {
+            return res.status(400).json({ success: false, message: "You already have a call at this time." });
+        }
+
+        const generatedSignature = crypto
+            .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+            .update(`${transactionId}|${paymentId}`)
+            .digest("hex");
+
+        if (generatedSignature !== paymentSignature) {
+            return res.status(400).json({ success: false, message: "Payment verification failed." });
+        }
+
+        let meetLink;
+        try {
+            meetLink = await createZoomMeeting({
+                topic: 'College Connect Call',
+                startTime: startTime.toISOString(),
+                duration,
+            });
+        } catch (err) {
+            console.error("Zoom meeting creation error:", err.message);
+            return res.status(500).json({ success: false, message: "Failed to create Zoom meeting link." });
+        }
+
+        const newCall = new ScheduleCall({
+            caller: userId,
+            participant: participantId,
+            participantModel,
+            dateTime,
+            duration,
+            callType,
+            status: "Scheduled",
+            paymentDetails: {
+                paymentId,
+                transactionId,
+                amount,
+                paymentDate: new Date(),
+                paymentGateway: "Razorpay",
+            },
+            meetLink,
+        });
+
+        await newCall.save();
+
+        try {
+            if (user.phoneNumber) {
+                const meetingMsg = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n Date: ${date}\n Time: ${time}\n Duration: ${duration} mins\n Meeting Link: ${meetLink}\n\nSee you there! 😊`;
+
+                await sendWhatsAppMessage(user.phoneNumber, meetingMsg);
+            } else {
+                console.warn('User has no phone number, skipping WhatsApp message.');
+            }
+        } catch (err) {
+            console.error('Failed to send WhatsApp message:', err.message);
+        }
+
+        if (!user.scheduledCalls) user.scheduledCalls = [];
+        user.scheduledCalls.push(newCall._id);
+        await user.save();
+
+        return res.status(201).json({
+            success: true,
+            message: "Call scheduled successfully!",
+            call: newCall,
+            meetLink,
+            startTime: startTime.toISOString(),
+            endTime: endTime.toISOString(),
+        });
+
+    } catch (error) {
+        console.error("Unexpected error in scheduleCall:", error);
+        return res.status(500).json({ success: false, message: "Internal server error", error: error.message });
     }
-
-    const newCall = new ScheduleCall({
-      caller: userId,
-      participant: participantId,
-      participantModel,
-      dateTime,
-      duration,
-      callType,
-      status: "Scheduled",
-      paymentDetails: {
-        paymentId,
-        transactionId,
-        amount,
-        paymentDate: new Date(),
-        paymentGateway: "Razorpay",
-      },
-      meetLink,
-    });
-
-    await newCall.save();
-
-    if (!user.scheduledCalls) user.scheduledCalls = [];
-    user.scheduledCalls.push(newCall._id);
-    await user.save();
-
-    return res.status(201).json({
-      success: true,
-      message: "Call scheduled successfully!",
-      call: newCall,
-      meetLink,
-      startTime: startTime.toISOString(),
-      endTime: endTime.toISOString(),
-    });
-
-  } catch (error) {
-    console.error("Unexpected error in scheduleCall:", error);
-    return res.status(500).json({ success: false, message: "Internal server error", error: error.message });
-  }
 };
 
 exports.getCalls = async (req, res) => {
     try {
-        const userId = req.params.id;
+        const { userId } = req.body;
 
         const user = await User.findById(userId)
             .populate('scheduledCalls')
@@ -460,4 +472,4 @@ exports.getCalls = async (req, res) => {
         console.error('Error fetching scheduled calls:', error);
         return res.status(500).json({ message: 'Server error' });
     }
-  };  
+};
