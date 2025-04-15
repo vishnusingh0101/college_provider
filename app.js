@@ -9,8 +9,8 @@ require('dotenv').config();
 
 const app = express();
 
+// Import routes
 const errorControl = require('./controller/error');
-
 const userRoute = require('./routes/user');
 const passwordRoute = require('./routes/password');
 const collegeRoute = require('./routes/getdata'); 
@@ -18,34 +18,35 @@ const paymentRoute = require('./routes/payment');
 
 console.log("Starting App");
 
+// Setup logging
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 
+// Middleware
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.url} - Body:`, req.body);
     next();
 });
-
 app.use(cors());
 app.use(bodyParser.json({ extended: false }));
 app.use(morgan('combined', { stream: accessLogStream }));
 
+// Routes
 app.use('/user', userRoute);
 app.use('/password', passwordRoute);
 app.use('/college', collegeRoute);
 app.use('/payment', paymentRoute);
 
-app.use(express.static(path.join(__dirname, 'public')));
-
+// 404 handler
 app.use(errorControl.get404);
 
+// MongoDB connection & server start
 const startServer = async () => {
     try {
         await mongoose.connect(process.env.MONGODB);
-
         console.log("Database Connected");
 
         app.listen(3000, () => {
-            console.log("Server is running on port 3000");
+            console.log("Server running on port 3000");
         });
     } catch (err) {
         console.error("Database Connection Error:", err);
