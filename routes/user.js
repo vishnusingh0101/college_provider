@@ -8,6 +8,7 @@ router.post('/verify-otp', userControl.verifyOTP);
 router.post('/resend-otp', userControl.resendOTP);
 router.post('/login', userControl.login); 
 router.post('/ScheduleCall',auth.authenticate, userControl.scheduleCall); 
-router.get('/getCalls',auth.authenticate, userControl.getCalls); 
+router.get('/getUserCalls',auth.authenticate, userControl.getUserCalls);
+router.get('/getParticipantCalls',auth.authenticate, userControl.getParticipantCalls);
 
 module.exports = router;
