@@ -8,6 +8,7 @@ const crypto = require("crypto");
 
 // const { createGoogleMeet } = require('../utils/googleCalender');
 const { createZoomMeeting } = require('../utils/zoom');
+const { sendWhatsAppMessage } = require('../utils/interact');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
@@ -429,7 +430,7 @@ exports.scheduleCall = async (req, res) => {
             if (user.phoneNumber) {
                 const meetingMsg = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n Date: ${date}\n Time: ${time}\n Duration: ${duration} mins\n Meeting Link: ${meetLink}\n\nSee you there! 😊`;
 
-                await sendWhatsAppMessage(user.phoneNumber, meetingMsg);
+                await sendWhatsAppMessage(user.phoneNumber, meetingMsg, meetLink);
             } else {
                 console.warn('User has no phone number, skipping WhatsApp message.');
             }
@@ -456,7 +457,7 @@ exports.scheduleCall = async (req, res) => {
     }
 };
 
-exports.getCalls = async (req, res) => {
+exports.getUserCalls = async (req, res) => {
     try {
         const { userId } = req.body;
 
