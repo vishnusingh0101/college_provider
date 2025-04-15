@@ -13,7 +13,7 @@ const UserSchema = new Schema({
     phoneIsVerified: { type: Boolean, default: false },
     otp: { type: String, default: null },
     otpExpires: { type: Date, default: null },
-    otpVerifiedForReset: { type: Date, default: null },
+    otpVerifiedForReset: { type: Boolean, default: false },
     designation: { type: String, default: null },
     bio: { type: String, default: null },
     profile: { type: String, default: null },

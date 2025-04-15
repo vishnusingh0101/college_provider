@@ -473,3 +473,45 @@ exports.getCalls = async (req, res) => {
         return res.status(500).json({ message: 'Server error' });
     }
 };
+
+exports.getParticipantCalls = async (req, res) => {
+    try {
+        const { participantId, date } = req.body;
+
+        if (!participantId || !date) {
+            return res.status(400).json({
+                success: false,
+                message: 'participantId and date are required.'
+            });
+        }
+
+        const { start, end } = getDayRange(date);
+
+        const calls = await ScheduleCall.find({
+            participant: participantId,
+            dateTime: { $gte: start, $lte: end }
+        })
+        .populate('caller', 'name mail')
+        .populate('participant', 'name mail')
+        .sort({ dateTime: 1 });
+
+        return res.status(200).json({
+            success: true,
+            data: calls
+        });
+
+    } catch (error) {
+        console.error('Error fetching participant calls:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+}
+
+const getDayRange = (dateString) => {
+    const date = new Date(dateString);
+    const start = new Date(date.setUTCHours(0, 0, 0, 0));
+    const end = new Date(date.setUTCHours(23, 59, 59, 999));
+    return { start, end };
+};
