@@ -9,6 +9,15 @@ require('dotenv').config();
 
 const app = express();
 
+// app.get('/', (req, res) => {
+//     res.send('Hello from the app!');
+//   });
+  
+//   app.listen(80, '0.0.0.0', () => {
+//     console.log('Server running on port 80');
+//   });
+
+
 // Import routes
 const errorControl = require('./controller/error');
 const userRoute = require('./routes/user');

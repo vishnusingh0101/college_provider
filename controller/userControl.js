@@ -433,11 +433,13 @@ exports.scheduleCall = async (req, res) => {
             const userMessage = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nSee you there! 😊`;
 
             if (user.phone) {
-                await sendWhatsAppMessage(user.phone, userMessage, meetLink);
+                const counsellorName = participant.name || participant.Name || 'there';
+                const user_temp = "student_message";
+                await sendWhatsAppMessage(user.phone, user.name, counsellorName, time, duration, user_temp, meetLink);
             }
 
             if (user.mail) {
-                await sendEmail(user.mail, "Your College Connect Call is Scheduled", userMessage);
+                await sendEmail(user.mail, "Your College Provider Call is Scheduled", userMessage);
             }
         } catch (err) {
             console.error("Failed to notify user:", err.message);
@@ -451,8 +453,11 @@ exports.scheduleCall = async (req, res) => {
             const phone = participant.phone || participant.MobileNumber;
             const email = participant.mail || participant.Mail;
 
-            if (phone) await sendWhatsAppMessage(phone, participantMsg, meetLink);
-            if (email) await sendEmail(email, "You're Invited to a College Connect Call", participantMsg);
+            if (phone) {
+                const counsellor_temp = "counsellor";
+                await sendWhatsAppMessage(phone, participantName, user.name, time, duration, counsellor_temp, meetLink);
+            }
+            if (email) await sendEmail(email, "You're Invited to a College Provider Call", participantMsg);
         } catch (err) {
             console.error("Failed to notify participant:", err.message);
         }
