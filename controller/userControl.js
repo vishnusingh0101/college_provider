@@ -432,12 +432,12 @@ exports.scheduleCall = async (req, res) => {
         try {
             const userMessage = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nSee you there! 😊`;
 
-            if (user.phoneNumber) {
-                await sendWhatsAppMessage(user.phoneNumber, userMessage);
+            if (user.phone) {
+                await sendWhatsAppMessage(user.phone, userMessage, meetLink);
             }
 
-            if (user.email) {
-                await sendEmail(user.email, "Your College Connect Call is Scheduled", userMessage);
+            if (user.mail) {
+                await sendEmail(user.mail, "Your College Connect Call is Scheduled", userMessage);
             }
         } catch (err) {
             console.error("Failed to notify user:", err.message);
@@ -451,7 +451,7 @@ exports.scheduleCall = async (req, res) => {
             const phone = participant.phone || participant.MobileNumber;
             const email = participant.mail || participant.Mail;
 
-            if (phone) await sendWhatsAppMessage(phone, participantMsg);
+            if (phone) await sendWhatsAppMessage(phone, participantMsg, meetLink);
             if (email) await sendEmail(email, "You're Invited to a College Connect Call", participantMsg);
         } catch (err) {
             console.error("Failed to notify participant:", err.message);
@@ -479,7 +479,7 @@ exports.scheduleCall = async (req, res) => {
 
 exports.getUserCalls = async (req, res) => {
     try {
-        const { userId } = req.parm;
+        const { userId } = req.query;
 
         const user = await User.findById(userId)
             .populate('scheduledCalls')
@@ -497,7 +497,7 @@ exports.getUserCalls = async (req, res) => {
 
 exports.getParticipantCalls = async (req, res) => {
     try {
-        const { participantId, date } = req.parm;
+        const { participantId, date } = req.query;
 
         if (!participantId || !date) {
             return res.status(400).json({
