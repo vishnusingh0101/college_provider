@@ -12,4 +12,4 @@ const StudentSchema = new Schema({
     Mail: { type: String, trim: true, lowercase: true}
 }, { timestamps: true });
 
-module.exports = mongoose.model('student', StudentSchema);
+module.exports = mongoose.model('studentlist', StudentSchema);

@@ -68,4 +68,4 @@ alumniSchema.pre('save', function(next) {
     next();
 });
 
-module.exports = mongoose.model('alumni', alumniSchema);
+module.exports = mongoose.model('alumnilist', alumniSchema);

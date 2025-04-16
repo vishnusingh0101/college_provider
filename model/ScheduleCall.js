@@ -13,7 +13,7 @@ const scheduleCallSchema = new mongoose.Schema({
     },
     participantModel: {
         type: String,
-        enum: ['studentlist', 'alumnilist', 'teacher'],
+        enum: ['studentlist', 'alumnilist'],
         required: true
     },  
     callType:{ type: String, requirred: true},
