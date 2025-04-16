@@ -1,9 +1,8 @@
 const User = require('../model/user');
 const ScheduleCall = require('../model/ScheduleCall');
-const studentlist = require('../model/studentlist');
-const alumnilist = require('../model/alumnilist');
+const Alumni = require("../model/alumnilist");
+const Student = require("../model/studentlist");
 
-const Razorpay = require("razorpay");
 const crypto = require("crypto");
 
 // const { createGoogleMeet } = require('../utils/googleCalender');
@@ -20,6 +19,12 @@ const MSG91_AUTH_KEY = process.env.MSG91_AUTH_KEY;
 const MSG91_SENDER_ID = process.env.MSG91_SENDER_ID;
 const MSG91_TEMPLATE_ID = process.env.MSG91_TEMPLATE_ID;
 const JWT_SECRET = process.env.JWT_SECRET;
+
+const participantModels = {
+    studentlist: Student,
+    alumnilist: Alumni,
+    teacher: Teacher,
+};
 
 // Validate phone number
 const isValidPhoneNumber = (phone) => /^[6-9]\d{9}$/.test(phone);
@@ -87,7 +92,6 @@ exports.signUp = async (req, res) => {
         await newUser.save();
         await sendOTP(phone, otp);
 
-        // Prepare response user data (excluding sensitive fields)
         const userObj = newUser.toObject();
         delete userObj.password;
         delete userObj.otp;
@@ -362,8 +366,7 @@ exports.scheduleCall = async (req, res) => {
             return res.status(400).json({ success: false, message: "Invalid duration." });
         }
 
-        const validModels = ['studentlist', 'alumnilist', 'teacher'];
-        if (!validModels.includes(participantModel)) {
+        if (!participantModels[participantModel]) {
             return res.status(400).json({ success: false, message: "Invalid participant model." });
         }
 
@@ -372,15 +375,16 @@ exports.scheduleCall = async (req, res) => {
             return res.status(404).json({ success: false, message: "Caller not found." });
         }
 
+        const participant = await participantModels[participantModel].findById(participantId);
+        if (!participant) {
+            return res.status(404).json({ success: false, message: "Participant not found." });
+        }
+
         const startTime = moment(`${date}T${time}`);
         const endTime = startTime.clone().add(duration, 'minutes');
         const dateTime = startTime.toDate();
 
-        const existingCall = await ScheduleCall.findOne({
-            caller: userId,
-            dateTime,
-        });
-
+        const existingCall = await ScheduleCall.findOne({ caller: userId, dateTime });
         if (existingCall) {
             return res.status(400).json({ success: false, message: "You already have a call at this time." });
         }
@@ -427,17 +431,34 @@ exports.scheduleCall = async (req, res) => {
         await newCall.save();
 
         try {
-            if (user.phoneNumber) {
-                const meetingMsg = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n Date: ${date}\n Time: ${time}\n Duration: ${duration} mins\n Meeting Link: ${meetLink}\n\nSee you there! 😊`;
+            const userMessage = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nSee you there! 😊`;
 
-                await sendWhatsAppMessage(user.phoneNumber, meetingMsg, meetLink);
-            } else {
-                console.warn('User has no phone number, skipping WhatsApp message.');
+            if (user.phoneNumber) {
+                await sendWhatsAppMessage(user.phoneNumber, userMessage);
+            }
+
+            if (user.email) {
+                await sendEmail(user.email, "Your College Connect Call is Scheduled", userMessage);
             }
         } catch (err) {
-            console.error('Failed to send WhatsApp message:', err.message);
+            console.error("Failed to notify user:", err.message);
         }
 
+        // Notify Participant
+        try {
+            const participantName = participant.name || participant.Name || 'there';
+            const participantMsg = `Hi ${participantName}, you've been scheduled for a College Connect call.\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nCheers!`;
+
+            const phone = participant.phone || participant.MobileNumber;
+            const email = participant.mail || participant.Mail;
+
+            if (phone) await sendWhatsAppMessage(phone, participantMsg);
+            if (email) await sendEmail(email, "You're Invited to a College Connect Call", participantMsg);
+        } catch (err) {
+            console.error("Failed to notify participant:", err.message);
+        }
+
+        // Save scheduled call for user
         if (!user.scheduledCalls) user.scheduledCalls = [];
         user.scheduledCalls.push(newCall._id);
         await user.save();
