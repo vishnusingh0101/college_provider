@@ -23,7 +23,6 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const participantModels = {
     studentlist: Student,
     alumnilist: Alumni,
-    teacher: Teacher,
 };
 
 // Validate phone number
@@ -480,7 +479,7 @@ exports.scheduleCall = async (req, res) => {
 
 exports.getUserCalls = async (req, res) => {
     try {
-        const { userId } = req.body;
+        const { userId } = req.parm;
 
         const user = await User.findById(userId)
             .populate('scheduledCalls')
@@ -498,7 +497,7 @@ exports.getUserCalls = async (req, res) => {
 
 exports.getParticipantCalls = async (req, res) => {
     try {
-        const { participantId, date } = req.body;
+        const { participantId, date } = req.parm;
 
         if (!participantId || !date) {
             return res.status(400).json({
