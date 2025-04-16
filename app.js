@@ -6,6 +6,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const port = process.env.PORT || 4000;
 
 const app = express();
 
@@ -54,7 +55,7 @@ const startServer = async () => {
         await mongoose.connect(process.env.MONGODB);
         console.log("Database Connected");
 
-        app.listen(3000, () => {
+        app.listen(port, () => {
             console.log("Server running on port 3000");
         });
     } catch (err) {
