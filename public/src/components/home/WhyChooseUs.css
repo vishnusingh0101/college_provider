@@ -1,0 +1,181 @@
+/* WhyChooseUs.css - Unique class names */
+.why-choose-us-section {
+    padding: 5rem 2rem;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .why-choose-us-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .why-choose-us-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .why-choose-us-title {
+    font-size: 2.5rem;
+    color: #0a2e7a;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  
+  .why-choose-us-underline {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1350ff, #6a8cff);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+  
+  .comparison-table {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .comparison-column {
+    flex: 1;
+    max-width: 500px;
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(19, 80, 255, 0.08);
+    transition: all 0.3s ease;
+  }
+  
+  .comparison-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(19, 80, 255, 0.12);
+  }
+  
+  .college-connect-col {
+    border-top: 4px solid #1350ff;
+  }
+  
+  .free-resources-col {
+    border-top: 4px solid #e0e0e0;
+  }
+  
+  .comparison-col-title {
+    font-size: 1.5rem;
+    color: #0a2e7a;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .comparison-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .comparison-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .comparison-icon {
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  
+  .college-connect-col .comparison-icon {
+    color: #1350ff;
+  }
+  
+  .free-resources-col .comparison-icon {
+    color: #ff4d4d;
+  }
+  
+  .why-choose-us-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    background: linear-gradient(90deg, #1350ff, #6a8cff);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(19, 80, 255, 0.3);
+  }
+  
+  .why-choose-us-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(19, 80, 255, 0.4);
+  }
+  
+  .why-choose-us-arrow {
+    display: inline-block;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .why-choose-us-cta:hover .why-choose-us-arrow {
+    transform: translateX(3px);
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 992px) {
+    .comparison-table {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .comparison-column {
+      width: 100%;
+      max-width: 600px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .why-choose-us-section {
+      padding: 3rem 1.5rem;
+    }
+    
+    .why-choose-us-title {
+      font-size: 2rem;
+    }
+    
+    .comparison-column {
+      padding: 1.5rem;
+    }
+    
+    .comparison-col-title {
+      font-size: 1.3rem;
+    }
+    
+    .comparison-item {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .why-choose-us-title {
+      font-size: 1.8rem;
+    }
+    
+    .why-choose-us-cta {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+    }
+  }

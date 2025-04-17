@@ -1,0 +1,208 @@
+FAQSection.css
+.faq-section {
+    padding: 5rem 2rem;
+    background-color: #f8faff;
+    position: relative;
+  }
+  
+  .faq-container {
+    max-width: 1200px;
+     /* Increased from 1000px */
+    margin: 0 auto;
+  }
+  
+  .faq-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .faq-title {
+    font-size: 2.5rem;
+    color: #0a2e7a;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  
+  .faq-underline {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1350ff, #6a8cff);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+  
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    /* Increased from 300px */
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .faq-card {
+    background: white;
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(19, 80, 255, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-width: 400px;
+     /* Added to ensure minimum width */
+  }
+  
+  .faq-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(19, 80, 255, 0.12);
+  }
+  
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+  
+  .faq-question h3 {
+    font-size: 1.3rem;
+    color: #0a2e7a;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 90%; /* Ensure text doesn't overflow */
+  }
+  
+  .faq-arrow {
+    font-size: 1.5rem;
+    color: #1350ff;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    flex-shrink: 0; /* Prevent arrow from being squeezed */
+  }
+  
+  .faq-card.active .faq-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-top: 0;
+  }
+  
+  .faq-card.active .faq-answer {
+    max-height: 200px;
+    padding-top: 1.5rem;
+  }
+  
+  .faq-answer p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Urgency Section */
+  .urgency-container {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(19, 80, 255, 0.08);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .urgency-headline {
+    font-size: 1.8rem;
+    color: #0a2e7a;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .urgency-counter {
+    font-size: 1.2rem;
+    color: #1350ff;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+  
+  .urgency-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(90deg, #1350ff, #6a8cff);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(19, 80, 255, 0.3);
+  }
+  
+  .urgency-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(19, 80, 255, 0.4);
+  }
+  
+  .urgency-arrow {
+    display: inline-block;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .urgency-cta:hover .urgency-arrow {
+    transform: translateX(3px);
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 992px) {
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .faq-card {
+      min-width: auto; /* Allow cards to shrink on smaller screens */
+      width: 100%;
+    }
+    
+    .faq-question h3 {
+      white-space: normal; /* Allow wrapping on mobile */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .faq-section {
+      padding: 3rem 1.5rem;
+    }
+    
+    .faq-title {
+      font-size: 2rem;
+    }
+    
+    .urgency-headline {
+      font-size: 1.5rem;
+    }
+    
+    .urgency-counter {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .faq-title {
+      font-size: 1.8rem;
+    }
+    
+    .urgency-container {
+      padding: 1.5rem;
+    }
+    
+    .urgency-cta {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
