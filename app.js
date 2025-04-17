@@ -35,6 +35,9 @@ app.use('/user', userRoute);
 app.use('/password', passwordRoute);
 app.use('/college', collegeRoute);
 app.use('/payment', paymentRoute);
+app.use('/', (req, res) => {
+    res.send('Hello from the app!');
+  });
 
 // 404 handler
 app.use(errorControl.get404);
@@ -45,7 +48,7 @@ const startServer = async () => {
         await mongoose.connect(process.env.MONGODB);
         console.log("Database Connected");
 
-        app.listen(3000, () => {
+        app.listen(80, '0.0.0.0',() => {
             console.log("Server running on port 3000");
         });
     } catch (err) {
