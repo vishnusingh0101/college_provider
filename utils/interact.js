@@ -1,7 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
 
-async function sendWhatsAppMessage(phoneNumber, messageText, meetLink) {
+async function sendWhatsAppMessage(phoneNumber, name1, name2, time, duration, template, meetLink) {
   const apiKey = process.env.INTERACT_API;
 
   const payload = {
@@ -10,10 +10,10 @@ async function sendWhatsAppMessage(phoneNumber, messageText, meetLink) {
     callbackData: 'order-123',
     type: 'Template',
     template: {
-      name: 'shop_from_us_on_whatsapp',
-      languageCode: 'en',
+      name: template,
+      languageCode: 'en_US',
       headerValues: [],
-      bodyValues: [meetLink] 
+      bodyValues: [name1, name2, time, `${duration} min`, meetLink] 
     }
   };
 

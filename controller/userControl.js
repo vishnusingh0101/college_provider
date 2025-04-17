@@ -8,6 +8,7 @@ const crypto = require("crypto");
 // const { createGoogleMeet } = require('../utils/googleCalender');
 const { createZoomMeeting } = require('../utils/zoom');
 const { sendWhatsAppMessage } = require('../utils/interact');
+const { sendEmail } = require('../utils/sendEmail');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
@@ -360,7 +361,7 @@ exports.scheduleCall = async (req, res) => {
             return res.status(400).json({ success: false, message: "All fields are required." });
         }
 
-        const allowedDurations = [15, 30, 60];
+        const allowedDurations = [15, 45, 30, 60];
         if (!allowedDurations.includes(duration)) {
             return res.status(400).json({ success: false, message: "Invalid duration." });
         }
@@ -429,15 +430,30 @@ exports.scheduleCall = async (req, res) => {
 
         await newCall.save();
 
+        const getAMPMTime = (datetimeString) => {
+            const date = new Date(datetimeString);
+            const hours = date.getHours();
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+          
+            const formattedHour = hours % 12 === 0 ? 12 : hours % 12;
+            const suffix = hours < 12 ? 'AM' : 'PM';
+          
+            return `${formattedHour}:${minutes} ${suffix}`;
+          };
+          const timeString = getAMPMTime(`${date} ${time}`);
+
         try {
             const userMessage = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nSee you there! 😊`;
 
-            if (user.phoneNumber) {
-                await sendWhatsAppMessage(user.phoneNumber, userMessage);
+            if (user.phone) {
+                const counsellorName = participant.name || participant.Name || 'there';
+                const user_temp = "student_message";
+                
+                await sendWhatsAppMessage(user.phone, user.name, counsellorName, timeString, duration, user_temp, meetLink);
             }
 
-            if (user.email) {
-                await sendEmail(user.email, "Your College Connect Call is Scheduled", userMessage);
+            if (user.mail) {
+                await sendEmail(user.mail, "Your College Provider Call is Scheduled", userMessage);
             }
         } catch (err) {
             console.error("Failed to notify user:", err.message);
@@ -446,13 +462,16 @@ exports.scheduleCall = async (req, res) => {
         // Notify Participant
         try {
             const participantName = participant.name || participant.Name || 'there';
-            const participantMsg = `Hi ${participantName}, you've been scheduled for a College Connect call.\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nCheers!`;
+            const participantMsg = `Hi ${participantName}, you've been scheduled for a College Provider call.\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nCheers!`;
 
             const phone = participant.phone || participant.MobileNumber;
             const email = participant.mail || participant.Mail;
 
-            if (phone) await sendWhatsAppMessage(phone, participantMsg);
-            if (email) await sendEmail(email, "You're Invited to a College Connect Call", participantMsg);
+            if (phone) {
+                const counsellor_temp = "counsellor_message";
+                await sendWhatsAppMessage(phone, participantName, user.name, timeString, duration, counsellor_temp, meetLink);
+            }
+            if (email) await sendEmail(email, "You're Invited to a College Provider Call", participantMsg);
         } catch (err) {
             console.error("Failed to notify participant:", err.message);
         }
@@ -479,7 +498,7 @@ exports.scheduleCall = async (req, res) => {
 
 exports.getUserCalls = async (req, res) => {
     try {
-        const { userId } = req.parm;
+        const { userId } = req.query;
 
         const user = await User.findById(userId)
             .populate('scheduledCalls')
@@ -497,7 +516,7 @@ exports.getUserCalls = async (req, res) => {
 
 exports.getParticipantCalls = async (req, res) => {
     try {
-        const { participantId, date } = req.parm;
+        const { participantId, date } = req.query;
 
         if (!participantId || !date) {
             return res.status(400).json({

@@ -6,8 +6,18 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const port = process.env.PORT || 3000;
 
 const app = express();
+
+// app.get('/', (req, res) => {
+//     res.send('Hello from the app!');
+//   });
+  
+//   app.listen(80, '0.0.0.0', () => {
+//     console.log('Server running on port 80');
+//   });
+
 
 // Import routes
 const errorControl = require('./controller/error');

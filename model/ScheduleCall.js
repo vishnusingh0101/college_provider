@@ -13,12 +13,12 @@ const scheduleCallSchema = new mongoose.Schema({
     },
     participantModel: {
         type: String,
-        enum: ['studentlist', 'alumnilist', 'teacher'],
+        enum: ['studentlist', 'alumnilist'],
         required: true
     },  
     callType:{ type: String, requirred: true},
     dateTime: { type: Date, required: true },
-    duration: { type: Number, enum: [15, 30, 60], required: true },
+    duration: { type: Number, enum: [15, 45, 30, 60], required: true },
     status: { type: String, enum: ['Scheduled', 'Completed', 'Cancelled'], default: 'Scheduled' },
 
     // Payment-related fields
