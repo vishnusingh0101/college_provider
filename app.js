@@ -6,58 +6,71 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const port = process.env.PORT || 3000;
 
 const app = express();
+const port = process.env.PORT || 3000;
 
-console.log("Starting App");
+console.log("🚀 Starting App...");
 
-// Logging
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+// === Logging Setup ===
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, 'access.log'),
+  { flags: 'a' }
+);
 
-// Middleware
-app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url} - Body:`, req.body);
-    next();
-});
+// === Middleware ===
 app.use(cors());
 app.use(bodyParser.json({ extended: false }));
 app.use(morgan('combined', { stream: accessLogStream }));
 
-// Import routes
+// Optional: log POST/PUT bodies (skip GETs)
+app.use((req, res, next) => {
+  if (req.method !== 'GET') {
+    console.log(`${req.method} ${req.url} - Body:`, req.body);
+  }
+  next();
+});
+
+// === Routes ===
 const errorControl = require('./controller/error');
 const userRoute = require('./routes/user');
 const passwordRoute = require('./routes/password');
 const collegeRoute = require('./routes/getdata');
 const paymentRoute = require('./routes/payment');
 
-// API Routes
 app.use('/user', userRoute);
 app.use('/password', passwordRoute);
 app.use('/college', collegeRoute);
 app.use('/payment', paymentRoute);
 
+// === Serve React Frontend ===
 const frontendPath = path.join(__dirname, 'frontend', 'dist');
 app.use(express.static(frontendPath));
 
+// React Fallback for SPA routing
 app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
-// 404 Error Handler
+// === 404 Error Handler (for API routes only) ===
 app.use(errorControl.get404);
 
+// === Start Server with MongoDB Connection ===
 const startServer = async () => {
-    try {
-        await mongoose.connect(process.env.MONGODB);
-        console.log("Database Connected");
-
-        app.listen(port, () => {
-            console.log(`Server running on port ${port}`);
-        });
-    } catch (err) {
-        console.error("Database Connection Error:", err);
+  try {
+    if (!process.env.MONGODB) {
+      throw new Error('❌ MONGODB URI not found in .env');
     }
+
+    await mongoose.connect(process.env.MONGODB);
+    console.log("✅ MongoDB Connected");
+
+    app.listen(port, () => {
+      console.log(`✅ Server running at http://localhost:${port}`);
+    });
+  } catch (err) {
+    console.error("❌ Failed to start server:", err.message);
+  }
 };
 
 startServer();
