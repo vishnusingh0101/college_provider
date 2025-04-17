@@ -13,7 +13,7 @@ async function sendWhatsAppMessage(phoneNumber, name1, name2, time, duration, te
       name: template,
       languageCode: 'en_US',
       headerValues: [],
-      bodyValues: [name1, name2, time, duration, meetLink] 
+      bodyValues: [name1, name2, time, `${duration} min`, meetLink] 
     }
   };
 

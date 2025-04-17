@@ -13,7 +13,7 @@ async function sendEmail(to, subject, content) {
   `;
 
   const payload = {
-    sender: { name: "College Connect", email: "providerteam.in@gmail.com" },
+    sender: { name: "College Provider", email: "providerteam.in@gmail.com" },
     to: [{ email: to }],
     subject,
     htmlContent,
