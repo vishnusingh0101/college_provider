@@ -1,0 +1,87 @@
+.black-text{
+  color: black;
+  z-index: 2;
+}
+
+@media (max-width: 480px) {
+  .black-text {
+    font-size: 2.7rem;
+    padding: 0 1.5rem;
+    line-height: 1.2;
+  }
+}
+
+.highlight{
+  color: #1350ff;
+}
+
+.home-container {
+  background-image: url('/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  max-width: 800px;
+}
+
+.oval-background {
+  position: absolute;
+  width: 60%;
+  height: 40%;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  filter: blur(20px);
+  z-index: -3;
+}
+
+
+.slogan{
+  color: black;
+  font-size: medium;
+  z-index: 2;
+}
+
+.info-button {
+  background: rgba(115, 151, 255, 0.14);
+  color: black;
+  border: none;
+  border: 1px solid #1350ff; 
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  outline: none; 
+  transition: all 0.3s ease;
+}
+
+.info-button:hover {
+  background: rgba(115, 151, 255, 0.25);
+}
+
+.cta-button {
+  background-color: #1350ff;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  z-index: 5;
+}

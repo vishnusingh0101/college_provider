@@ -1,0 +1,734 @@
+{
+  "students": [
+    {
+      "Name": "Suprit Singh Arya",
+      "Profile": "https://lh3.googleusercontent.com/d/1ALkOgY5eSkIjj_pqpZmIhknu9sXznoCW",
+      "College": "Gl bajaj",
+      "Bio": "COO at Provider App",
+      "Expertise": "Admission Guidance, Entrepreneurship, Academics",
+      "Description": "I am a passionate entrepreneur and COO of Dream Provider Pvt. Ltd., dedicated to solving student challenges through innovative solutions like the Provider App. With a focus on leadership, teamwork, and creating meaningful impact, I strive to empower students academically and beyond.",
+      "Mobile Number": 7309451277,
+      "Mail": "Supritoffice@gmail.com"
+    },
+    {
+      "Name": "Vansh kumar",
+      "Profile": "https://lh3.googleusercontent.com/d/1jsJtovqR6zGlqEEWrPaiPxVfB6wSyZMZ",
+      "College": "Gl bajaj",
+      "Bio": "Front-End Developer | React JS(Learner) | Python Beginner",
+      "Expertise": "DSA, Development , Academics",
+      "Description": "I am a 2nd year B.tech student focused on improving problem solving efficiency for competitive programming and technical interviews. ",
+      "Mobile Number": 7217446693,
+      "Mail": "Vanshtech7217@gmail.com"
+    },
+    {
+      "Name": "Kshitij Goel ",
+      "Profile": "https://drive.google.com/file/d/1BdKfr3TDHsATriYH3-6oxzhI6wB7HxJm/view?usp=drive_link",
+      "College": "Gl bajaj",
+      "Bio": "Sales Lead @ProviderApp | Startup Enthusiast | Growth & B2B Deals",
+      "Expertise": "Admission Guidance, Entrepreneurship, Academics",
+      "Description": "I am a passionate entrepreneur and currently sales lead at Provideer App, always ",
+      "Mobile Number": 6388810638,
+      "Mail": "thekshitijgoel@gmail.com"
+    },
+    {
+      "Name": "Lakshya Srivastava ",
+      "Profile": "https://lh3.googleusercontent.com/d/12_JYu42gxB7x317kJZeXccBD6tEyvm2_",
+      "College": "Gl bajaj",
+      "Bio": "Passionate about DSA ",
+      "Expertise": "DSA, Admission guidance, sports, Academics",
+      "Description": "I am 2nd year student who is passionate in DSA, sports & academics.",
+      "Mobile Number": 9161742373,
+      "Mail": "lakshyasri1306@gmail.com"
+    },
+    {
+      "Name": "Lakshya Garg",
+      "Profile": "https://lh3.googleusercontent.com/d/1o9lhMX2Beb4aYgoEBHLFd_QVnhgBFzcB",
+      "College": "Gl bajaj",
+      "Bio": "Aspiring Computer Science Engineer , Passionate about Technology & Innovation",
+      "Expertise": "DSA, Academics",
+      "Description": "I am a dedicated Computer Science Engineering student with a strong interest in coding, data analysis, and problem-solving. I am constantly exploring new technologies, working on projects, and aiming to build impactful solutions. My goal is to secure a placement and grow as a skilled software developer.",
+      "Mobile Number": 9627570271,
+      "Mail": "lakshyagarg708@gmail.com"
+    },
+    {
+      "Name": "Rishav Raj",
+      "Profile": "https://lh3.googleusercontent.com/d/1T0wrJ51-8LNj6kFr62CtKyDm3TANZNxE",
+      "College": "Gl bajaj",
+      "Bio": "AI and Data science Engineer 25'",
+      "Expertise": "DSA, Development, Entrepreneurship, Admission Guidance, Research paper ",
+      "Description": "A final year student looking forward to explore new opportunities, and excel my skills through it. ",
+      "Mobile Number": 8383012450,
+      "Mail": "rr378031@gmail.com"
+    },
+    {
+      "Name": "Anurag Raj ",
+      "Profile": "https://lh3.googleusercontent.com/d/1raiXs-jk6U5dApeoQMexD2oXaVG9Apxu",
+      "College": "Gl bajaj",
+      "Bio": "SDE @AppTestify",
+      "Expertise": "DSA, Development, Academics",
+      "Description": "I'm a final-year Computer Science B.Tech student at GL Bajaj, where I've been refining my programming craft. Think of C and C++ as my core tools, and web development as my canvas. I'm also exploring Python, always looking to add new techniques to my repertoire. I'm eager to build something impactful.",
+      "Mobile Number": 7050046762,
+      "Mail": "rajanurag5643@gmail.com"
+    },
+    {
+      "Name": "Abhishek Singh ",
+      "Profile": "https://lh3.googleusercontent.com/d/1quQPDsk_hY4AUPmsqDwGf-dIVwFebYFY",
+      "College": "Gl bajaj",
+      "Bio": "Frontend Developer | HTML | CSS |JavaScript | Git | SQL | Java | Problem Solving | OOPs| Figma",
+      "Expertise": "Development",
+      "Description": "I am Abhishek Singh currently pursuing BTech from GL Bajaj with the specialization of computer science and engineering.  I have a 6 month experience in Java developer role with the company outlier Ai and developing some projects during internship.",
+      "Mobile Number": 8840192922,
+      "Mail": "thakurabhishek1504@gmail.com"
+    },
+    {
+      "Name": "Jigisha Baliyann",
+      "Profile": "https://lh3.googleusercontent.com/d/1LgobzUpvbYQQTRP8iAYPv3SVDT_-pkfM",
+      "College": "Gl bajaj",
+      "Bio": "Scholar @SheFi | Hackathons: 1x Runner-Up; 1x Top 10; 1x Qualifier; 2x Participant | Finalist @MindTheProduct by @IITR | Secretary' 24-25 @Yuktikala Club",
+      "Expertise": "DSA, Entrepreneurship, Internship Guidance, Academics, Marketing and Sponsorship",
+      "Description": "I am a highly energized person, always striving to learn more and more, and apply my skills for betterment of people and contribute in society.",
+      "Mobile Number": 9267923496,
+      "Mail": "jigisha21g@gmail.com"
+    },
+    {
+      "Name": "Ayushman Gupta ",
+      "Profile": "https://lh3.googleusercontent.com/d/1uoTNOQQJMiHWYlYnZ-7VkKbUnqJsR5XQ",
+      "College": "Gl bajaj",
+      "Bio": "Full Stack Developer (MERN Developer) | SIH Qualifier | SDE Intern at Apptesyify (IQLEXA)",
+      "Expertise": "Development",
+      "Description": "I believe in aiming big and working in parts to achieve your goals and never regret about your past",
+      "Mobile Number": 8172961505,
+      "Mail": "ayushmangupta647646@gmail.com"
+    },
+    {
+      "Name": "Aryan Singh",
+      "Profile": "https://lh3.googleusercontent.com/d/1dClVvKP1sSz2c0ezARHp3rhIL5bVEL1r",
+      "College": "Gl bajaj",
+      "Bio": "Public Relations Lead @Vividhata Club || FRONT-END WEB DEVELOPER ||Contributor @GSSoC'24 || C || C++ || Practicing DSA in C++ ||",
+      "Expertise": "DSA, Development",
+      "Description": "Programming Enthusiasts, Passionate as Developer.",
+      "Mobile Number": 8756314952,
+      "Mail": "aryan26112004@gmail.com"
+    },
+    {
+      "Name": "Tanya Goel",
+      "Profile": "https://lh3.googleusercontent.com/d/14C60fAeGP3pCdqJL_m-ZAGKJ4sje3Xon",
+      "College": "Gl bajaj",
+      "Bio": "Passionate Programmer| Problem Solver| Tech Enthu",
+      "Expertise": "DSA",
+      "Description": "I am curious and passionate coder",
+      "Mobile Number": 9219623928,
+      "Mail": "tannuagarwal903@gmail.com"
+    },
+    {
+      "Name": "Alok Kumar Ray",
+      "Profile": "https://lh3.googleusercontent.com/d/1DkHHpIvtoDBbG4g_8QNgqvcP90-kBeng",
+      "College": "Gl bajaj",
+      "Bio": "MERN Stack Developer | Competitive Programmer",
+      "Expertise": "DSA, Development, Admission Guidance, Internship Guidance, Sports, Academics",
+      "Description": "I would describe myself as a dedicated and curious learner with a strong passion for web development and problem-solving. As a MERN Stack Developer and active Competitive Programmer, I thrive on challenges\u2014whether it\u2019s building full-stack applications or solving complex algorithmic problems on platforms like LeetCode and Codeforces. Being a scholar, I also believe in giving back by mentoring and guiding fellow students in their academic and career decisions. I\u2019m always eager to learn new technologies, improve my skills, and contribute meaningfully to any team or project I\u2019m part of.\n\n",
+      "Mobile Number": 9990324349,
+      "Mail": "alokkray007@gmail.com"
+    },
+    {
+      "Name": "Sajal Srivastava ",
+      "Profile": "https://lh3.googleusercontent.com/d/1YGux8n2r9DyNXFU-Gzum67z0iwMxjPlw",
+      "College": "Gl bajaj",
+      "Bio": "Chill Guy love to have fun ",
+      "Expertise": "Entrepreneurship, Admission Guidance, Internship Guidance",
+      "Description": "Self motivated ",
+      "Mobile Number": 9315529640,
+      "Mail": "sajalsrivastava63@gmail.com"
+    },
+    {
+      "Name": "Soumya Singh",
+      "Profile": "https://lh3.googleusercontent.com/d/16sadw8pJkXqUDQQ8SOn-_eXOFLJVPCnk",
+      "College": "Bennett University",
+      "Bio": "Full-stack App Developer at Sideline Ventures | Research Intern, CII",
+      "Expertise": "Development, Entrepreneurship, Admission Guidance, Internship Guidance, Co Curricular",
+      "Description": "I\u2019m a person who\u2019s not scared to try new things.",
+      "Mobile Number": 9310532825,
+      "Mail": "soumyasmitsingh@gmail.com"
+    },
+    {
+      "Name": "Pooja Saini ",
+      "Profile": "https://lh3.googleusercontent.com/d/1FIgnZs8wiMVFXUs7XUjUfhVMSLNZREJB",
+      "College": "GL Bajaj institute of management and research ",
+      "Bio": "A finance student ",
+      "Expertise": "Academics",
+      "Description": "My name is Pooja Saini. I am from greater Noida. Currently I am pursuing post graduate diploma in management at G.L Bajaj institute of management and research with a specialization in Finance.  I completed my graduation in B Com from Delhi university. My strength are problem solving , smart work. My goal is to apply my knowledge in real-world scenarios and build a successful career . I\u2019m excited to deepen my expertise and connect with professionals in the finance industry.\nThank\u00a0you",
+      "Mobile Number": 7206682886,
+      "Mail": "pooja2408saini@gmail.com"
+    },
+    {
+      "Name": "Sneha Rai",
+      "Profile": "https://lh3.googleusercontent.com/d/1UXq0cmXOb8ZphxDXLM1DHddfecq1Lsp8",
+      "College": "GL Bajaj Institute of Management and Research ",
+      "Bio": "Empowering Students | Guiding Careers | Unlocking Potential ",
+      "Expertise": "Admission Guidance, Internship Guidance, Academics",
+      "Description": "We bridge a gap between students and success providing the right guidance, insights and resources. Our mission is to mentor, inspire and equip students with the knowledge and skills they need to thrive in their careers.",
+      "Mobile Number": 7392072738,
+      "Mail": "raisneha215@gmail.com"
+    },
+    {
+      "Name": "Anushka Banerjee",
+      "Profile": "https://lh3.googleusercontent.com/d/1p9BzpyFtF3aC68KgX3sgU7iPPhWTr3dS",
+      "College": "Gl bajaj ",
+      "Bio": "",
+      "Expertise": "",
+      "Description": "I am very Good learner ",
+      "Mobile Number": 9648033924,
+      "Mail": "anushkapakhi28198@gmail.com"
+    },
+    {
+      "Name": "Ramya gupta ",
+      "Profile": "https://lh3.googleusercontent.com/d/1l7AwSF8WaDkgw9nAGJBqnQqtmEl9EXSF",
+      "College": "G.l bajaj institute of technology and management ",
+      "Bio": "Hi, I'm Ramya Gupta, a 6th-semester student at GL Bajaj. Passionate about coding, I specialize in Java and am preparing for high-paying placements.\n\n",
+      "Expertise": "DSA, Development, Admission Guidance, Internship Guidance, Academics",
+      "Description": "Hi, I'm Ramya Gupta, a 6th-semester student at GL Bajaj. Passionate about coding, I specialize in Java and am preparing for high-paying placements.",
+      "Mobile Number": 9958287901,
+      "Mail": "cloud.ramyagupta.infotech@gmail.com"
+    },
+    {
+      "Name": "Harsh Narayan Nishad",
+      "Profile": "https://lh3.googleusercontent.com/d/1TAWLqoFqUJxN0Q_4OaDx5_BXbQORUsHp",
+      "College": "GL Bajaj Institute of Technology",
+      "Bio": "Turning Ideas into Scalable, Data-Driven Applications.",
+      "Expertise": "DSA, Development, Entrepreneurship",
+      "Description": "Passionate full-stack MERN developer transforming ideas into scalable, data-driven software solutions. Skilled in problem-solving, ML integration, and building high-impact applications.",
+      "Mobile Number": 8853532025,
+      "Mail": "harshnarayannishad@gmail.com"
+    },
+    {
+      "Name": "Ravi Chaudhary ",
+      "Profile": "https://lh3.googleusercontent.com/d/1kLd2srMOBEK5Njvkw4LEJCVwhVhnxHLk",
+      "College": "Lloyd Institute of Engineering and Technology ",
+      "Bio": "Dev|Green Humanity",
+      "Expertise": "Development, Entrepreneurship",
+      "Description": "I am Dev growing my skill precisely more.. ",
+      "Mobile Number": 9580156837,
+      "Mail": "ravichaudhary7570@gmail.com"
+    },
+    {
+      "Name": "Neeraj Kumar ",
+      "Profile": "https://lh3.googleusercontent.com/d/1rz_dsaKyDunEvIPP4CUHyOyzlcd9kQ7R",
+      "College": "GL BAJAJ INSTITUTE OF TECHNOLOGY AND MANAGEMENT GREATER NOIDA ",
+      "Bio": " ",
+      "Expertise": "DSA, Development, Sports",
+      "Description": " ",
+      "Mobile Number": 8839433526,
+      "Mail": "neerajksharma1562@gmail.com"
+    },
+    {
+      "Name": "Shubham kumar ",
+      "Profile": "https://lh3.googleusercontent.com/d/1upMBKwx10c8gCzkegcqU1bYvNfh3i92-",
+      "College": "SHARDA University ",
+      "Bio": "Software engineer ",
+      "Expertise": "DSA, Development",
+      "Description": "I am the one who can make anything possible through the code on the internet ",
+      "Mobile Number": 9084253488,
+      "Mail": "shubhamrajput8954samrat@gmail.com"
+    },
+    {
+      "Name": "Priya Singh ",
+      "Profile": "https://lh3.googleusercontent.com/d/1jfBMzFtqtYQ2gF_RQzh4r3Sn9y0CI3Ya",
+      "College": "G.L bajaj institute of technology and management ",
+      "Bio": "\"B.Tech CSE (AI/ML) student with expertise in frontend development, machine learning, and problem-solving. Intern at Samsung R&D, passionate about innovation and growth in technology.\"",
+      "Expertise": "DSA, Development, IOT, Internship Guidance, Academics",
+      "Description": "I am a highly motivated and skilled individual with a strong foundation in Computer Science. I have experience in frontend development, machine learning, and software engineering. Currently, I am interning at Samsung R&D, where I am honing my technical and problem-solving skills. I am passionate about leveraging technology to solve real-world problems and continuously learning to achieve excellence.",
+      "Mobile Number": 8851351187,
+      "Mail": "raghuvanshipriya0086@gmail.com"
+    },
+    {
+      "Name": "Shivam Verma",
+      "Profile": "https://lh3.googleusercontent.com/d/1coN8N5-mjFIBS0RGwmEiv7iAfoyd0rs8",
+      "College": "G.L. Bajaj Institute Of Technology And Management",
+      "Bio": "let's explore ideas",
+      "Expertise": "DSA, Development, Internship Guidance, Sports",
+      "Description": "I am a second-year engineering student with a passion for problem-solving and innovation. Constantly learning and exploring new technologies, I enjoy tackling challenges, improving my technical skill",
+      "Mobile Number": 7985165569,
+      "Mail": "shivamvermait23012@gmail.com"
+    },
+    {
+      "Name": "Aryan Srivastav ",
+      "Profile": "https://lh3.googleusercontent.com/d/1qzM5nb1aLxpq_-pc4vJVRiq1bV_qtrR5",
+      "College": "HRIT University ",
+      "Bio": "Enthusiast learner",
+      "Expertise": "Admission Guidance, Internship Guidance, Sports, ",
+      "Description": "I have had an inquisitive mind and medical things always fascinated me i belive in giving my best to everything and i think that is the success mantra to achieve your goals. As far as my skills are concerned .My thoughts are that every day teaches you something new, and there is no end to learning",
+      "Mobile Number": 8418005211,
+      "Mail": "aryanharsh.112@gmail.com"
+    },
+    {
+      "Name": "Utsav Tiwari ",
+      "Profile": "https://lh3.googleusercontent.com/d/1OixAG0ZRydFyIDuSzCGhTr5Q-KeF2I2l",
+      "College": "Gl bajaj",
+      "Bio": "CSAI Student: Building Tomorrow's Tech, Today.",
+      "Expertise": "Admission Guidance, Sports",
+      "Description": "2nd year B.Tech CSAI student at GL Bajaj, actively expanding expertise in coding and software development. Proficient in Java  Demonstrates a keen interest in exploring AI applications and leveraging technology to solve complex problems. Possesses a proactive approach to learning and a strong desire to contribute to collaborative development environments",
+      "Mobile Number": 7233083655,
+      "Mail": "tiwariutsav07@gmail.com"
+    },
+    {
+      "Name": "Pratyaksh Kumar Srivastav ",
+      "Profile": "https://lh3.googleusercontent.com/d/1thFnGycNEJz-3qJyYJX2ZUWOMf69gtPw",
+      "College": "GL BAJAJ institute of technology and management ",
+      "Bio": "C++ Programmer | Problem-Solving Enthusiast | Basic Web Development Skills\n",
+      "Expertise": "Sports, Academics",
+      "Description": "Aspiring software engineer with a strong foundation in C++ and problem-solving. Passionate about learning new technologies and exploring web development. Always eager to improve and take on new challenges in the tech world.",
+      "Mobile Number": 7523851794,
+      "Mail": "pratyakshsrivastava973@gmail.com"
+    },
+    {
+      "Name": "Bhanvi",
+      "Profile": "https://lh3.googleusercontent.com/d/1SEMCk_IJUdHs3yaBqFV03mLI9JI0DOCK",
+      "College": "Gl bajaj",
+      "Bio": "Feel free to connect with me for any queries related to college, confusion, or anything else\u2014I\u2019m happy to help!",
+      "Expertise": "Admission Guidance, Internship Guidance, Academics",
+      "Description": "My name is Bhanvi, and I take pride in being helpful and honest in everything I do.",
+      "Mobile Number": 8087337413,
+      "Mail": "bhanviwadhva@gmail.com"
+    },
+    {
+      "Name": "Ayush singh",
+      "Profile": "https://lh3.googleusercontent.com/d/1Je_mOjvDHstauOOKxMElCqNpp4PMDv09",
+      "College": "GL BAJAJ INSTITUTE OF TECHNOLOGY AND MANAGEMENT ",
+      "Bio": "Journey over destiny ",
+      "Expertise": "Admission Guidance, Sports, Academics, I can also guide students for government exam preparation..I can provide them a roadmap ",
+      "Description": "I am Ayush Singh..currently pursuing BTech from Ece branch at GLBITM..I am good at sports and animation editing...I am good at having conversation with someone ",
+      "Mobile Number": 9336718735,
+      "Mail": "ayushsingh012006@gmail.com"
+    },
+    {
+      "Name": "Ajay",
+      "Profile": "https://lh3.googleusercontent.com/d/1crS9AeoZ6NLa3USGWTo9mz-M1F5LvH8Z",
+      "College": "Glbajaj Institute of technology and Management ",
+      "Bio": "Ajay yadav ",
+      "Expertise": "DSA, Development, Sports",
+      "Description": "A passionate Learner",
+      "Mobile Number": 9670483893,
+      "Mail": "ajayydv2908@gmail.com"
+    },
+    {
+      "Name": "Aakash Saini ",
+      "Profile": "https://lh3.googleusercontent.com/d/1_Mcw369ddsCgnbrEZ6_jHP-LQG94OBuF",
+      "College": "Ajay Kumar Garg Engineering College ",
+      "Bio": "Frontend Developer",
+      "Expertise": "DSA, Development , Academics, Admission guidance",
+      "Description": "I am passionate about coding. I provide admission guidance and solve challenges. I am happy to help students in choosing good colleges and assist them academically.",
+      "Mobile Number": 7668520236,
+      "Mail": "aakashsaini1207@gmail.com"
+    },
+    {
+      "Name": "RAJA BHAIYA MAURYA",
+      "Profile": "https://lh3.googleusercontent.com/d/1Nsp_DEkwKvNf5d8-BDQPdGYeEolDtlTv",
+      "College": "G. L. Bajaj Institute of Technology and Management ",
+      "Bio": "aspiring coder",
+      "Expertise": "DSA, Development",
+      "Description": "aspiring coder",
+      "Mobile Number": 8874252924,
+      "Mail": "rajabhaiyamaurya390@gmail.com"
+    },
+    {
+      "Name": "Kanika Solanki ",
+      "Profile": "https://lh3.googleusercontent.com/d/1Ic04_8uNfsu1sIh1nHoTLzNrOMarl-4i",
+      "College": "G. L. Bajaj Institute of Technology and Management ",
+      "Bio": "A passionate 4th-year IT student eager to innovate, optimize, and grow in the tech industry.",
+      "Expertise": "DSA, Development, Internship Guidance, Sports, Academics",
+      "Description": "I am an energetic and hardworking individual who thrives on challenges and continuous learning. With a strong sense of teamwork, I collaborate effectively to achieve goals while maintaining a positive and solution-oriented approach. My ability to adapt, coupled with strong negotiation skills, allows me to navigate complex situations and drive successful outcomes. I am always open to new opportunities that push my limits, helping me grow both personally and professionally.",
+      "Mobile Number": 8630516184,
+      "Mail": "kanikasolanki2003@gmail.com"
+    },
+    {
+      "Name": "Saksham Katiyar",
+      "Profile": "https://lh3.googleusercontent.com/d/1zK39MwEA4OHF0dHWwdvsw8I6X3Vqw-J7",
+      "College": "GL Bajaj Institute of technology and management",
+      "Bio": "Frontend developer",
+      "Expertise": "Development",
+      "Description": "I am a highly motivated and curious individual with a strong passion for technology and innovation. I enjoy building creative solutions, especially in the front-end development space, and constantly strive to learn new skills. I\u2019m a team player, an effective communicator, and always eager to take on challenges that help me grow personally and professionally.",
+      "Mobile Number": 6389755120,
+      "Mail": "katiyar.saksham2004@gmail.com"
+    },
+    {
+      "Name": "Kshitij singh ",
+      "Profile": "https://lh3.googleusercontent.com/d/1L73TTUf4unmC3qFcns-sXrCnVUeIPSs7",
+      "College": "GL BAJAJ INSTITUTE OF TECHNOLOGY AND MANAGEMENT ",
+      "Bio": "--",
+      "Expertise": "DSA",
+      "Description": "--",
+      "Mobile Number": 8103795117,
+      "Mail": "ks6126419@gmail.com"
+    },
+    {
+      "Name": "Achal Vishnoi",
+      "Profile": "https://lh3.googleusercontent.com/d/1-ZEi-ahCQvs_kkAz0_U1BoM6R5gA4_BU",
+      "College": "ajay kumar garg engineering college",
+      "Bio": "I am Achal Vishnoi",
+      "Expertise": "DSA, Development",
+      "Description": "I am a creative developer",
+      "Mobile Number": 8865991356,
+      "Mail": "vishnoiachal174@gmail.com"
+    },
+    {
+      "Name": "Harsh Verma ",
+      "Profile": "https://lh3.googleusercontent.com/d/1JwGPilVW4L7AAGNqJ2OwiOkRSlhIdcXH",
+      "College": "GL Bajaj Institute of Technology ",
+      "Bio": "Unlock Your Dream College and Thrive Academically & Socially with Expert Mentorship \u2013 Your Pathway to Success Starts Here!",
+      "Expertise": "Entrepreneurship, Admission Guidance, Internship Guidance, Sports, Academics",
+      "Description": "Hey there! I'm a second-year B.Tech student at GL Bajaj, always eager to explore new things and make the most of my college life. I love meeting new people, having meaningful conversations, and listening to their stories and experiences. My ability to talk to anyone without making things awkward helps me connect easily.\n\nApart from academics (where I consider myself average but always striving to improve), I have gained practical experience through an internship at Physics Wallah. I'm passionate about learning new things, and music is my constant companion. Excited for all the opportunities ahead!",
+      "Mobile Number": 7275388476,
+      "Mail": "hhhharshverma1@gmail.com"
+    },
+    {
+      "Name": "GURPAL SINGH ",
+      "Profile": "https://lh3.googleusercontent.com/d/1lkpF7eCTpu583MVdvyRLImLrmyNXydJi",
+      "College": "Guru Teg bahadur Institute of technology ",
+      "Bio": "Developer in making ",
+      "Expertise": "DSA, Development, Sports, Academics",
+      "Description": "Learner ",
+      "Mobile Number": 9555800943,
+      "Mail": "guraplsingh3786@gmail.com"
+    },
+    {
+      "Name": "KHUSHI BARANWAL",
+      "Profile": "https://lh3.googleusercontent.com/d/13r-9Mwhm90OFR2JcgPjP5U_Gsv5eO-PQ",
+      "College": "JAYPEE INSTITUTE of INFORMATION TECHNOLOGY",
+      "Bio": "Engineering Apprentice | Crafting a Path to Excellence",
+      "Expertise": "Development, IOT",
+      "Description": "I am a passionate and hardworking learner who loves exploring new ideas and experiences. With a strong sense of responsibility and patience, I strive to give my best in everything I do. As an ambivert, I adapt well to different situations, balancing teamwork and independent growth. Currently, I am diving into my ECE core field while also developing tech skills like coding and UI/UX design. Always eager to learn and evolve, I am constantly looking for new opportunities to grow and challenge myself.",
+      "Mobile Number": 8707232085,
+      "Mail": "khushibaranwal2005@gmail.com"
+    },
+    {
+      "Name": "Nandini jadon",
+      "Profile": "https://lh3.googleusercontent.com/d/1OqgyTRDaTmHdvUw2FxtW_bjnJx8NfJgr",
+      "College": "Galgotia university ",
+      "Bio": "Creative and ambitious ",
+      "Expertise": "Admission Guidance, Internship Guidance, Academics",
+      "Description": "I am an ambitious MBA student specializing in Financial Management, with a strong background in digital marketing and leadership. Currently managing LinkedIn for the Provider App and its founders, I am dedicated to enhancing brand presence and engagement. With a passion for strategic growth and financial analysis, I am committed to continuous learning and professional development. Additionally, my creativity and discipline, shaped by my experience in dance and leadership roles, complement my analytical skills. At present, my focus is on self-growth, success, and maintaining emotional resilience.\n\n",
+      "Mobile Number": 7455052791,
+      "Mail": "jadonnandini68@gmail.com"
+    },
+    {
+      "Name": "Neeraj Kumar ",
+      "Profile": "https://lh3.googleusercontent.com/d/1FqRg1zFprqLGIlyN4dtZBaBj00wBXklE",
+      "College": "GL BAJAJ INSTITUTE of technology and management ",
+      "Bio": " ",
+      "Expertise": "DSA",
+      "Description": " ",
+      "Mobile Number": 8839433526,
+      "Mail": "neerajksharma1562@gmail.com"
+    },
+    {
+      "Name": "jagrati Dagur ",
+      "Profile": "https://lh3.googleusercontent.com/d/17sNXGcCK1i3HFaILDT47ETnAWMm9UacA",
+      "College": "sharda University ",
+      "Bio": "BBA Marketing Student | HR & Content Creator at Provider App\n",
+      "Expertise": "Admission Guidance",
+      "Description": "A passionate marketing student at Sharda University, actively exploring the world of business, branding, and digital strategy. Alongside my studies, I work as an HR and content creator at Provider App, where I manage recruitment, employee engagement, and content development. With a keen interest in marketing, content strategy, and organizational management, I aim to bridge creativity with business insights to drive impactful results. Always eager to learn, innovate, and grow in the dynamic fields of marketing and HR.",
+      "Mobile Number": 8077399844,
+      "Mail": "jagratidagur51@gmail.com"
+    },
+    {
+      "Name": "Muskan",
+      "Profile": "https://lh3.googleusercontent.com/d/1TWBRRswy5lJPM8CbCWy30M4MABF1RfSr",
+      "College": "Galgotias University",
+      "Bio": "Motivated, Quick adaptable",
+      "Expertise": "Admission Guidance, Internship Guidance, PERSONALITY DEVELOPMENT",
+      "Description": "I am a motivated and detail-oriented fresher with a strong academic background and a keen interest in post designing. I possess a solid understanding of problem-solving, teamwork. and am eager to apply my knowledge to real-world challenges. I am a quick learner, adaptable, and committed to continuous growth. My goal is to contribute effectively to an organization while enhancing my professional skills and gaining valuable experience.",
+      "Mobile Number": 7988602213,
+      "Mail": "muskan.rohtak007@gmail.com"
+    },
+    {
+      "Name": "Jagrati Dagur ",
+      "Profile": "https://lh3.googleusercontent.com/d/1rPN4g4QYpMujn2Wd8qyxgMmCb5m54EXm",
+      "College": "KCC  INSTITUTE OF TECHNOLOGY AND MANAGEMENT ",
+      "Bio": "Btech AI-ML Student | HR & Content Creator specialist ",
+      "Expertise": "Admission Guidance, Internship Guidance",
+      "Description": "A technology-driven individual pursuing B.Tech in AI & ML at KCC, with a passion for artificial intelligence, machine learning, and data science. Alongside my studies, I work as an HR and content creator at Provider App, handling recruitment, employee engagement, and digital content marketing. I thrive at the intersection of technology, business, and creativity, aiming to leverage AI for innovative solutions. Constantly learning, growing, and exploring new opportunities in the dynamic world of AI and digital strategy.\n",
+      "Mobile Number": 8077399844,
+      "Mail": "Jagrati Dagur "
+    },
+    {
+      "Name": "Yashika Vijay ",
+      "Profile": "https://lh3.googleusercontent.com/d/1JLNPCr_8nn_Pb-NhvxFxaqJNXxHTv701",
+      "College": "Galgotiya University ",
+      "Bio": "Eager and motivated fresher ",
+      "Expertise": "Academics",
+      "Description": "I am a hardworking, enthusiastic, ambitious, creative person ",
+      "Mobile Number": 8279918697,
+      "Mail": "yashikavijay84@gmail.com"
+    },
+    {
+      "Name": "Ananya Garg",
+      "Profile": "https://lh3.googleusercontent.com/d/1dtldbFDNMt7LW9Jb_uVUquAfR_M7u4IM",
+      "College": "Galgotias university",
+      "Bio": "Got College Struggles? I Got You!",
+      "Expertise": "Admission Guidance, Academics",
+      "Description": "Easy going and a fun human to be around",
+      "Mobile Number": 6397381798,
+      "Mail": "ananya.pakhi1204@gmail.com"
+    },
+    {
+      "Name": "Pushpanjali verma",
+      "Profile": "https://lh3.googleusercontent.com/d/1HvI5kRfx_0ChP_CBpLPrfFUNrcPshPfi",
+      "College": "Ajay Kumar garg engineering college ",
+      "Bio": "Aspiring software engineer ",
+      "Expertise": "Development",
+      "Description": "Aspiring software engineer ",
+      "Mobile Number": 7906406583,
+      "Mail": "pushpanjaliv65@gmail.com"
+    },
+    {
+      "Name": "Siddharth Tomar ",
+      "Profile": "https://lh3.googleusercontent.com/d/1nPP-LdnI8j7xjN3RpShIxCdErsqMK5eb",
+      "College": "Galgotias University ",
+      "Bio": "Galgotias University ",
+      "Expertise": "Admission Guidance, Academics",
+      "Description": "MBA Data science student ",
+      "Mobile Number": 9193022233,
+      "Mail": "siddharthtomar1233@gmail.com"
+    },
+    {
+      "Name": "Vishal Raj ",
+      "Profile": "https://lh3.googleusercontent.com/d/1AbWOwaZhnXPNb82uuPA7wnEbOpRriAh4",
+      "College": "Lloyd Group Of Institution ",
+      "Bio": "Consistency beats talent when talent isn't consistent.",
+      "Expertise": "Development, Entrepreneurship, Admission Guidance, Sports, Academics",
+      "Description": "Self motivated person",
+      "Mobile Number": 6299019916,
+      "Mail": "vraj805185@gmail.com"
+    },
+    {
+      "Name": "Pallavi Singh ",
+      "Profile": "https://lh3.googleusercontent.com/d/1WltboLn1cdKDtvc3ghwfDDeFnHSvwM7q",
+      "College": "Galgotias University ",
+      "Bio": "Your go to guide : get personalized help here!",
+      "Expertise": "Admission Guidance, Academics, ",
+      "Description": "I'm a bright and ambitious student, eager to learn and grow. With a curious mind and strong work ethic, I excel in academics and support my peers.",
+      "Mobile Number": 8791298527,
+      "Mail": "pallaviisingh01@gmail.com"
+    },
+    {
+      "Name": "SHASHANK DUBEY",
+      "Profile": "https://lh3.googleusercontent.com/d/17JWOmiw-Z0mHXufCjmjjGGcxBSxtj_z9",
+      "College": "LLOYD BUSINESS SCHOOL ",
+      "Bio": "Shashank Dubey | Aspiring Business Leader | Passionate Marketer | E-commerce Enthusiast with Strong Leadership and Public Speaking Skills",
+      "Expertise": "Entrepreneurship, Admission Guidance, Internship Guidance, Academics",
+      "Description": "You can describe yourself like this:\n\nI\u2019m Shashank Dubey an extroverted and passionate marketing enthusiast with a strong background in business management and e-commerce I enjoy taking on leadership roles and have honed my collaboration critical thinking, and public speaking skills through various projects, including organizing debates and performing impactful street plays on social issues I\u2019m driven by a desire to learn, lead and inspire I\u2019m always eager to explore new opportunities that allow me to grow personally and professionally.",
+      "Mobile Number": 9118941060,
+      "Mail": "shashankmzp100@gmail.com"
+    },
+    {
+      "Name": "Ananya Sirohi ",
+      "Profile": "https://lh3.googleusercontent.com/d/14jUk-37HS63MhhN6ue3Ievp6XE7sVmX9",
+      "College": "NIET",
+      "Bio": "Building Beyond the Title || Entrepreneurial Mindset",
+      "Expertise": "Development, Entrepreneurship, Internship Guidance",
+      "Description": "Hi, I am Ananya Sirohi, a second-year B.Tech Computer Science student at Noida Institute of Engineering and Technology. I have gained experience as a Product Management Intern in multiple startups, where I worked on strategic research and product development. I was also selected for the Women Startup Program at IIM Bangalore, further enhancing my entrepreneurial and leadership skills. Additionally, I served as the Chief Executive Officer of Hustlers Fellowship, a platform dedicated to accelerating youth growth and professional development.\n\n",
+      "Mobile Number": 8532980243,
+      "Mail": "theananyasirohi@gmail.com"
+    },
+    {
+      "Name": "Bhringesh Rajput ",
+      "Profile": "https://lh3.googleusercontent.com/d/1CHcEaeZ1Ll1_G3pC-xIpKQad3ACguAeN",
+      "College": "Galgotias University ",
+      "Bio": "Passionate about helping you find answers, create ideas, and explore new possibilities with engaging, insightful conversations",
+      "Expertise": "Development",
+      "Description": "I'm a curious and adaptable assistant, here to help, inspire, and engage in meaningful conversations",
+      "Mobile Number": 9690718337,
+      "Mail": "manimb312@gmail.com"
+    },
+    {
+      "Name": "Akshat Agarwal ",
+      "Profile": "https://lh3.googleusercontent.com/d/1tvcIIhA0Tt3jDEHmmwTuBTSCyGip_qep",
+      "College": "IIIT Bhopal",
+      "Bio": "JEE mains qualified | DSA | Developer | Awarded by DM on receiving good marks in 12th",
+      "Expertise": "DSA, Development, Entrepreneurship, Admission Guidance, Academics",
+      "Description": "A self confident and hardworking person who gives all of his efforts in the given task with good integrity and problem solving skills.",
+      "Mobile Number": 9838085408,
+      "Mail": "408akshat@gmail.com"
+    },
+    {
+      "Name": "Mayank Chauhan ",
+      "Profile": "https://lh3.googleusercontent.com/d/1Sdh8YrFD9HUVxoM9hVGZu0YNIjBdKJDX",
+      "College": "Noida institute of engineering and technology ",
+      "Bio": "\"Tech-Savvy MCA Student | Aspiring Ethical Hacker | Passionate About Mathematics & Programming\"",
+      "Expertise": "Sports",
+      "Description": "I\u2019m an MCA student with a strong passion for technology, programming, and ethical hacking. With a background in mathematics, I love solving complex problems and diving deep into coding, especially in Java and Python.\nBeyond academics, I take care of my skin with a dedicated routine and enjoy celebrating festivals like Diwali. I\u2019m tech-savvy, always eager to learn new things, and value deep connections with people.",
+      "Mobile Number": 9311767994,
+      "Mail": "mayankshiso@gmail.com"
+    },
+    {
+      "Name": "Vishal",
+      "Profile": "https://lh3.googleusercontent.com/d/13v6iDdv3ekP-E3kMcgaI6FGICy7mra44",
+      "College": " Ganga Institute of Technology and Management",
+      "Bio": "I am learning software in my B.Tech field and working in it.\n",
+      "Expertise": "Sports",
+      "Description": "I'm a B.Tech student who's passionate about sports,gym,and outdoor activities.i'm clearly someone who likes to stay active and engaged, both mentally and physically.  \n\n",
+      "Mobile Number": 8059667789,
+      "Mail": "Vishalpanwar8059@gmail.con"
+    },
+    {
+      "Name": "Adarsh Prasad Singh ",
+      "Profile": "https://lh3.googleusercontent.com/d/103ZUmWNOawmVjwOOYGQii89WWxgNIka7",
+      "College": "GL Bajaj Institute of technology and management ",
+      "Bio": "Experiencing  and exploring Tech ",
+      "Expertise": "Development",
+      "Description": "I am a quick learner. I have core interest in DSA and Development. Looking forward to have great learning experience in this field ",
+      "Mobile Number": 8521340704,
+      "Mail": "adarshprasad8521@gmail.com"
+    },
+    {
+      "Name": "Arshdeep nayan",
+      "Profile": "https://lh3.googleusercontent.com/d/1pE1chgB2y7J8SQzyVBu8fIpjLFLymH2w",
+      "College": "G.L BAJAJ INSTITUTE OF TECHNOLOGY AND MANAGEMENT",
+      "Bio": "My name is Arshdeep nayan and I am pursuing B.TECH from GL bajaj institute of technology and management.",
+      "Expertise": "DSA",
+      "Description": "A passionate person who loves to learn new things.",
+      "Mobile Number": 9142181490,
+      "Mail": "arshdeepnayan098@gmail.com"
+    },
+    {
+      "Name": "Aman sahu ",
+      "Profile": "https://lh3.googleusercontent.com/d/10tb53A_7o7BjfqvgTHNukmHyJ5TZ0Vr1",
+      "College": "G.L.BAJAJ INSTITUTE OF TECHNOLOGY AND MANAGEMENT ",
+      "Bio": "Aman sahu ",
+      "Expertise": "Admission Guidance, Sports, Academics",
+      "Description": "Developing skills ",
+      "Mobile Number": 8949428038,
+      "Mail": "amansahuking223@gmail.com"
+    },
+    {
+      "Name": "Nitesh Kumar ",
+      "Profile": "https://lh3.googleusercontent.com/d/1oksZ5FYNVHi1gPt0aQLhbys-XcBMg0rm",
+      "College": "Niet",
+      "Bio": "Innovative ",
+      "Expertise": "Academics",
+      "Description": "I would say that I\u2019m creative, hard-working, and detail-oriented.I\u2019m able to adjust accordingly and meet tight deadlines.",
+      "Mobile Number": 9472093074,
+      "Mail": "niteshrxl85@gmail.com"
+    },
+    {
+      "Name": "Mohammed saadan warish ",
+      "Profile": "https://lh3.googleusercontent.com/d/1QG8436qAhPQanD4SMpBXxkSKrWujQhun",
+      "College": "G L bajaj",
+      "Bio": "Studying Master in mechanical engineering from Germany ",
+      "Expertise": "Automotive ",
+      "Description": "Student",
+      "Mobile Number": 9403572009,
+      "Mail": "saadanwarish1234@gmail.com"
+    },
+    {
+      "Name": "Mudit ",
+      "Profile": "https://lh3.googleusercontent.com/d/10sNHjIo_TC8oxAMzgK-zvvnfPZFPapeP",
+      "College": "Lloyd institute of engineering and technology ",
+      "Bio": "REEL VS REALITY ",
+      "Expertise": "DSA",
+      "Description": "Student ",
+      "Mobile Number": 8840111482,
+      "Mail": "mudit2077@gmail.com"
+    },
+    {
+      "Name": "Kemblin devi Lambalmayum ",
+      "Profile": "https://lh3.googleusercontent.com/d/1UANQR1P9OBgMS3mFeBfWAc3g84xjJJKy",
+      "College": "Sharda University ",
+      "Bio": "Volunteering experience ",
+      "Expertise": "Admission Guidance",
+      "Description": "Practical ",
+      "Mobile Number": 9599230357,
+      "Mail": "Sakuuraa69@gmail.com"
+    },
+    {
+      "Name": "Silky Kumari ",
+      "Profile": "https://lh3.googleusercontent.com/d/15OOImIF2DtcjvZol9p3l-TOEjkHUSooH",
+      "College": "GL Baja Institute of Management and Research ",
+      "Bio": "Management student ",
+      "Expertise": "Management ",
+      "Description": "Silky, a PGDM student specializing in HR with a strong interest in personal branding and social media growth",
+      "Mobile Number": 9128937464,
+      "Mail": "silkysoni2002@gmail.com"
+    },
+    {
+      "Name": "Harshit Kumar Singh",
+      "Profile": "https://lh3.googleusercontent.com/d/1ceqgd8NLulkKdVura6UTlVdnftT8PG3b",
+      "College": "Noida Institute of Engineering of Technology",
+      "Bio": "Web devloper ",
+      "Expertise": "DSA, Development, Admission Guidance",
+      "Description": "Web Developer",
+      "Mobile Number": 7307957520,
+      "Mail": "harshitsingh182001@gmail.com"
+    },
+    {
+      "Name": "Devesh Upadhyay ",
+      "Profile": "https://lh3.googleusercontent.com/d/1NqXeqnUa50tgL-e96vybfkW32ifcaWFe",
+      "College": "Galgotias university ",
+      "Bio": "Front end developer ",
+      "Expertise": "DSA, Development, Admission Guidance",
+      "Description": "I\u2019d describe you as someone who enjoys solving problems, writing efficient code, and continuously learning new technologies.",
+      "Mobile Number": 9120005141,
+      "Mail": "mrdevvu@gmail.com"
+    },
+    {
+      "Name": "Abhishek ",
+      "Profile": "https://lh3.googleusercontent.com/d/1Tsma94Phun5gUDAQFfVZAZix5CVHv5LT",
+      "College": "GNIOT' INSTITUTE OF PROFESSIONAL STUDIES ",
+      "Bio": ".",
+      "Expertise": "Admission Guidance",
+      "Description": ".",
+      "Mobile Number": 8948760329,
+      "Mail": "abhishekyaduvanshi61616161@gmail.com"
+    },
+    {
+      "Name": "Vishakha Mishra ",
+      "Profile": "https://lh3.googleusercontent.com/d/17yXyUITTvBtjO2gphNjrlMYX48E9V6Vl",
+      "College": "GL Bajaj institute of technology and management ",
+      "Bio": "Best guidance by Vishakha ",
+      "Expertise": "DSA, Development, Admission Guidance, Internship Guidance, Academics",
+      "Description": "A serious and focused student currently in 3rd year, with my 3 year experience in a college i am fit to guide you as much as I can... I won't regret in future if guided by me!",
+      "Mobile Number": 8076549190,
+      "Mail": "vishakhamishra24062005@gmail.com"
+    },
+    {
+      "Name": "Shivam singh ",
+      "Profile": "https://lh3.googleusercontent.com/d/1MqvjrKiGZNIuDRboHlF5C9jYlZo4lVav",
+      "College": "Lloyd law college ",
+      "Bio": "No",
+      "Expertise": "Development, Admission Guidance, Internship Guidance, Academics",
+      "Description": "My last year LLB is going on and I am practicing in High Court and also preparing for PCS J",
+      "Mobile Number": 7860744828,
+      "Mail": "adv.shivamsingh4828@gmail.com"
+    },
+    {
+      "Name": "Shruti Mishra",
+      "Profile": "https://lh3.googleusercontent.com/d/15dSD0B7SUSB4Wl9Dy6VQcm9jz7dfJsdF",
+      "College": "GL Bajaj Institute of Technology and Management ",
+      "Bio": "Just coding, might end up losing my brain cells.",
+      "Expertise": "DSA",
+      "Description": "Creative and Innovative ",
+      "Mobile Number": 8960382285,
+      "Mail": "mishrashrutiii04@gmail.com"
+    },
+    {
+      "Name": "Arpita Bhardwaj",
+      "Profile": "https://lh3.googleusercontent.com/d/1Yf4oSdK-10ALz4BGdyFhmTskj4E31u5C",
+      "College": "Sharda University ",
+      "Bio": "-",
+      "Expertise": "Academics",
+      "Description": "My name is Arpita Bhardwaj. I am doing Bsc nursing in Sharda University. I am from Delhi.",
+      "Mobile Number": 8882628933,
+      "Mail": "reenasharma140180@gmail.com"
+    },
+    {
+      "Name": "Ayush Raj",
+      "Profile": "https://lh3.googleusercontent.com/d/1NZszuZlpd3v9gCSDhflZzyH18bY9Xp7w",
+      "College": "Galgotias college of engineering & technology",
+      "Bio": ". ",
+      "Expertise": "Development, Entrepreneurship",
+      "Description": ". ",
+      "Mobile Number": 7632888515,
+      "Mail": "11rajayush@gmail.com"
+    }
+  ]
+}
