@@ -6,7 +6,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+git 
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -36,10 +36,10 @@ const passwordRoute = require('./routes/password');
 const collegeRoute = require('./routes/getdata');
 const paymentRoute = require('./routes/payment');
 
-app.use('/api/user', userRoute);
-app.use('/api/password', passwordRoute);
-app.use('/api/college', collegeRoute);
-app.use('/api/payment', paymentRoute);
+app.use('/user', userRoute);
+app.use('/password', passwordRoute);
+app.use('/college', collegeRoute);
+app.use('/payment', paymentRoute);
 
 const frontendPath = path.join(__dirname, 'frontend', 'dist');
 app.use(express.static(frontendPath));
