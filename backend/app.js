@@ -45,7 +45,6 @@ app.use('/payment', paymentRoute);
 const distPath = path.join(__dirname, '../frontend/dist');
 app.use(express.static(distPath));
 
-// ✅ Fallback for React Router (handle browser reload on /login, /dashboard, etc.)
 app.get('*', (req, res) => {
   res.sendFile(path.join(distPath, 'index.html'));
 });
