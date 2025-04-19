@@ -4,14 +4,20 @@ import axios from "axios";
 import DescriptionItem from '../../components/counsellor/Description';
 import HashLoader from "react-spinners/HashLoader";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 
 const StudentPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [item, setItem] = useState();
-  const { apiUrl, token } = useAuth();
+  const { apiUrl, token, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
 
   const openPopup = (item) => {
+    if(!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
     setIsOpen(true);
     setItem(item);
   };

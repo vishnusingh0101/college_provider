@@ -63,7 +63,7 @@ export default function Login() {
                 <p className="text-gray-500 mt-4">Logging in ...</p>
               </div>
             ) : (
-    <div className="absolute top-0 min-h-screen bg-white p-4">
+    <div className="absolute top-0 min-h-screen w-full bg-white p-4">
       {/* Header */}
       <div className="p-4 md:p-6 ">
         <div className="flex items-center gap-2">
