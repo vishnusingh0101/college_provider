@@ -6,6 +6,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('dotenv').config();
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -21,6 +22,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(morgan('combined', { stream: accessLogStream }));
 
+// Log body for debugging on relevant requests
 app.use((req, res, next) => {
   if (['POST', 'PUT', 'PATCH'].includes(req.method)) {
     console.log(`[${req.method}] ${req.url} - Body:`, req.body);
@@ -29,31 +31,30 @@ app.use((req, res, next) => {
 });
 
 // === ROUTES ===
-const errorControl = require('./controller/error');
 const userRoute = require('./routes/user');
 const passwordRoute = require('./routes/password');
 const collegeRoute = require('./routes/getdata');
 const paymentRoute = require('./routes/payment');
-
-app.use(express.json());
-const _dirname=path.dirname("");
-const dist = path.join(_dirname,"../frontend/dist")
-app.use(express.static(dist));
 
 app.use('/user', userRoute);
 app.use('/password', passwordRoute);
 app.use('/college', collegeRoute);
 app.use('/payment', paymentRoute);
 
-// const frontendPath = path.join(__dirname, 'frontend', 'dist');
-// app.use(express.static(frontendPath));
+// === STATIC FRONTEND SERVE ===
+const distPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(distPath));
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(frontendPath, 'index.html'));
-// });
+// ✅ Fallback for React Router (handle browser reload on /login, /dashboard, etc.)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
+});
 
+// === ERROR HANDLER ===
+const errorControl = require('./controller/error');
 app.use(errorControl.get404);
 
+// === SERVER START ===
 const startServer = async () => {
   try {
     if (!process.env.MONGODB) {
@@ -65,13 +66,13 @@ const startServer = async () => {
       useUnifiedTopology: true,
     });
 
-    console.log("MongoDB Connected");
+    console.log("✅ MongoDB Connected");
 
     app.listen(port, () => {
-      console.log(`Server running at http://localhost:${port}`);
+      console.log(`✅ Server running at http://localhost:${port}`);
     });
   } catch (err) {
-    console.error("Failed to start server:", err.message);
+    console.error("❌ Failed to start server:", err.message);
     process.exit(1);
   }
 };
