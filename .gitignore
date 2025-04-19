@@ -12,3 +12,6 @@
 
 # exclude DS_Store or system files
 .DS_Store
+
+# skip dist folder
+frontend/dist
