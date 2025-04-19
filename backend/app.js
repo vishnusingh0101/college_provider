@@ -35,17 +35,22 @@ const passwordRoute = require('./routes/password');
 const collegeRoute = require('./routes/getdata');
 const paymentRoute = require('./routes/payment');
 
+app.use(express.json());
+const _dirname=path.dirname("");
+const dist = path.join(_dirname,"../frontend/dist")
+app.use(express.static(dist));
+
 app.use('/user', userRoute);
 app.use('/password', passwordRoute);
 app.use('/college', collegeRoute);
 app.use('/payment', paymentRoute);
 
-const frontendPath = path.join(__dirname, 'frontend', 'dist');
-app.use(express.static(frontendPath));
+// const frontendPath = path.join(__dirname, 'frontend', 'dist');
+// app.use(express.static(frontendPath));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(frontendPath, 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(frontendPath, 'index.html'));
+// });
 
 app.use(errorControl.get404);
 

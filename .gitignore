@@ -1,5 +1,14 @@
-.env
-node_modules
-config
-DataOps.js
-access.log
+# Ignore all env files
+**/.env
+
+# Ignore all node_modules folders
+**/node_modules
+
+# Logs
+*.log
+
+# skip all config folders
+**/config/
+
+# exclude DS_Store or system files
+.DS_Store
