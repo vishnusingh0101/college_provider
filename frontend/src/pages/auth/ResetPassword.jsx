@@ -48,7 +48,7 @@ export default function CreateAccount() {
   };
 
   return (
-    <div className="absolute top-0 p-4 min-h-screen bg-slate-50">
+    <div className="absolute top-0 p-4 min-h-screen w-full bg-slate-50">
       <div className="p-4 md:p-6">
         {/* Header */}
         <div className="mb-8">

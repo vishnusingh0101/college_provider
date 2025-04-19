@@ -38,7 +38,7 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="absolute top-0 p-4 min-h-screen bg-white">
+    <div className="absolute top-0 p-4 min-h-screen w-full bg-white">
       {/* Header */}
       <header className="p-4 flex items-center gap-2">
       <Link to="/login">
