@@ -3,6 +3,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
+import HashLoader from "react-spinners/HashLoader";
 
 export default function CreateAccount() {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +13,8 @@ export default function CreateAccount() {
   const [phoneValid, setPhoneValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
   const { apiUrl } = useAuth();
+  const [loading, setLoading] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -39,19 +42,27 @@ export default function CreateAccount() {
     e.preventDefault();
     if (!passwordMatch || !phoneValid || !passwordValid) return;
     try {
+      setLoading(true);
       const result = await axios.post(`${apiUrl}user/SignUp`, obj);
-
-      console.log(result);
 
       if (result.status === 201) {
         navigate(`/verify-otp?phone=${obj.phone}&mode=signup`);
       }
     } catch (error) {
       console.error("Signup failed:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
+    <>
+    {loading ? (
+              <div className="flex flex-col items-center justify-center min-h-screen py-10">
+                <HashLoader size={50} color="#3B82F6" loading={loading} />
+                <p className="text-gray-500 mt-4">Registering ...</p>
+              </div>
+            ) : (
     <div className="absolute top-0 p-4 min-h-screen bg-slate-50">
       <div className="p-4 md:p-6">
         {/* Header */}
@@ -208,5 +219,7 @@ export default function CreateAccount() {
         </div>
       </div>
     </div>
+            )}
+            </>
   )
 }

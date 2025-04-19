@@ -85,8 +85,6 @@ export default function VerifyOTP() {
             otp: otpValue,
         });
 
-        console.log("API Response:", response);
-
         if (response.status === 200) {
           if (mode === "signup") {
               localStorage.setItem("authToken", response.data.token);

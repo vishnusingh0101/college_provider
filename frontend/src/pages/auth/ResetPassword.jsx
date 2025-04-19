@@ -38,8 +38,6 @@ export default function CreateAccount() {
     try {
       const result = await axios.post(`${apiUrl}password/reset-password`, obj);
 
-      console.log(result);
-
       if (result.status === 200) {
         alert("Password Changed Successfully! ✅");
         navigate(`/login`);
