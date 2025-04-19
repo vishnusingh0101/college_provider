@@ -5,12 +5,17 @@ import { CheckCircle, MessageCircle, Phone, Video } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { useAuth } from '../context/AuthContext';
+import HashLoader from "react-spinners/HashLoader";
+
 
 
 
 function CallScheduler({participantId, participantModel, onStateChange}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { apiUrl, currentDate, decodedToken, token } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [loadingSlots, setLoadingSlots] = useState(false);
+
   // State for selections
   const [callType, setCallType] = useState("");
   const [duration, setDuration] = useState();
@@ -31,6 +36,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
       // Fetch booked calls
       let bookedHours = [];
       try {
+        setLoadingSlots(true);
         const response = await axios.get(`${apiUrl}user/getParticipantCalls`, {
           params: { 
             participantId,
@@ -46,12 +52,15 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
         // Extract only hours from ISO datetime string
         bookedHours = bookedCalls.map(call => {
           const date = new Date(call.dateTime);
-          return date.getHours(); // Only the hour part
+          const time = date.getHours()-5;
+          return time<0 ? time+24 : time; // Only the hour part
         });
   
         setBookedSlots(bookedCalls); // Optional if you need full data elsewhere
       } catch (error) {
         console.error('Error fetching Slots data:', error);
+      } finally {
+        setLoadingSlots(false);
       }
   
       // Generate only available slots
@@ -66,7 +75,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
           end.setHours(hour + 1, 0, 0, 0);
   
           availableSlots.push({
-            id: `${hour}:00`,
+            id: `${String(hour).padStart(2, '0')}:00`,
             label: `${formatTime(start)} - ${formatTime(end)}`
           });
         }
@@ -157,7 +166,8 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
     const currency = "INR";
 
     try {
-      const order = await axios.post(`${apiUrl}/payment/create-order`, {
+      setLoading(true);
+      const order = await axios.post(`${apiUrl}payment/create-order`, {
           amount,
           currency,
         },
@@ -180,7 +190,6 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
           const razorpay_payment_id = response.razorpay_payment_id;
           const razorpay_order_id = response.razorpay_order_id;
           const razorpay_signature = response.razorpay_signature;
-          // console.log(razorpay_order_id, razorpay_payment_id, razorpay_signature);
           if(razorpay_order_id && razorpay_payment_id && razorpay_signature){
             handleScheduleCall(razorpay_payment_id, razorpay_order_id, razorpay_signature,amount);
           }
@@ -213,6 +222,8 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
 
     } catch (error) {
       console.error("Order failed:", error);
+    } finally {
+      setLoading(false);
     }
   }
   
@@ -241,8 +252,11 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
           }
         }
       );
-      console.log("Call scheduled successfully:", response);
-      setIsSubmitted(true);
+
+      if(response.status === 201 ) {
+        // setLoading(false);
+        setIsSubmitted(true);
+      }
       setTimeout(() => {
         onStateChange(false);
       }, 1500);
@@ -293,7 +307,14 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
               <p className="text-green-600 mt-2">Submitted Successfully!</p>
               </motion.div>
             ) : (
+
             <div className="bg-gray-50 text-gray-800 p-4 flex justify-center">
+            {loading ? (
+              <div className="flex flex-col items-center justify-center min-h-screen py-10">
+                <HashLoader size={50} color="#3B82F6" loading={loading} />
+                <p className="text-gray-500 mt-4">Scheduling Call ...</p>
+              </div>
+            ) : (
               <div className="bg-white rounded-xl shadow-md p-4">
                 <div className="space-y-4">
                   {/* Select mode to connect */}
@@ -504,6 +525,12 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
                       Slots Available 
                       {/* <span className="text-gray-500 text-sm">(4 slots)</span> */}
                     </h2>
+                    {loadingSlots ? (
+              <div className="flex flex-col items-center justify-center py-10">
+                <HashLoader size={50} color="#3B82F6" loading={loadingSlots} />
+                <p className="text-gray-500 mt-4">Loading available slots ...</p>
+              </div>
+            ) : slots.length === 0 ? (<p>No slots available for today! Come back Tomorrow.</p>) : (
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {slots.map((slot, index) => (
                         <div
@@ -515,6 +542,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
                         </div>
                       ))}
                     </div>
+                    )}
                   </div>
                     
                   {/* Submit button */}
@@ -525,6 +553,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
                   </div>
                 </div>
               </div>
+            )}
               <div>
                 <X onClick={closePopup} className="cursor-pointer h-6 w-6" />
               </div>

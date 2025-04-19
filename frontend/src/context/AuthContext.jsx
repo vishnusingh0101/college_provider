@@ -6,6 +6,12 @@ import { useNavigate } from "react-router-dom";
 // const [year, currentTime] = yearAndTime.split(', ');
 // console.log("Time:", currentTime);
 const now = new Date()
+const pad1 = (n) => n.toString().padStart(2, '0');
+const year1 = now.getFullYear();
+const month1 = pad1(now.getMonth() + 1);
+const day1 = pad1(now.getDate());
+const currentDate = `${year1}-${month1.padStart(2, '0')}-${day1.padStart(2, '0')}`;
+
 const istOffset = 5.5 * 60 * 60 * 1000; // IST offset in milliseconds
 const istNow = new Date(now.getTime() - istOffset);
 const localDate = new Date(istNow);
@@ -18,7 +24,6 @@ const hours = pad(localDate.getHours());
 const minutes = pad(localDate.getMinutes());
 const seconds = pad(localDate.getSeconds());
 const isoIST = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.000Z`;
-const currentDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
 
 
 

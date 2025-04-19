@@ -3,6 +3,7 @@ import { Eye, EyeOff } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useAuth } from "../../context/AuthContext";
+import HashLoader from "react-spinners/HashLoader";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false)
@@ -10,6 +11,8 @@ export default function Login() {
   const [phoneValid, setPhoneValid] = useState(true);
   const navigate = useNavigate();
   const { apiUrl } = useAuth();
+  const [loading, setLoading] = useState(false);
+
 
   const handleChange = (e) => { 
     const { name, value } = e.target;
@@ -22,10 +25,10 @@ export default function Login() {
   const handleSubmit = async (e) => {  
     e.preventDefault();
     try {
+      setLoading(true);
       const result = await axios.post(`${apiUrl}user/login`, obj);
       if (result.status === 200) {
         localStorage.setItem("authToken", result.data.token);
-        console.log(result.data.token);
         navigate("/");
       }
     } catch (error) {
@@ -47,10 +50,19 @@ export default function Login() {
         console.error("Login error:", error);
         alert("Something went wrong. Please check your network.");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
+    <>
+    {loading ? (
+              <div className="flex flex-col items-center justify-center min-h-screen py-10">
+                <HashLoader size={50} color="#3B82F6" loading={loading} />
+                <p className="text-gray-500 mt-4">Logging in ...</p>
+              </div>
+            ) : (
     <div className="absolute top-0 min-h-screen bg-white p-4">
       {/* Header */}
       <div className="p-4 md:p-6 ">
@@ -156,5 +168,7 @@ export default function Login() {
         </div>
       </main>
     </div>
+            )}
+            </>
   )
 }

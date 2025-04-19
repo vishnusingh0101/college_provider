@@ -28,8 +28,6 @@ export default function ForgotPassword() {
     try {
       const result = await axios.post(`${apiUrl}password/request-password-reset`, obj);
 
-      console.log(result);
-
       if (result.status === 200) {
         navigate(`/verify-otp?phone=${obj.phone}&mode=forgot-password`);
       }
