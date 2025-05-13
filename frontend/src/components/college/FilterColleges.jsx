@@ -9,34 +9,45 @@ const Banner = ({data, onFilterChange, onReset}) => {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-        if (searchTerm === "" && location === "") {
-          onReset(); // Call the reset function if the search query is empty
-        } else {
-          // Filter the data based on the search query
-          const filteredData = data.filter((item) =>
-            item.title.toLowerCase().includes(searchTerm.toLowerCase()) && item.location.toLowerCase()===location.toLowerCase()
-          );
-          // Call the parent component's callback to send the filtered data
-          onFilterChange(filteredData);
-        }
+      // e.preventDefault();
+      handleSearch(e);
     }
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // console.log("Searching:", { searchTerm, location, course })
-    if (searchTerm === "" && location === "") {
-      onReset(); // Call the reset function if the search query is empty
-    } else {
-      // Filter the data based on the search query
-      const filteredData = data.filter((item) =>
-        location===""?item.title.toLowerCase().includes(searchTerm.toLowerCase()):item.location.toLowerCase()===location.toLowerCase() && item.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
 
-      // Call the parent component's callback to send the filtered data
-      onFilterChange(filteredData);
-    }
+  const handleSearch = (e) => {
+  e.preventDefault();
+
+  if (searchTerm === "" && location === "" && course === "") {
+    onReset(); // Reset to original data
+  } else {
+    const filteredData = data.filter((item) => {
+      const titleMatch = item.title.toLowerCase().includes(searchTerm.toLowerCase());
+      const locationMatch = location === "" || item.location.toLowerCase() === location.toLowerCase();
+      const courseMatch =
+        course === "" || (item.courses && item.courses.map(c => c.toLowerCase()).includes(course.toLowerCase()));
+
+      return titleMatch && locationMatch && courseMatch;
+    });
+
+    onFilterChange(filteredData);
   }
+};
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  //   // console.log("Searching:", { searchTerm, location, course })
+  //   if (searchTerm === "" && location === "") {
+  //     onReset(); // Call the reset function if the search query is empty
+  //   } else {
+  //     // Filter the data based on the search query
+  //     const filteredData = data.filter((item) =>
+  //       location===""?item.title.toLowerCase().includes(searchTerm.toLowerCase()):item.location.toLowerCase()===location.toLowerCase() && item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  //     );
+
+  //     // Call the parent component's callback to send the filtered data
+  //     onFilterChange(filteredData);
+  //   }
+  // }
 
 
   return (
@@ -46,7 +57,8 @@ const Banner = ({data, onFilterChange, onReset}) => {
 
         {/* Search Form */}
         <form onSubmit={handleSearch} className="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="flex flex-col m-2">
+          <div className="grid grid-cols-1 gap-4">
             {/* Search Input */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -101,13 +113,13 @@ const Banner = ({data, onFilterChange, onReset}) => {
               <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             </div>
           </div>
-
           <button
             type="submit"
-            className="mt-4 w-full md:w-auto px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="mt-4 mx-2 w-full md:w-auto px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
             Search
           </button>
+        </div>
         </form>
       </div>
     </div>

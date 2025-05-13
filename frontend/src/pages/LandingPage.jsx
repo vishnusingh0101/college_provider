@@ -64,7 +64,7 @@ function LandingPage() {
             </span>
           </h1>
           <p className="text-xl text-center text-gray-500 mb-8">
-            The platform connects colleges, alumni, faculty, students, and counselors.
+            The platform connects colleges, alumni and students.
           </p>
         </div>
         <img 
@@ -83,7 +83,9 @@ function LandingPage() {
         — With 1:1 Guidance From <span className="highlight">Alumni</span> Who’ve Been There.
         </h1>
         <p className="slogan">No more guesswork. No generic advice. Just real, actionable insights from alumni who cracked the code.</p>
+        <Link to="/alumni">
         <button className="cta-button">Book Your First Session (Free Trial)</button>
+        </Link>
       </header>
     </div>
 

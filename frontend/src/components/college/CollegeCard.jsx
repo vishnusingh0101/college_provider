@@ -17,7 +17,7 @@ const CollegeCard = ({ college, colActiv }) => {
           <span>{college.location}</span>
         </div>
 
-        <p className={`text-gray-600 mb-4 ${colActiv ? "" : "line-clamp-3" }`}>{college.description}</p>
+        <p className={`text-gray-600 mb-4 ${colActiv ? "" : "line-clamp-1" }`}>{college.description}</p>
 
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div>

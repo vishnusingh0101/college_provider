@@ -12,7 +12,7 @@ export default function CreateAccount() {
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [phoneValid, setPhoneValid] = useState(true);
   const [passwordValid, setPasswordValid] = useState(true);
-  const { apiUrl } = useAuth();
+  const { apiUrl, setUserProfile } = useAuth();
   const [loading, setLoading] = useState(false);
 
 
@@ -46,6 +46,7 @@ export default function CreateAccount() {
       const result = await axios.post(`${apiUrl}user/SignUp`, obj);
 
       if (result.status === 201) {
+        setUserProfile(result.data.user);
         navigate(`/verify-otp?phone=${obj.phone}&mode=signup`);
       }
     } catch (error) {
@@ -89,7 +90,7 @@ export default function CreateAccount() {
             <div className="space-y-6">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
-                <p className="text-gray-500">Connect with colleges</p>
+                <p className="text-gray-500">Connect with Alumni/Students</p>
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">

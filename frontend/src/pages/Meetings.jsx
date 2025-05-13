@@ -164,7 +164,7 @@
               <h3 className="text-lg font-semibold text-gray-900">{meeting.title || "Meeting"}</h3>
               <div className="flex gap-2">
                 <StatusBadge status={meeting.status} />
-                <PaymentStatusBadge status={meeting.paymentStatus} />
+                <PaymentStatusBadge status="Paid" />
               </div>
             </div>
           </div>
@@ -184,7 +184,7 @@
               <span className="text-gray-700">{meeting.callType} Call</span>
             </div>
     
-            <div className="flex flex-col gap-3 mt-4">
+            {/* <div className="flex flex-col gap-3 mt-4">
               <div className="flex items-center gap-3">
                 <Avatar 
                   src={meeting.callerAvatar} 
@@ -208,7 +208,7 @@
                   <p className="text-xs text-gray-500">{meeting.participantModel}</p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="p-4 border-t border-gray-200">
             {meeting.status === "Scheduled" ? (
@@ -248,7 +248,7 @@
       const [activeTab, setActiveTab] = useState("all");
       const [meetings, setMeetings] = useState([]);
       const [loading, setLoading] = useState(true);
-      const { apiUrl, decodedToken, token } = useAuth();
+      const { apiUrl, userProfile, decodedToken, token } = useAuth();
 
       useEffect(() => {
         const fetchMeetings = async () => {

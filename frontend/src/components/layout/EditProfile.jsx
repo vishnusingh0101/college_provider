@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Phone, Video, MessageCircle, X, Search, CalendarIcon } from "lucide-react";
-import { format } from "date-fns"
+import { format } from "date-fns";
+import { useAuth } from "../../context/AuthContext";
 
 const ChevronDownIcon = () => (
   <svg
@@ -159,6 +160,8 @@ function EditProfile() {
 
   const [date, setDate] = useState(new Date(2025, 7, 9)) // August 9, 2005
   const [calendarOpen, setCalendarOpen] = useState(false)
+  const { userProfile } = useAuth();
+  
 
   const [accordionState, setAccordionState] = useState({
     "basic-info": false,

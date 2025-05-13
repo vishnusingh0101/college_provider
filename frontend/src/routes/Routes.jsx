@@ -5,8 +5,8 @@ import CreateAccount from '../pages/auth/SignUp';
 // import VerifyEmail from '../pages/VerifyEmail';
 import VerifyOTP from '../pages/auth/VerifyOTP';
 import Login from '../pages/auth/SignIn';
-// import Profile from '../pages/Profile';
-// import EditProfile from '../components/layout/EditProfile';
+import Profile from '../pages/Profile';
+import EditProfile from '../components/layout/EditProfile';
 import LandingPage from '../pages/LandingPage';
 import AboutUs from '../pages/AboutUs';
 import College from '../pages/college/College';
@@ -55,8 +55,8 @@ export default function Endpoints() {
         </Route>
 
         <Route element={<ProtectedRoute />}>
-          {/* <Route path="/profile/edit-profile" element={<EditProfile />} /> */}
-          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/profile/edit-profile" element={<EditProfile />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/meetings" element={<MeetingCards />} />
         </Route>
         

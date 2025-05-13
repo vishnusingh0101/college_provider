@@ -32,8 +32,9 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("authToken");
+  const userData = localStorage.getItem("userProfile");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [decodedToken, setDecodedToken] = useState(false);
+  const [decodedToken, setDecodedToken] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -46,20 +47,17 @@ export const AuthProvider = ({ children }) => {
         const now = Date.now() / 1000;
 
         if (decoded.exp < now) {
-          localStorage.removeItem("authToken");
-          setIsLoggedIn(false);
-          setUserProfile(null);
-          navigate("/login");
+          handleLogout();
         } else {
           setIsLoggedIn(true);
-          setUserProfile(decoded);
+          // setUserProfile(decoded);
+          if (userData) {
+          setUserProfile(JSON.parse(userData));
+          }
 
           const timeout = (decoded.exp - now) * 1000;
           const logoutTimer = setTimeout(() => {
-            localStorage.removeItem("authToken");
-            setIsLoggedIn(false);
-            setUserProfile(null);
-            navigate("/login");
+            handleLogout();
           }, timeout);
 
           return () => clearTimeout(logoutTimer);
@@ -69,7 +67,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem("authToken");
       }
     }
-  }, [navigate]);
+  }, [navigate, token]);
 
   
 
@@ -91,6 +89,7 @@ export const AuthProvider = ({ children }) => {
         currentDate,
         isLoggedIn,
         setIsLoggedIn,
+        // userData,
         userProfile,
         setUserProfile,
         isDropdownOpen,

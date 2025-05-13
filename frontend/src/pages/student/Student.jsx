@@ -90,7 +90,7 @@ const StudentPage = () => {
                     <DescriptionItem description={item.Description} />
                   </div>
                 </div>
-                <div className="flex flex-col items-end gap-2">
+                {/* <div className="flex flex-col items-end gap-2">
                   <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-full">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -107,11 +107,11 @@ const StudentPage = () => {
                       />
                     </svg>
                   </button>
-                  {/* <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1">
                     <span className="font-medium text-gray-600">4.5</span>
                     <span className="text-gray-600 font-medium">/5</span>
-                  </div> */}
-                </div>
+                  </div>
+                </div> */}
               </div>
 
               <div className="mt-4 flex items-center justify-center border-t border-gray-300 pt-4">
