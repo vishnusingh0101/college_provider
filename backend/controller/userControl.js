@@ -558,7 +558,6 @@ exports.updateUser = async (req, res) => {
 
         const {
             name,
-            password,
             registeras,
             collegeid,
             designation,
