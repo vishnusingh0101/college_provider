@@ -5,8 +5,8 @@ import CreateAccount from '../pages/auth/SignUp';
 // import VerifyEmail from '../pages/VerifyEmail';
 import VerifyOTP from '../pages/auth/VerifyOTP';
 import Login from '../pages/auth/SignIn';
-import Profile from '../pages/Profile';
-import EditProfile from '../components/layout/EditProfile';
+// import Profile from '../pages/Profile';
+// import EditProfile from '../components/layout/EditProfile';
 import LandingPage from '../pages/LandingPage';
 import AboutUs from '../pages/AboutUs';
 import College from '../pages/college/College';
@@ -35,6 +35,17 @@ export default function Endpoints() {
       <ScrollToTop />
       <Navbar />
       <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/colleges" element={<College />} />
+        <Route path="/college/:id" element={<CollegeDetails />} />
+        <Route path="/college-predictor" element={<CollegePredictor />} />
+        <Route path="/student" element={<Student />} />
+        <Route path="/alumni" element={<Alumni />} />
+        {/* <Route path="/counsellor" element={<Counsellor />} /> */}
+        {/* <Route path="/faculty" element={<Faculty />} /> */}
+        {/* <Route path="/staff" element={<Staff />} /> */}
+        
         <Route element={<PublicRoute />}>
           <Route path="/register" element={<CreateAccount />} />
           <Route path="/login" element={<Login />} />
@@ -43,22 +54,10 @@ export default function Endpoints() {
           <Route path="/verify-otp" element={<VerifyOTP />} />
         </Route>
 
-
         <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/colleges" element={<College />} />
-          <Route path="/college/:id" element={<CollegeDetails />} />
-          <Route path="/college-predictor" element={<CollegePredictor />} />
-          <Route path="/profile/edit-profile" element={<EditProfile />} />
-          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/profile/edit-profile" element={<EditProfile />} /> */}
+          {/* <Route path="/profile" element={<Profile />} /> */}
           <Route path="/meetings" element={<MeetingCards />} />
-
-          {/* <Route path="/counsellor" element={<Counsellor />} /> */}
-          <Route path="/student" element={<Student />} />
-          <Route path="/alumni" element={<Alumni />} />
-          {/* <Route path="/faculty" element={<Faculty />} /> */}
-          {/* <Route path="/staff" element={<Staff />} /> */}
         </Route>
         
         {/* <Route path="/preferences" element={<Preferences />} /> */}

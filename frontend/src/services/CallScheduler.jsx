@@ -320,7 +320,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
                   {/* Select mode to connect */}
                   <div className="space-y-6">
                     <h2 className="text-xl font-semibold">Select mode to connect</h2>
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid sm:grid-cols-2 gap-6">
                       {/* Audio call option */}
                       <div className="flex items-center gap-3">
                         <div className="relative">
@@ -397,7 +397,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
                   {/* Select your option */}
                   <div className="space-y-4">
                     <h2 className="text-xl font-semibold">Select your option</h2>
-                    <div className="grid grid-cols-2 sm:gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
                       {/* 15 Min option */}
                       <div className="relative flex items-center gap-2">
                         <div className="relative">

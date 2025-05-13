@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(false);
     setUserProfile(null);
     setIsDropdownOpen(false);
-    navigate("/login");
+    navigate("/");
   };
 
   return (
