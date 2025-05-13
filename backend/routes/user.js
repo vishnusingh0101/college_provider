@@ -10,5 +10,6 @@ router.post('/login', userControl.login);
 router.post('/ScheduleCall',auth.authenticate, userControl.scheduleCall); 
 router.get('/getUserCalls',auth.authenticate, userControl.getUserCalls);
 router.get('/getParticipantCalls',auth.authenticate, userControl.getParticipantCalls);
+router.post('/updateuser',auth.authenticate, userControl.updateUser);
 
 module.exports = router;

@@ -434,13 +434,13 @@ exports.scheduleCall = async (req, res) => {
             const date = new Date(datetimeString);
             const hours = date.getHours();
             const minutes = date.getMinutes().toString().padStart(2, '0');
-          
+
             const formattedHour = hours % 12 === 0 ? 12 : hours % 12;
             const suffix = hours < 12 ? 'AM' : 'PM';
-          
+
             return `${formattedHour}:${minutes} ${suffix}`;
-          };
-          const timeString = getAMPMTime(`${date} ${time}`);
+        };
+        const timeString = getAMPMTime(`${date} ${time}`);
 
         try {
             const userMessage = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nSee you there! 😊`;
@@ -448,7 +448,7 @@ exports.scheduleCall = async (req, res) => {
             if (user.phone) {
                 const counsellorName = participant.name || participant.Name || 'there';
                 const user_temp = "student_message";
-                
+
                 await sendWhatsAppMessage(user.phone, user.name, counsellorName, timeString, duration, user_temp, meetLink);
             }
 
@@ -531,9 +531,9 @@ exports.getParticipantCalls = async (req, res) => {
             participant: participantId,
             dateTime: { $gte: start, $lte: end }
         })
-        .populate('caller', 'name mail')
-        .populate('participant', 'name mail')
-        .sort({ dateTime: 1 });
+            .populate('caller', 'name mail')
+            .populate('participant', 'name mail')
+            .sort({ dateTime: 1 });
 
         return res.status(200).json({
             success: true,
@@ -548,6 +548,62 @@ exports.getParticipantCalls = async (req, res) => {
         });
     }
 }
+
+exports.updateUser = async (req, res) => {
+    try {
+        const userId = req.user?.id; 
+        if (!userId) {
+            return res.status(401).json({ success: false, message: "Unauthorized" });
+        }
+
+        const {
+            name,
+            password,
+            registeras,
+            collegeid,
+            designation,
+            bio,
+            profile,
+            expertise,
+            description,
+            birthday
+        } = req.body;
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        if (name) user.name = name.trim();
+        if (registeras) user.registeras = registeras;
+        if (collegeid !== undefined) user.collegeid = collegeid;
+        if (designation !== undefined) user.designation = designation;
+        if (bio !== undefined) user.bio = bio;
+        if (profile !== undefined) user.profile = profile;
+        if (expertise !== undefined && Array.isArray(expertise)) user.expertise = expertise;
+        if (description !== undefined) user.description = description;
+        if (birthday !== undefined) user.birthday = birthday;
+
+        await user.save();
+
+        const userObj = user.toObject();
+        delete userObj.password;
+        delete userObj.otp;
+        delete userObj.otpExpires;
+        delete userObj.otpVerifiedForReset;
+
+        return res.status(200).json({
+            success: true,
+            message: "User profile updated successfully",
+            user: userObj
+        });
+
+    } catch (error) {
+        console.error("Update user error:", error);
+        return res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+};
+
 
 const getDayRange = (dateString) => {
     const date = new Date(dateString);
