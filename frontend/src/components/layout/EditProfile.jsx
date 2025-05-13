@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Phone, Video, MessageCircle, X, Search, CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { useAuth } from "../../context/AuthContext";
+import HashLoader from "react-spinners/HashLoader";
+import axios from "axios";
+
 
 const ChevronDownIcon = () => (
   <svg
@@ -160,14 +163,33 @@ function EditProfile() {
 
   const [date, setDate] = useState(new Date(2025, 7, 9)) // August 9, 2005
   const [calendarOpen, setCalendarOpen] = useState(false)
-  const { userProfile } = useAuth();
+  const { userProfile, setUserProfile, apiUrl, decodedToken, token } = useAuth();
+
+  const [formData, setFormData] = useState({
+    // name: '',
+    // registeras: '',
+    // collegeid: '',
+    designation: "",
+    phone: "",
+    // bio: '',
+    // profile: '',
+    description: ""
+    // birthday: ''
+  });
   
+  const [expertiseInput, setExpertiseInput] = useState("");
+  const [expertise, setExpertiseList] = useState([]);
+  const [firstName, setFirstName] = useState(userProfile.name.split(" ")[0]);
+  const [lastName, setLastName] = useState(userProfile.name.split(" ")[1]);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isPhoneValid, setIsPhoneValid] = useState(true);
 
   const [accordionState, setAccordionState] = useState({
-    "basic-info": false,
-    "about-me": false,
-    "my-expertise": false,
-    "my-prices": false,
+    "basic-info": true,
+    "about-me": true,
+    "my-expertise": true,
+    // "my-prices": false,
   })
 
   const toggleAccordion = (section) => {
@@ -292,8 +314,84 @@ function EditProfile() {
   }
 
 
+  const handleAddExpertise = (e) => {
+    e.preventDefault();
+    const trimmed = expertiseInput.trim();
+    if (trimmed && !expertise.includes(trimmed)) {
+      setExpertiseList([...expertise, trimmed]);
+      setExpertiseInput("");
+    }
+  };
+
+  const handleRemoveExpertise = (item) => {
+    setExpertiseList(expertise.filter((exp) => exp !== item));
+  };
+
+  const handleChange = (e) => { 
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+    if (name === "phone") {
+      setIsPhoneValid(/^[6-9]\d{9}$/.test(value));
+    }
+  };
+
+  useEffect(() => {
+  if (userProfile) {
+    setFormData({
+      designation: userProfile.designation || "",
+      phone: userProfile.phone || "",
+      description: userProfile.description || ""
+    });
+    setExpertiseList(userProfile.expertise || []);
+    const nameParts = userProfile.name.split(" ");
+    setFirstName(nameParts[0]);
+    setLastName(nameParts.slice(1).join(" "));
+  }
+}, [userProfile]);
+
+  
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage('');
+
+    try {
+      const res = await axios.patch(
+        `${apiUrl}user/userupdate`,{
+          name: `${firstName} ${lastName}`,
+          phone: formData.phone,
+          designation: formData.designation,
+          description: formData.description,
+          expertise: expertise
+        },
+        {
+          headers: {
+            Authorization: token,
+          }
+        }
+      );
+      localStorage.setItem("userProfile", JSON.stringify(res.data.user));
+      const userData = localStorage.getItem("userProfile");
+      setUserProfile(JSON.parse(userData));
+      setMessage('Profile updated successfully.');
+    } catch (err) {
+      console.error(err);
+      setMessage('Update failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
 
   return (
+    <>
+    {loading ? (
+                  <div className="flex flex-col items-center justify-center min-h-screen py-10">
+                    <HashLoader size={50} color="#3B82F6" loading={loading} />
+                    <p className="text-gray-500 mt-4">Saving Changes ...</p>
+                  </div>
+                ) : (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Main Content */}
       <div className="container mx-auto px-4 py-6 flex gap-8">
@@ -414,6 +512,7 @@ function EditProfile() {
         {/* Right Column - Form */}
         <div className="w-full">
           <div className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Basic Info */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200">
               <div
@@ -432,7 +531,7 @@ function EditProfile() {
               </div>
 
               {accordionState["basic-info"] && (
-                <div className=" grid px-4 pb-4">
+                <div className="grid px-4 pb-4">
                   <div>
                   <label className="block mb-2 text-sm">What should we call you?</label>
                   <div className="grid grid-cols-2 gap-4">
@@ -440,15 +539,21 @@ function EditProfile() {
                       type="text"
                       placeholder="First name"
                       className="border border-gray-700 rounded-md p-2 w-full"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                     />
                     <input
                       type="text"
                       placeholder="Last name"
                       className="border border-gray-700 rounded-md p-2 w-full"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                 </div>
 
+
+                <div className="grid grid-cols-2 gap-4 mt-4">
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-sm">What is your current designation?</label>
@@ -456,12 +561,13 @@ function EditProfile() {
                   </div>
                   <input
                     type="text"
+                    name="designation"
                     className="border border-gray-700 rounded-md p-2 w-full"
+                    value={formData.designation}
+                    onChange={handleChange}
                   />
                 </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
+                  {/* <div>
                     <label className="block mb-2 text-sm">When is your birthday?</label>
                     <div className="relative">
                       {calendarOpen && (
@@ -477,14 +583,18 @@ function EditProfile() {
                         {date ? format(date, "MMM d, yyyy") : "Select date"}
                       </button>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div>
                     <label className="block mb-2 text-sm">Phone number</label>
                     <div className="relative">
                       <input
                         type="text"
+                        disabled
+                        name="phone"
                         className="border border-gray-700 rounded-md p-2 pl-16 w-full"
+                        value={formData.phone}
+                        onChange={handleChange}
                       />
                       <div className="absolute left-3 top-2.5 flex items-center">
                         <div className="w-5 h-4 mr-1 flex items-center">
@@ -495,10 +605,14 @@ function EditProfile() {
                         <span className="text-gray-400">+91</span>
                       </div>
                     </div>
+                    {!isPhoneValid && (
+                    <p className="text-red-500 text-sm mt-1">Phone number must be exactly 10 digits.</p>
+                    )}
+
                   </div>
                 </div>
 
-                <div>
+                {/* <div>
                   <label className="block mb-2 text-sm">Email ID</label>
                   <div className="flex gap-2">
                     <input
@@ -508,8 +622,8 @@ function EditProfile() {
                     />
                     <button type="submit" className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-md">Verify</button>
                   </div>
-                </div>
-                <button type="submit" className="bg-teal-600 hover:bg-teal-700 my-4 text-white px-4 py-2 rounded-md">Save Changes</button>
+                </div> */}
+                {/* <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 my-4 text-white px-4 py-2 rounded-md">Save Changes</button> */}
                 </div>
               )}
             </div>
@@ -534,7 +648,7 @@ function EditProfile() {
               {accordionState["about-me"] && (
                 <div className="px-4 pb-4">
                   <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                    {/* <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm mb-2">What is your total work experience?</label>
                         <input
@@ -556,9 +670,9 @@ function EditProfile() {
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
 
-                    <div>
+                    {/* <div>
                       <div className="flex justify-between">
                         <label className="block text-sm mb-2">What is your current organisation?</label>
                         <span className="text-xs text-gray-500">Max 110 chars</span>
@@ -568,7 +682,7 @@ function EditProfile() {
                         defaultValue="Provider App"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white"
                       />
-                    </div>
+                    </div> */}
 
                     <div>
                       <div className="flex justify-between">
@@ -576,12 +690,14 @@ function EditProfile() {
                         <span className="text-xs text-gray-500">Max 280 chars</span>
                       </div>
                       <textarea
-                        defaultValue="I can help with technology & operations"
+                        defaultValue={formData.description}
+                        name="description"
+                        onChange={handleChange}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white min-h-[100px]"
                       />
                     </div>
                   </div>
-                  <button type="submit" className="bg-teal-600 hover:bg-teal-700 w-full my-4 text-white px-4 py-2 rounded-md">Save Changes</button>
+                  {/* <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 w-full my-4 text-white px-4 py-2 rounded-md">Save Changes</button> */}
                 </div>
               )}
             </div>
@@ -604,33 +720,49 @@ function EditProfile() {
               </div>
 
               {accordionState["my-expertise"] && (
-                <div className="px-4 pb-4">
-                <div className="space-y-4">
-                <div>
-                    <p className="text-sm text-gray-400 mb-1">In what areas can you help others?</p>
-                    <div className="relative">
-                      <input
-                        className="border border-gray-600 p-2 w-full rounded-md"
-                        placeholder="Leadership/Coding/Marketing/Animation"
-                      />
-                      <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    <div className="text-white bg-teal-600 px-3 py-1 flex items-center gap-1 rounded border border-gray-600">
-                      Technology Innovation
-                      <X className="h-3 w-3 ml-1 cursor-pointer" />
-                    </div>
-                  </div>
-                  <button type="submit" className="bg-teal-600 hover:bg-teal-700 w-full my-4 text-white px-4 py-2 rounded-md">Save Changes</button>
-                  </div>
-                </div>
-              )}
+      <div className="px-4 pb-4">
+          <div>
+            <p className="text-sm text-gray-400 mb-1">In what areas can you help others?</p>
+            <div className="flex items-center gap-2">
+              <input
+                className="border border-gray-600 p-2 w-full rounded-md"
+                placeholder="Leadership/Coding/Marketing/Animation"
+                value={expertiseInput}
+                onChange={(e) => setExpertiseInput(e.target.value)}
+              />
+              {/* <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" /> */}
+              <button
+            onClick={handleAddExpertise}
+            className="bg-indigo-600 w-fit mx-4 hover:bg-indigo-700 my-4 text-white px-4 py-2 rounded-md"
+          >
+            +Add
+          </button>
             </div>
+          </div>
+
+          {expertise.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {expertise.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="text-white bg-indigo-600 px-3 py-1 flex items-center gap-1 rounded border border-gray-600"
+                >
+                  {item}
+                  <X
+                    className="h-3 w-3 ml-1 cursor-pointer"
+                    onClick={() => handleRemoveExpertise(item)}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+      </div>
+    )}
+
+              </div>
 
             {/* My Prices */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+            {/* <div className="bg-white rounded-lg shadow-sm border border-gray-200">
               <div
                 className="px-4 py-3 flex justify-between items-center cursor-pointer"
                 onClick={() => toggleAccordion("my-prices")}
@@ -696,11 +828,23 @@ function EditProfile() {
                   <button type="submit" className="bg-teal-600 hover:bg-teal-700 w-full my-4 text-white px-4 py-2 rounded-md">Save Changes</button>
               </div>
               )}
-            </div>
+            </div> */}
+            <button
+            type="submit"
+            disabled={!isPhoneValid}
+            className={`${
+            isPhoneValid ? "bg-indigo-600 hover:bg-indigo-700" : "bg-gray-400 cursor-not-allowed"
+            } text-white px-6 py-2 rounded-md w-full`}
+          >
+            Save Changes
+          </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
+    )}
+    </>
   )
 }
 

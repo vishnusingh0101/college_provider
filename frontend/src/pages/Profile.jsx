@@ -154,15 +154,15 @@ const Profile = () => {
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <h1 className="text-3xl font-bold">{userProfile.name}</h1>
-                  <div className="flex items-center gap-1 text-teal-500">
+                  <div className="flex items-center gap-1 text-indigo-500">
                     <CheckCircle className="h-5 w-5" />
                     <span className="text-sm">CollegeProvider verified</span>
                   </div>
                 </div>
-                <p className="text-xl text-gray-600">{userProfile.description}</p>
+                <p className="text-xl text-gray-600">{userProfile.designation}</p>
               </div>
 
-              <div className="flex flex-wrap gap-6">
+              {/* <div className="flex flex-wrap gap-6">
                 <div className="flex items-center gap-2 text-gray-600">
                   <Building className="h-5 w-5" />
                   <span>Company</span>
@@ -172,19 +172,23 @@ const Profile = () => {
                   <span>Experience</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
-                  <Phone className="h-5 w-5" />
-                  <span>{userProfile.phone}</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-600">
                   <MapPin className="h-5 w-5" />
                   <span>Location</span>
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 <h3 className="text-lg mb-2">I can help with:</h3>
                 <div className="flex flex-wrap gap-2">
-                  <span className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-sm transition-colors duration-150">
+                  {userProfile.expertise.map((item, idx) => (
+                                  <div
+                                    key={idx}
+                                    className="text-white bg-indigo-600 px-3 py-1 flex items-center gap-1 rounded border border-gray-600"
+                                  >
+                                    {item}
+                                  </div>
+                                ))}
+                  {/* <span className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-sm transition-colors duration-150">
                     Startup Mentoring
                   </span>
                   <span className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-sm transition-colors duration-150">
@@ -198,13 +202,12 @@ const Profile = () => {
                   </span>
                   <span className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-sm transition-colors duration-150">
                     D2C
-                  </span>
+                  </span> */}
                 </div>
               </div>
 
               <p className="text-gray-600">
-                D2C, Ecommerce, Fundraising, Pitching Your Idea, Performance Marketing, Getting into VC/PE, Angel
-                Investing
+                {userProfile.description}
               </p>
 
               {/* Pricing Options */}

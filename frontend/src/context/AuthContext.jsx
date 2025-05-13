@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   const userData = localStorage.getItem("userProfile");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [decodedToken, setDecodedToken] = useState(null);
-  const [userProfile, setUserProfile] = useState(null);
+  const [userProfile, setUserProfile] = useState(userData ? JSON.parse(userData) : null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const apiUrl = import.meta.env.VITE_API_URL;
 
