@@ -33,6 +33,10 @@ export default function ForgotPassword() {
       }
     } 
     catch (error) {
+      if (error.status === 404) {
+        alert("User not found! Regiser to create a new account.");
+        navigate(`/register`);
+      }
       console.log(error);
     }
   };
@@ -94,12 +98,21 @@ export default function ForgotPassword() {
                   </div>
                 </div> 
 
+                {/* {!status && <p className="focus:text-red-500 text-xs">User does not exist.</p>} */}
+
                 <button
                   type="submit"
                   className="w-full bg-[#2c26b0] hover:bg-[#2c26b0]/90 text-white py-2 px-4 rounded-md transition duration-300 ease-in-out"
                 >
                   Continue
                 </button>
+
+                <div className="text-center text-sm">
+                  {/* <span className="text-gray-600">Don't have an account? </span> */}
+                  <Link to="/login" className="text-[#2c26b0] hover:text-[#2c26b0]/90 font-medium">
+                    Back to Login
+                  </Link>
+                </div>
               </form>
             </div>
           </div>

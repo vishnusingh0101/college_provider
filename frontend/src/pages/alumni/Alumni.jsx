@@ -90,7 +90,7 @@ const AlumniPage = () => {
                     <DescriptionItem description={item.description} />
                   </div>
                 </div>
-                <div className="flex flex-col items-end gap-2">
+                {/* <div className="flex flex-col items-end gap-2">
                   <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-full">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@ const AlumniPage = () => {
                       />
                     </svg>
                   </button>
-                </div>
+                </div> */}
               </div>
 
               <div className="mt-4 flex items-center justify-center border-t border-gray-300 pt-4">

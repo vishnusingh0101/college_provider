@@ -1,5 +1,6 @@
 import React from "react";
 import "./HowItWorks.css";
+import { Link } from "react-router-dom";
 
 function HowItWorks() {
   return (
@@ -59,11 +60,12 @@ function HowItWorks() {
                 </div>
               </div>
             </div>
-
+            <Link to="/colleges">
             <button className="cta-buttonn">
               Meet Your Mentor →
               <span className="arrow"></span>
             </button>
+            </Link>
           </div>
 
           <div className="image-column">

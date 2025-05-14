@@ -96,6 +96,7 @@ export default function Example() {
   }, [])
 
 
+  
   return (
     <>
     {/* {isLoggedIn ? ( */}
@@ -171,7 +172,7 @@ export default function Example() {
             <div className="relative" ref={dropdownRef}>
                 <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-2 hover:bg-gray-100 rounded-full py-1 px-2"
+                className="flex cursor-pointer items-center gap-2 hover:bg-gray-100 rounded-full py-1 px-2"
                 >
                 <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
                   <img
@@ -190,9 +191,9 @@ export default function Example() {
                 {/* Dropdown Menu */}
                 {isDropdownOpen && (
                 <div className="absolute right-0 mt-6 w-48 bg-white rounded-md py-1 z-10 border border-gray-300">
-                  {/* <Link to="/profile" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="block px-4 py-2 text-sm text-gray-700 hover:text-indigo-600">
+                  <Link to="/profile" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="block px-4 py-2 text-sm text-gray-700 hover:text-indigo-600">
                     Profile
-                  </Link> */}
+                  </Link>
                   <Link to="/meetings" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="block px-4 py-2 text-sm text-gray-700 hover:text-indigo-600">
                     Upcoming meetings
                   </Link>
@@ -233,67 +234,7 @@ export default function Example() {
         >
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
             <div className="pt-5 pb-6 px-5 sm:pb-8">
-              <div className="flex items-center justify-between">
-                <div className="py-6 px-5">
-                {isLoggedIn ? (
-                  <div className="relative" ref={dropdownRef}>
-                    <button
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className="flex items-center gap-2 hover:bg-gray-100 rounded-full py-1 px-2"
-                    >
-                    <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-                      <img
-                        src="/placeholder.svg"
-                        alt="User avatar"
-                        className="h-8 w-8 rounded-full"
-                        onError={(e) => {
-                          e.target.style.display = "none"
-                          const firstLetter = userProfile.name.charAt(0).toUpperCase(); // Get the first letter of the user's name
-                          const initialsElement = document.createElement("span"); // Create a new span element
-                          initialsElement.textContent = firstLetter; // Set the text to the first letter
-                          initialsElement.className = "h-8 w-8 flex items-center justify-center rounded-full bg-gray-300 text-white"; // Add classes for styling
-                          e.target.parentElement.appendChild(initialsElement);
-                        }}
-                      />
-                    </div>
-                    <span className="text-sm font-medium">{userProfile.name}</span>
-                    </button>
-                      
-                    {/* Dropdown Menu */}
-                    {isDropdownOpen && (
-                    <div className="absolute mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-30 border border-gray-200">
-                      {/* <Link to="/profile" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="block px-4 py-2 text-sm text-gray-700 hover:text-indigo-600">
-                        Profile
-                      </Link> */}
-                      <Link to="/meetings" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="block px-4 py-2 text-sm text-gray-700 hover:text-indigo-600">
-                        Upcoming meetings
-                      </Link>
-                      <button onClick={handleLogout} className="w-full text-left px-4 py-2 rounded-md shadow-sm cursor-pointer text-base font-medium text-indigo-500 hover:text-indigo-800">
-                        Log out
-                      </button>
-                    </div>
-                    )}
-                  </div>
-                   ) : (
-                  <div className="mt-6">
-                    <a
-                      href="/register"
-                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                    >
-                      Sign up
-                    </a>
-                    <p className="mt-6 text-center text-base font-medium text-gray-500">
-                      Existing customer?{' '}
-                      <a href="/login" className="text-indigo-600 hover:text-indigo-500">
-                        Log in
-                      </a>
-                    </p>
-                  </div>
-                  )}
-                </div>
-
-                
-
+              <div className="flex items-center flex-row-reverse">
                 <div className="-mr-2">
                   <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 cursor-pointer">
                     <span className="sr-only">Close menu</span>
@@ -320,6 +261,26 @@ export default function Example() {
                   </nav>
                 </div>
             </div>
+            <div className="py-6 px-5">
+                {isLoggedIn ? (
+                  null
+                   ) : (
+                  <div className="mt-6">
+                    <a
+                      href="/register"
+                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                    >
+                      Sign up
+                    </a>
+                    <p className="mt-6 text-center text-base font-medium text-gray-500">
+                      Existing customer?{' '}
+                      <a href="/login" className="text-indigo-600 hover:text-indigo-500">
+                        Log in
+                      </a>
+                    </p>
+                  </div>
+                  )}
+                </div>
           </div>
         </Popover.Panel>
       </Transition>

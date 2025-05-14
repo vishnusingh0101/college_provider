@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./FAQSection.css";
+import { Link } from "react-router-dom";
 
 function FAQSection() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -60,10 +61,12 @@ function FAQSection() {
             <h3 className="urgency-headline">Spots Fill Fast—Alumni Can't Take Infinite Calls!</h3>
             <p className="urgency-counter">Only 3 alumni left for [Top College] this month.</p>
           </div>
+          <Link to="/alumni">
           <button className="urgency-cta">
             Claim Your Spot Now →
             <span className="urgency-arrow"></span>
           </button>
+          </Link>
         </div>
       </div>
     </section>

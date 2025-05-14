@@ -24,6 +24,7 @@ import {
   Camera,
 } from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 
 const Profile = () => {
@@ -32,7 +33,8 @@ const Profile = () => {
   const [profileImage, setProfileImage] = useState("/placeholder.svg?height=180&width=180")
   const [isHoveringImage, setIsHoveringImage] = useState(false)
   const fileInputRef = useRef(null)
-
+  const { userProfile } = useAuth();
+  
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     if (file) {
@@ -151,34 +153,42 @@ const Profile = () => {
             <div className="flex-1 space-y-6">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <h1 className="text-3xl font-bold">Arjun Vaidya</h1>
-                  <div className="flex items-center gap-1 text-teal-500">
+                  <h1 className="text-3xl font-bold">{userProfile.name}</h1>
+                  <div className="flex items-center gap-1 text-indigo-500">
                     <CheckCircle className="h-5 w-5" />
-                    <span className="text-sm">CollegeConnect verified</span>
+                    <span className="text-sm">CollegeProvider verified</span>
                   </div>
                 </div>
-                <p className="text-xl text-gray-600">Co-founder, V3 Ventures | Founder, Dr. Vaidya's</p>
+                <p className="text-xl text-gray-600">{userProfile.designation}</p>
               </div>
 
-              <div className="flex flex-wrap gap-6">
+              {/* <div className="flex flex-wrap gap-6">
                 <div className="flex items-center gap-2 text-gray-600">
                   <Building className="h-5 w-5" />
-                  <span>V3 Ventures</span>
+                  <span>Company</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
                   <Calendar className="h-5 w-5" />
-                  <span>10+ Years</span>
+                  <span>Experience</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-600">
                   <MapPin className="h-5 w-5" />
-                  <span>Mumbai</span>
+                  <span>Location</span>
                 </div>
-              </div>
+              </div> */}
 
               <div>
                 <h3 className="text-lg mb-2">I can help with:</h3>
                 <div className="flex flex-wrap gap-2">
-                  <span className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-sm transition-colors duration-150">
+                  {userProfile.expertise.map((item, idx) => (
+                                  <div
+                                    key={idx}
+                                    className="text-white bg-indigo-600 px-3 py-1 flex items-center gap-1 rounded border border-gray-600"
+                                  >
+                                    {item}
+                                  </div>
+                                ))}
+                  {/* <span className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-sm transition-colors duration-150">
                     Startup Mentoring
                   </span>
                   <span className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-sm transition-colors duration-150">
@@ -192,13 +202,12 @@ const Profile = () => {
                   </span>
                   <span className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-md text-sm transition-colors duration-150">
                     D2C
-                  </span>
+                  </span> */}
                 </div>
               </div>
 
               <p className="text-gray-600">
-                D2C, Ecommerce, Fundraising, Pitching Your Idea, Performance Marketing, Getting into VC/PE, Angel
-                Investing
+                {userProfile.description}
               </p>
 
               {/* Pricing Options */}

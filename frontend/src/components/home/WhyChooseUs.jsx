@@ -1,5 +1,6 @@
 import React from "react";
 import "./WhyChooseUs.css"; // Unique CSS file
+import { Link } from "react-router-dom";
 
 function WhyChooseUs() {
   return (
@@ -55,11 +56,12 @@ function WhyChooseUs() {
             </ul>
           </div>
         </div>
-
+        <Link to="/alumni">
         <button className="why-choose-us-cta">
           Stop Guessing—Start Connecting
           <span className="why-choose-us-arrow">→</span>
         </button>
+        </Link>
       </div>
     </section>
   );

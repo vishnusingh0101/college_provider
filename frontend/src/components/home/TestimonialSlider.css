@@ -66,7 +66,6 @@
   
   .slide {
     min-width: 100%;
-    flex-shrink: 0;
     padding: 0 1rem;
     box-sizing: border-box;
   }
@@ -189,7 +188,7 @@
     transform: scale(1.2);
   }
   
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .testimonial-section {
       padding: 3rem 1.5rem;
     }
@@ -240,4 +239,4 @@
     .next-btn {
       right: 5px;
     }
-  }
+  } */

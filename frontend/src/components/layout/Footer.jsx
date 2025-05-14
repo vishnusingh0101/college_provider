@@ -1,4 +1,5 @@
-import { Github, Twitter, Linkedin } from "lucide-react";
+import { Github, Twitter, Linkedin, Youtube, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
 // import { useAuth } from '../../context/AuthContext';
 
 export default function Footer(){
@@ -7,57 +8,63 @@ export default function Footer(){
     return (
       <>
       {/* {isLoggedIn ? ( */}
-        <footer className="bg-gray-900 text-white mt-20">
+        <footer className="bg-gradient-to-b from-indigo-700 via-indigo-800 to-indigo-900 text-white mt-20">
           <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               <div>
                 <h3 className="text-lg font-semibold underline">About Us</h3>
-                <p className="mt-4 text-sm text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p className="mt-4 text-sm text-white">Platform to connects colleges, alumni and students.</p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold underline">Quick Links</h3>
                 <ul className="mt-4 space-y-2 text-sm text-white">
                   <li>
-                    <a href="#" className="hover:text-gray-300">
+                    <Link to="/" className="hover:text-gray-300">
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-gray-300">
-                      About
-                    </a>
+                    <Link to="/colleges" className="hover:text-gray-300">
+                      College
+                    </Link>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-gray-300">
-                      Services
-                    </a>
+                    <Link to="/college-predictor" className="hover:text-gray-300">
+                      College Predictor
+                    </Link>
                   </li>
                   <li>
-                    <a href="#" className="hover:text-gray-300">
-                      Contact
-                    </a>
+                    <Link to="/about-us" className="hover:text-gray-300">
+                      About Us
+                    </Link>
                   </li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-lg font-semibold underline">Contact</h3>
                 <ul className="mt-4 space-y-2 text-sm text-white">
-                  <li>Email: info@example.com</li>
-                  <li>Phone: (123) 456-7890</li>
-                  <li>Address: 123 Street, City</li>
+                  <li>Email: Providerteam.in@gmail.com</li>
+                  <li>Phone: +917303831326</li>
+                  <li>Knowledge Park 3, Greater Noida</li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-lg font-semibold underline">Follow Us</h3>
                 <div className="mt-4 flex space-x-4">
-                  <a href="#" className="text-white hover:text-gray-300">
+                  {/* <a href="#" className="text-white hover:text-gray-300">
                     <Github className="h-6 w-6" />
-                  </a>
-                  <a href="#" className="text-white hover:text-gray-300">
+                  </a> */}
+                  {/* <a href="#" className="text-white hover:text-gray-300">
                     <Twitter className="h-6 w-6" />
-                  </a>
-                  <a href="#" className="text-white hover:text-gray-300">
+                  </a> */}
+                  <a href="https://www.linkedin.com/company/providerapp/" className="text-white hover:text-gray-300">
                     <Linkedin className="h-6 w-6" />
+                  </a>
+                  <a href="https://www.instagram.com/providerapp.in?igsh=N3d3bjV4NnQ4cDZ1" className="text-white hover:text-gray-300">
+                    <Instagram className="h-6 w-6" />
+                  </a>
+                  <a href="https://www.youtube.com/@providerapp" className="text-white hover:text-gray-300">
+                    <Youtube className="h-6 w-6" />
                   </a>
                 </div>
               </div>

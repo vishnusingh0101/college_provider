@@ -10,7 +10,7 @@ export default function Login() {
   const [obj, setObj] = useState({ phone: "", password: "" });
   const [phoneValid, setPhoneValid] = useState(true);
   const navigate = useNavigate();
-  const { apiUrl } = useAuth();
+  const { apiUrl, setUserProfile } = useAuth();
   const [loading, setLoading] = useState(false);
 
 
@@ -29,6 +29,7 @@ export default function Login() {
       const result = await axios.post(`${apiUrl}user/login`, obj);
       if (result.status === 200) {
         localStorage.setItem("authToken", result.data.token);
+        localStorage.setItem("userProfile", JSON.stringify(result.data.user));
         navigate("/");
       }
     } catch (error) {
