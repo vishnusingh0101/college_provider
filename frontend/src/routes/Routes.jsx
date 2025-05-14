@@ -19,7 +19,6 @@ import Student from '../pages/student/Student';
 // import Faculty from '../pages/faculty/Faculty';
 import CollegeDetails from '../pages/college/CollegeDetails';
 import CollegePredictor from '../pages/college/CollegePredictor';
-// import Staff from '../pages/college/CollegeStaff';
 import ScrollToTop from '../utils/ScrollToTop'
 import ProtectedRoute from '../middleware/ProtectedRoute';
 import PublicRoute from '../middleware/PublicRoute';
@@ -44,7 +43,6 @@ export default function Endpoints() {
         <Route path="/alumni" element={<Alumni />} />
         {/* <Route path="/counsellor" element={<Counsellor />} /> */}
         {/* <Route path="/faculty" element={<Faculty />} /> */}
-        {/* <Route path="/staff" element={<Staff />} /> */}
         
         <Route element={<PublicRoute />}>
           <Route path="/register" element={<CreateAccount />} />
