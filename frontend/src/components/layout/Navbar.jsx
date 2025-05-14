@@ -79,7 +79,7 @@ export default function Example() {
   }
   // const navigate = useNavigate();
   const dropdownRef = useRef(null)
-  const { isLoggedIn, userProfile, handleLogout, isDropdownOpen, setIsDropdownOpen } = useAuth();
+  const { isLoggedIn, userProfile, setIsDropdownOpen } = useAuth();
   
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -170,8 +170,10 @@ export default function Example() {
 
             { isLoggedIn ? (
             <div className="relative" ref={dropdownRef}>
+            <Link
+                to="/profile">
                 <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                // onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex cursor-pointer items-center gap-2 hover:bg-gray-100 rounded-full py-1 px-2"
                 >
                 <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
@@ -187,9 +189,10 @@ export default function Example() {
                 </div>
                 <span className="text-sm font-medium">{userProfile.name}</span>
                 </button>
+                </Link>
 
                 {/* Dropdown Menu */}
-                {isDropdownOpen && (
+                {/* {isDropdownOpen && (
                 <div className="absolute right-0 mt-6 w-48 bg-white rounded-md py-1 z-10 border border-gray-300">
                   <Link to="/profile" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="block px-4 py-2 text-sm text-gray-700 hover:text-indigo-600">
                     Profile
@@ -201,7 +204,7 @@ export default function Example() {
                     Log out
                   </button>
                 </div>
-                )}
+                )} */}
               </div> )
                 : (
             <div className="lg:flex items-center md:ml-12 hidden">

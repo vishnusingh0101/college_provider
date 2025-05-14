@@ -269,10 +269,10 @@ export default function Example() {
               <h1 className="text-4xl font-extrabold tracking-tight text-warm-gray-900 sm:text-5xl lg:text-6xl">
                 Get in touch
               </h1>
-              <p className="mt-6 text-xl text-stone-500 max-w-3xl">
+              {/* <p className="mt-6 text-xl text-stone-500 max-w-3xl">
                 Vel nunc non ut montes, viverra tempor. Proin lectus nibh phasellus morbi non morbi. In elementum urna
                 ut volutpat. Sagittis et vel et fermentum amet consequat.
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -412,10 +412,10 @@ export default function Example() {
                     </svg>
                   </div>
                   <h3 className="text-lg font-medium text-white">Contact information</h3>
-                  <p className="mt-6 text-base text-teal-50 max-w-3xl">
+                  {/* <p className="mt-6 text-base text-teal-50 max-w-3xl">
                     Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor
                     lacus arcu.
-                  </p>
+                  </p> */}
                   <dl className="mt-8 space-y-6">
                     <dt>
                       <span className="sr-only">Phone number</span>
