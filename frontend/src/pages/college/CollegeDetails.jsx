@@ -1,11 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import FAQs from "../../components/college/FAQs"
-// import StudentData from "../../data/StudentData";
-// import AlumniData from "../../data/AlumniData";
-// import CS from "../../services/CallScheduler";
-// import DescriptionItem from "../../components/counsellor/Description";
 import { useAuth } from '../../context/AuthContext';
+import Alumni from "../../pages/alumni/Alumni";
+import Student from "../../pages/student/Student";
 import axios from "axios";
 
 export default function CollegeDetails(){
@@ -54,19 +52,6 @@ export default function CollegeDetails(){
       }
     };
 
-
-    // const [isOpen1, setIsOpen1] = useState(false);
-    // const [isOpen2, setIsOpen2] = useState(false);
-    
-    //   const openPopup1 = () => {
-    //     setIsOpen1(true);
-    //   };
-    //   const openPopup2 = () => {
-    //     setIsOpen2(true);
-    //   };
-    
-    //   const closePopup1 = () => setIsOpen1(false);
-    //   const closePopup2 = () => setIsOpen2(false);
     
 
     // const handleDownload = async () => {
@@ -204,13 +189,13 @@ export default function CollegeDetails(){
                       <div>{college.mapLink}</div>
                       ) : "No Map Found !"}
                     </div> */}
-                    {/* <div className="m-20">
+                    <div className="m-20">
                       {college.mapLink ? (
                       <div>
                       <iframe className="rounded-4xl" src={college.mapLink} width="746" height="312" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                       </div>
                       ) : "No Map Found !"}
-                    </div> */}
+                    </div>
                   </section>
                 )}
               </div>
@@ -219,8 +204,9 @@ export default function CollegeDetails(){
 
 
               {/* Alumni Section */}
-              {/* {id=="67ff21820af3eeb3e5f10e06" && (
-                <section className="my-12">
+              <Alumni />
+              {/* {id=="67ff21820af3eeb3e5f10e06" && ( */}
+                {/* <section className="my-12">
                 <h2 className="text-xl font-bold mb-6">Alumni</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {AlumniData.map((i) => (
@@ -236,15 +222,15 @@ export default function CollegeDetails(){
                         </div>
                       </div>
                       <DescriptionItem description={i.Description} />
-                      <button onClick={openPopup1} className="w-full my-4 py-2 px-4 bg-[#5751e1] hover:bg-[#2c26b0] text-white rounded-md transition-colors">
+                      <button onClick={openPopup} className="w-full my-4 py-2 px-4 bg-[#5751e1] hover:bg-[#2c26b0] text-white rounded-md transition-colors">
                         Schedule a Call
                       </button>
-                      {isOpen1 && ( <CS participantId={i._id} participantModel="alumnilist" onStateChange={closePopup1} /> )}
+                      {isOpen && ( <CS participantId={i._id} participantModel="alumnilist" onStateChange={closePopup} /> )}
                     </div>
                   ))}
                 </div>
-              </section>
-              )} */}
+              </section> */}
+              {/* )} */}
               
               {/* Faculty Section */}
               {/* <section className="mb-12">
@@ -277,8 +263,9 @@ export default function CollegeDetails(){
               </section> */}
               
               {/* Students Section */}
-              {/* {id=="67ff21820af3eeb3e5f10e06" && (
-              <section className="my-12">
+              <Student />
+              {/* {id=="67ff21820af3eeb3e5f10e06" && ( */}
+              {/* <section className="my-12">
                 <h2 className="text-xl font-bold mb-6">Students</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {StudentData.map((i) => (
@@ -301,8 +288,8 @@ export default function CollegeDetails(){
                     </div>
                   ))}
                 </div>
-              </section>
-              )} */}
+              </section> */}
+              {/* )} */}
             </div>
           </div>
         </>

@@ -14,7 +14,7 @@ function AlumniCards() {
   const { apiUrl, token } = useAuth();
 
   useEffect(() => {
-    const fetchStudentData = async () => {
+    const fetchAlumniData = async () => {
       try {
         setLoading(true);
         const response = await axios.get(`${apiUrl}college/alumnilist`, {
@@ -31,7 +31,7 @@ function AlumniCards() {
       }
     };
 
-    fetchStudentData();
+    fetchAlumniData();
   }, []);
 
   const filteredAlumni = alumniData.filter(
