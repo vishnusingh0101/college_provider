@@ -531,9 +531,9 @@ exports.getParticipantCalls = async (req, res) => {
             participant: participantId,
             dateTime: { $gte: start, $lte: end }
         })
-        .populate('caller', 'name mail')
-        .populate('participant', 'name mail')
-        .sort({ dateTime: 1 });
+            .populate('caller', 'name mail')
+            .populate('participant', 'name mail')
+            .sort({ dateTime: 1 });
 
         return res.status(200).json({
             success: true,
@@ -551,7 +551,7 @@ exports.getParticipantCalls = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     try {
-        const userId = req.user?.id;
+        const userId = req.user?.id; 
         if (!userId) {
             return res.status(401).json({ success: false, message: "Unauthorized" });
         }
