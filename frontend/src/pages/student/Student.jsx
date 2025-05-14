@@ -75,19 +75,19 @@ const StudentPage = () => {
               <div className="flex items-start justify-between">
                 <div className="flex gap-4">
                 <img
-                  src={item.Profile}
-                  alt={item.Name}
+                  src={item.profile}
+                  alt={item.name}
                   className="rounded-full w-12 h-12"
                 />
                   <div>
                     <div className="flex items-start justify-between">
                       <div>
-                        <h2 className="text-xl font-bold text-gray-700">{item.Name}</h2>
-                        <p className="text-sm text-gray-600">{item.Bio}</p>
-                        <p className="text-sm text-gray-600">{item.Expertise}</p>
+                        <h2 className="text-xl font-bold text-gray-700">{item.name}</h2>
+                        <p className="text-sm text-gray-600">{item.bio}</p>
+                        <p className="text-sm text-gray-600">{item.expertise}</p>
                       </div>
                     </div>
-                    <DescriptionItem description={item.Description} />
+                    <DescriptionItem description={item.description} />
                   </div>
                 </div>
                 {/* <div className="flex flex-col items-end gap-2">
