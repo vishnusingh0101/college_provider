@@ -12,4 +12,4 @@ router.get('/getUserCalls',auth.authenticate, userControl.getUserCalls);
 router.get('/getParticipantCalls',auth.authenticate, userControl.getParticipantCalls);
 router.patch('/userupdate', auth.authenticate, userControl.updateUser);
 
-module.exports = router;
+module.exports = router; 
