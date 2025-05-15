@@ -38,6 +38,10 @@ function AlumniCards() {
     (alumni) =>
       alumni.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       alumni.currentcompany.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      alumni.college.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      alumni.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      alumni.joblocation.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      alumni.currentjobrole.toLowerCase().includes(searchTerm.toLowerCase()) ||
       alumni.expertise.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -190,7 +194,7 @@ function AlumniCard({ alumni, onClick }) {
             </svg>
             <div>
               <p className="font-medium">{alumni.college}</p>
-              <p className="text-sm text-gray-500">Class of {alumni.graduationyear}</p>
+              <p className="text-sm text-gray-500">{alumni.graduationyear}</p>
             </div>
           </div>
         </div>

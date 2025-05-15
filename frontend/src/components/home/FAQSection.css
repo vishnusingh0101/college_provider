@@ -18,7 +18,7 @@ FAQSection.css
   
   .faq-title {
     font-size: 2.5rem;
-    color: #0a2e7a;
+    color: #4f39f6;
     margin-bottom: 1rem;
     font-weight: 700;
     letter-spacing: -0.5px;
@@ -27,7 +27,7 @@ FAQSection.css
   .faq-underline {
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #1350ff, #6a8cff);
+    background: linear-gradient(90deg, #4f39f6, #6a8cff);
     margin: 0 auto;
     border-radius: 2px;
   }
@@ -65,7 +65,7 @@ FAQSection.css
   
   .faq-question h3 {
     font-size: 1.3rem;
-    color: #0a2e7a;
+    color: #4f39f6;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -75,7 +75,7 @@ FAQSection.css
   
   .faq-arrow {
     font-size: 1.5rem;
-    color: #1350ff;
+    color: #4f39f6;
     font-weight: bold;
     transition: transform 0.3s ease;
     flex-shrink: 0; /* Prevent arrow from being squeezed */
@@ -116,14 +116,14 @@ FAQSection.css
   
   .urgency-headline {
     font-size: 1.8rem;
-    color: #0a2e7a;
+    color: #4f39f6;
     margin-bottom: 1rem;
     font-weight: 700;
   }
   
   .urgency-counter {
     font-size: 1.2rem;
-    color: #1350ff;
+    color: #4f39f6;
     font-weight: 600;
     margin-bottom: 2rem;
   }
@@ -132,7 +132,7 @@ FAQSection.css
     display: inline-flex;
     align-items: center;
     padding: 1rem 2rem;
-    background: linear-gradient(90deg, #1350ff, #6a8cff);
+    background: linear-gradient(90deg, #4f39f6, #6a8cff);
     color: white;
     border: none;
     border-radius: 50px;

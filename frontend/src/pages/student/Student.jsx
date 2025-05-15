@@ -37,7 +37,8 @@ function StudentCards() {
   const filteredStudent = studentData.filter(
     (student) =>
       student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      student.currentcompany.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      student.college.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      student.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
       student.expertise.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -172,7 +173,7 @@ function StudentCard({ student, onClick }) {
             </svg>
             <div>
               <p className="font-medium">{student.college}</p>
-              <p className="text-sm text-gray-500">Class of {student.course}</p>
+              <p className="text-sm text-gray-500">{student.course}</p>
             </div>
           </div>
         </div>
