@@ -104,6 +104,7 @@ export default function Example() {
       <div className="absolute inset-0  pointer-events-none" aria-hidden="true" />
       <div className="relative z-20">
         <div className="mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-16">
+        <Link to="/" className="flex items-center">
           <div className="flex items-center text-xl font-bold">
             {/* <img 
               src="/assets/images/logo.png" 
@@ -113,6 +114,7 @@ export default function Example() {
             <span className='text-black'>College</span>
             <span className='text-indigo-600'>Provider</span>
           </div>
+          </Link>
           <div className="lg:hidden">
             <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
               <span className="sr-only">Open menu</span>

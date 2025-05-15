@@ -40,7 +40,7 @@
   text-decoration: none;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  background: linear-gradient(135deg, #1350ff, #80a0ff);
+  background: linear-gradient(135deg, #4f39f6, #80a0ff);
   color: white;
   font-size: 1.2rem;
   font-weight: 500;
@@ -57,7 +57,7 @@
 
 .section-title {
   font-size: 2rem;
-  color: #0a2e7a;
+  color: #4f39f6;
   margin-bottom: 1rem;
   font-weight: 700;
   line-height: 1.3;
@@ -66,7 +66,7 @@
 .PS-underline {
   width: 80px;
   height: 4px;
-  background: #1350ff;
+  background: #4f39f6;
   border-radius: 2px;
   margin-left: 0;
 }
@@ -109,7 +109,7 @@
 
 .problem-icon {
   font-size: 1.2rem;
-  color: #1350ff;
+  color: #4f39f6;
   font-weight: bold;
 }
 
@@ -130,13 +130,13 @@
 .solution-line {
   flex: 1;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #1350ff, transparent);
+  background: linear-gradient(90deg, transparent, #4f39f6, transparent);
 }
 
 .solution-text {
   font-size: 1.3rem;
   font-weight: 600;
-  color: #1350ff;
+  color: #4f39f6;
   padding: 0 1rem;
   white-space: nowrap;
 }

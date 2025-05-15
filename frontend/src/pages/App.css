@@ -12,7 +12,7 @@
 }
 
 .highlight{
-  color: #1350ff;
+  color: #4f39f6;
 }
 
 .home-container {
@@ -63,7 +63,7 @@
   background: rgba(115, 151, 255, 0.14);
   color: black;
   border: none;
-  border: 1px solid #1350ff; 
+  border: 1px solid #4f39f6; 
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -76,7 +76,7 @@
 }
 
 .cta-button {
-  background-color: #1350ff;
+  background-color: #4f39f6;
   color: white;
   padding: 12px 24px;
   border-radius: 5px;

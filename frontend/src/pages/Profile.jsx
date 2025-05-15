@@ -95,7 +95,7 @@ const Profile = () => {
               </div>
             </div> */}
       <main className="mx-auto">
-        <div className="bg-white rounded-xl sm:p-6 shadow-md border border-gray-200">
+        <div className="sm:p-6">
           {/* Profile Header */}
           <div className="flex justify-between mb-6">
             <div>

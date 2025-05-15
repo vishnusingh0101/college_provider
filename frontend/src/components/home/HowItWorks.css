@@ -35,7 +35,7 @@
     text-decoration: none;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    background: linear-gradient(135deg, #1350ff, #80a0ff);
+    background: linear-gradient(135deg, #4f39f6, #80a0ff);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -67,7 +67,7 @@
   
   .title {
     font-size: 2.5rem;
-    color: #0a2e7a;
+    color: #4f39f6;
     margin-bottom: 1rem;
     font-weight: 700;
     letter-spacing: -0.5px;
@@ -76,7 +76,7 @@
   .HIW-underline {
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #1350ff, #6a8cff);
+    background: linear-gradient(90deg, #4f39f6, #6a8cff);
     border-radius: 2px;
     margin-left: 0;
   }
@@ -112,7 +112,7 @@
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(to bottom, #1350ff, #6a8cff);
+    background: linear-gradient(to bottom, #4f39f6, #6a8cff);
   }
   
   .step-number {
@@ -130,7 +130,7 @@
   
   .step-content h3 {
     font-size: 1.5rem;
-    color: #0a2e7a;
+    color: #4f39f6;
     margin-bottom: 0.8rem;
   }
   
@@ -154,7 +154,7 @@
   .step-icon svg {
     width: 24px;
     height: 24px;
-    fill: #1350ff;
+    fill: #4f39f6;
   }
   
   .insider-tips {
@@ -167,7 +167,7 @@
     background: rgba(19, 80, 255, 0.05);
     padding: 0.8rem 1rem;
     border-radius: 8px;
-    color: #0a2e7a;
+    color: #4f39f6;
     font-style: italic;
     position: relative;
     padding-left: 2rem;
@@ -178,7 +178,7 @@
     position: absolute;
     left: 0.8rem;
     top: 0.5rem;
-    color: #1350ff;
+    color: #4f39f6;
     font-size: 1.2rem;
     font-weight: bold;
   }
@@ -188,7 +188,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem 2rem;
-    background: linear-gradient(90deg, #1350ff, #6a8cff);
+    background: linear-gradient(90deg, #4f39f6, #6a8cff);
     color: white;
     border: none;
     border-radius: 50px;
