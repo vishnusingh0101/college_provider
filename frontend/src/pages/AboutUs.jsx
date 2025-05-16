@@ -232,13 +232,13 @@ export default function Example() {
             />
           </div>
 
-          <div className="mt-12 bg-gray-100 p-6 rounded-lg max-w-3xl mx-auto">
+          {/* <div className="mt-12 bg-gray-100 p-6 rounded-lg max-w-3xl mx-auto">
             <blockquote className="italic text-gray-700 text-lg">
               "I ended up in a mediocre college because no one told me about better options. CollegeProvider ensures no
               student repeats my mistake."
             </blockquote>
             <p className="text-right mt-4 font-medium">— Avadhesh Chaudhary</p>
-          </div>
+          </div> */}
         </div>
       </section>
 
