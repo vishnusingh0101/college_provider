@@ -7,7 +7,7 @@ function WhyChooseUs() {
     <section className="why-choose-us-section">
       <div className="why-choose-us-container">
         <div className="why-choose-us-header">
-          <h2 className="why-choose-us-title">Free Advice vs. College Connect</h2>
+          <h2 className="why-choose-us-title">Free Advice vs. College Provider</h2>
           <div className="why-choose-us-underline"></div>
         </div>
 
@@ -35,7 +35,7 @@ function WhyChooseUs() {
           </div>
 
           <div className="comparison-column college-connect-col">
-            <h3 className="comparison-col-title">College Connect</h3>
+            <h3 className="comparison-col-title">College Provider</h3>
             <ul className="comparison-list">
               <li className="comparison-item">
                 <span className="comparison-icon">✓</span>

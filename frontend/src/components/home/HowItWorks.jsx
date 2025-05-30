@@ -9,7 +9,7 @@ function HowItWorks() {
         <div className="two-column-layout">
           <div className="content-column">
             <div className="section-header">
-              <h2 className="title">How College Connect Works</h2>
+              <h2 className="title">How College Provider Works</h2>
               <div className="HIW-underline"></div>
             </div>
 

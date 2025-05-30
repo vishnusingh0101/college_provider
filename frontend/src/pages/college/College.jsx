@@ -23,9 +23,12 @@ const Property = () => {
   const { apiUrl, token } = useAuth();
   
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 15;
+  const itemsPerPage = 30;
   const totalPages = Math.ceil(collegeData.length / itemsPerPage);
 
+  // Check if filter has been applied
+  const isFiltered = collegeData.length !== allCollegeData.length || 
+                     JSON.stringify(collegeData) !== JSON.stringify(allCollegeData);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -68,12 +71,9 @@ const Property = () => {
         ) : (
       <div>
       <FilterColleges data={allCollegeData} onFilterChange={handleFilterChange} onReset={handleResetData} />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1">
         <div className="flex justify-between mb-6">
           <div className="flex flex-col justify-end">
-          {/* <p className="text-gray-600 text-xl mb-4 sm:mb-0">
-            Showing <span className="text-indigo-600 font-medium">{collegeData.length}</span> colleges
-          </p> */}
           <p className="text-gray-600">
             Showing{" "}
             <span className="text-indigo-600 font-medium">
@@ -87,21 +87,19 @@ const Property = () => {
             <span className="text-indigo-600 font-medium">{collegeData.length}</span>{" "}
             colleges
           </p>
-          {/* <div className="flex mt-1">
-          <p className="text-gray-600">
-            Page {currentPage} of {Math.ceil(collegeData.length / itemsPerPage)}
-          </p>
-          </div> */}
           </div>
 
           <div className="">
-          <button
-            onClick={handleResetData}
-            className="mt-4 mx-2 w-full md:w-auto px-6 py-2 border border-b-indigo-500 text-indigo-600 rounded-xl focus:ring-2 transition-colors hover:text-indigo-800 cursor-pointer focus:ring-offset-2"
-          >
-            Reset
-          </button>
+          {isFiltered && (
+            <button
+              onClick={handleResetData}
+              className="mt-4 mx-2 w-full md:w-auto px-6 py-2 border border-b-indigo-500 text-indigo-600 rounded-xl focus:ring-2 transition-colors hover:text-indigo-800 cursor-pointer focus:ring-offset-2"
+            >
+              Reset
+            </button>
+          )}
           </div>
+        </div>
 
           <div className="sm:flex items-center space-x-4 hidden">
             {/* <select className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
@@ -128,7 +126,7 @@ const Property = () => {
               </button>
             </div>
           </div>
-        </div>
+       
 
         <main className="container mx-auto px-4 py-8">
         <div className={`grid grid-cols-1 md:${colActiv ? "grid-cols-1" : "grid-cols-2"} lg:${colActiv ? "grid-cols-2" : "grid-cols-3"} gap-6`}>
@@ -183,6 +181,7 @@ const Property = () => {
   </button>
 </div> */}
         <div className="flex justify-center mt-8 space-x-2 flex-wrap">
+  {/* Prev Button */}
   <button
     onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
     disabled={currentPage === 1}
@@ -198,9 +197,7 @@ const Property = () => {
     <>
       <button
         onClick={() => setCurrentPage(1)}
-        className={`px-4 py-2 border rounded ${
-          currentPage === 1 ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600'
-        }`}
+        className="px-4 py-2 border rounded bg-white text-gray-600"
       >
         1
       </button>
@@ -208,7 +205,7 @@ const Property = () => {
     </>
   )}
 
-  {/* Current Page - 1 */}
+  {/* Previous Page */}
   {currentPage > 1 && (
     <button
       onClick={() => setCurrentPage(currentPage - 1)}
@@ -223,7 +220,7 @@ const Property = () => {
     {currentPage}
   </button>
 
-  {/* Current Page + 1 */}
+  {/* Next Page */}
   {currentPage < totalPages && (
     <button
       onClick={() => setCurrentPage(currentPage + 1)}
@@ -248,6 +245,7 @@ const Property = () => {
     </>
   )}
 
+  {/* Next Button */}
   <button
     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
     disabled={currentPage === totalPages}
@@ -258,22 +256,24 @@ const Property = () => {
     Next
   </button>
 </div>
-        {/* Pagination Info */}
-         <div className="flex justify-center mt-4">
-          <p className="text-gray-600">
-            Showing{" "}
-            <span className="text-indigo-600 font-medium">
-              {Math.min((currentPage - 1) * itemsPerPage + 1, collegeData.length)}
-            </span>{" "}
-            -{" "}
-            <span className="text-indigo-600 font-medium">
-              {Math.min(currentPage * itemsPerPage, collegeData.length)}
-            </span>{" "}
-            of{" "}
-            <span className="text-indigo-600 font-medium">{collegeData.length}</span>{" "}
-            colleges
-          </p>
-        </div>
+
+{/* Pagination Info */}
+<div className="flex justify-center mt-4">
+  <p className="text-gray-600">
+    Showing{" "}
+    <span className="text-indigo-600 font-medium">
+      {Math.min((currentPage - 1) * itemsPerPage + 1, collegeData.length)}
+    </span>{" "}
+    -{" "}
+    <span className="text-indigo-600 font-medium">
+      {Math.min(currentPage * itemsPerPage, collegeData.length)}
+    </span>{" "}
+    of{" "}
+    <span className="text-indigo-600 font-medium">{collegeData.length}</span>{" "}
+    colleges
+  </p>
+</div>
+
 
       </main>
       </div>

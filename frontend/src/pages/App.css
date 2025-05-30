@@ -1,5 +1,10 @@
-.black-text{
+.black-text {
   color: black;
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  position: relative;
   z-index: 2;
 }
 
@@ -11,7 +16,7 @@
   }
 }
 
-.highlight{
+.highlight {
   color: #4f39f6;
 }
 
@@ -20,16 +25,17 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 100vw;
-  height: 80vh;
+  width: 100%;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0;
+  padding: 2rem 1rem;
   margin: 0;
-  
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-section {
@@ -39,35 +45,42 @@
   text-align: center;
   justify-content: center;
   max-width: 800px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .oval-background {
   position: absolute;
   width: 60%;
   height: 40%;
-  justify-content: center;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   filter: blur(20px);
-  z-index: -3;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-
-.slogan{
+.slogan {
   color: black;
-  font-size: medium;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  max-width: 600px;
   z-index: 2;
+  position: relative;
 }
 
 .info-button {
   background: rgba(115, 151, 255, 0.14);
   color: black;
-  border: none;
-  border: 1px solid #4f39f6; 
-  padding: 10px;
+  border: 1px solid #4f39f6;
+  padding: 10px 20px;
   margin-bottom: 20px;
   border-radius: 5px;
-  outline: none; 
+  font-weight: 500;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
@@ -83,5 +96,15 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: 20px;
-  z-index: 5;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #3d2cc1;
+}
+
+.connect-section {
+  padding: 4rem 0;
 }
