@@ -9,7 +9,7 @@ const TestimonialSlider = () => {
       name: 'Sumit Chauhan',
       college: 'GL Bajaj Institute of Technology and Management Greater Noida',
       role: 'Working professional',
-      quote: 'Mentoring students through College Connect has been incredibly rewarding. I love helping the next generation navigate their academic journeys.',
+      quote: 'Mentoring students through College Provider has been incredibly rewarding. I love helping the next generation navigate their academic journeys.',
       image: '/alumni/sumit.png'
     },
     {
@@ -41,7 +41,7 @@ const TestimonialSlider = () => {
       name: 'Ratnesh Chaudhary',
       college: 'Uiet kanpur ',
       role: 'Working professional',
-      quote: 'Mentoring students through College Connect has been incredibly rewarding. I love helping the next generation navigate their academic journeys.',
+      quote: 'Mentoring students through College Provider has been incredibly rewarding. I love helping the next generation navigate their academic journeys.',
       image: '/alumni/ratnesh.jpg'
     }
   ];

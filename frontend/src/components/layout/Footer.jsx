@@ -13,7 +13,8 @@ export default function Footer(){
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               <div>
                 <h3 className="text-lg font-semibold underline">About Us</h3>
-                <p className="mt-4 text-sm text-white">Platform to connects colleges, alumni and students.</p>
+                <h1 className="text-lg font-bold mt-4">College Provider</h1>
+                <p className=" text-sm text-white">Platform to connects colleges, alumni and students.</p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold underline">Quick Links</h3>
@@ -43,8 +44,8 @@ export default function Footer(){
               <div>
                 <h3 className="text-lg font-semibold underline">Contact</h3>
                 <ul className="mt-4 space-y-2 text-sm text-white">
-                  <li>Email: Providerteam.in@gmail.com</li>
-                  <li>Phone: +917303831326</li>
+                 <li>Email: <a href="mailto:providerteam.in@gmail.com" className="hover:text-indigo-600 transition-colors">providerteam.in@gmail.com</a></li>
+<li>Phone: <a href="tel:+917303831326" className="hover:text-indigo-600 transition-colors">+91 73038 31326</a></li>
                   <li>Knowledge Park 3, Greater Noida</li>
                 </ul>
               </div>

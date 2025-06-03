@@ -52,8 +52,8 @@ const Banner = ({data, onFilterChange, onReset}) => {
 
   return (
     <div className="bg-gradient-to-b from-indigo-100 to-purple-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-12">Search Colleges</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-4">Search Colleges</h1>
 
         {/* Search Form */}
         <form onSubmit={handleSearch} className="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-6">

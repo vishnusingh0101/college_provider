@@ -74,43 +74,44 @@ function LandingPage() {
         />
       </section>
 
-      <div className="home-container">
-      <header className="hero-section">
-        <button className="info-button">Listed over 5000 Alumni & 300 Colleges</button>
-        <div className="oval-background"></div>
-        <h1 className="black-text">
-        Get Into Your Dream<span className="highlight"> College</span>
-        — With 1:1 Guidance From <span className="highlight">Alumni</span> Who’ve Been There.
-        </h1>
-        <p className="slogan">No more guesswork. No generic advice. Just real, actionable insights from alumni who cracked the code.</p>
-        <Link to="/alumni">
-        <button className="cta-button">Book Your First Session (Free Trial)</button>
-        </Link>
-      </header>
-    </div>
+        <div className="home-container">
+        <header className="hero-section">
+          <button className="info-button">Listed over 5000 Alumni & 300 Colleges</button>
+          <div className="oval-background"></div>
+          <h2 className="black-text">
+            Get Into Your Dream<span className="highlight"> College</span>— With 1:1 Guidance From <span className="highlight">Alumni</span> Who've Been There.
+          </h2>
+          <p className="slogan">No more guesswork. No generic advice. Just real, actionable insights from alumni who cracked the code.</p>
+          <Link to="/alumni">
+            <button className="cta-button">Book Your First Session (Free Trial)</button>
+          </Link>
+        </header>
+      </div>
 
       <section className="mx-auto sm:my-16 lg:px-16 md:px-8 px-4">
-        <div className="p-4 text-center">
-          <h2 className="inline text-start lg:text-5xl md:text-4xl text-2xl font-bold text-indigo-600">Connect </h2>
-          <span className="lg:text-5xl md:text-4xl text-2xl"> with</span>
-        </div>
-        {navItems.map((item) => (
-          <div key={item.index} className="flex flex-col md:flex-row justify-center items-center mb-8">
-            <div className="flex flex-col justify-center items-center m-6 p-6">
-            <img 
-                src={item.img} 
-                alt={`${item.name} Illustration`} 
-                className="transition duration-300 hover:-translate-y-0.5 rounded-2xl m-4 md:max-w-[50%]" 
-              />
-            <Link to={item.path}>
-            <div key={item.name} className=" text-2xl text-center w-40 p-4 m-4 lg:m-0 lg:p-0 text-indigo-600 transition duration-300 font-bold rounded-2xl border-2 hover:-translate-y-0.5 hover:text-indigo-800 active:text-indigo-800 cursor-pointer">
-              {item.name}
-            </div>
-            </Link>
-            </div>
+  <div className="p-4 text-center">
+    <h2 className="inline text-start lg:text-5xl md:text-4xl text-2xl font-bold text-indigo-600">Connect </h2>
+    <span className="lg:text-5xl md:text-4xl text-2xl"> with</span>
+  </div>
+  
+  {/* Changed to a grid layout for horizontal alignment */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
+    {navItems.map((item) => (
+      <div key={item.index} className="flex flex-col items-center">
+        <img 
+          src={item.img} 
+          alt={`${item.name} Illustration`} 
+          className="transition duration-300 hover:-translate-y-0.5 rounded-2xl mb-4 max-w-[75%]" 
+        />
+        <Link to={item.path}>
+          <div className="text-2xl text-center w-40 p-4 text-indigo-600 transition duration-300 font-bold rounded-2xl border-2 hover:-translate-y-0.5 hover:text-indigo-800 active:text-indigo-800 cursor-pointer">
+            {item.name}
           </div>
-        ))}
-      </section>
+        </Link>
+      </div>
+    ))}
+  </div>
+</section>
     </div>
     <ProblemSection />
     <HowItWorks/>

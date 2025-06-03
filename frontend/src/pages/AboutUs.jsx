@@ -213,22 +213,23 @@ export default function Example() {
       </section>
 
       {/* Founders Section */}
+      <section className="py-1 px-4 bg-white">
       {/* <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Our Founders</h2>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+           <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             <FounderCard
-              name="Praveen Gopal"
-              role="Co-Founder & CEO"
-              image=""
-              bio="A passionate education entrepreneur committed to making quality education accessible to all Indian students."
+              name="Suprit Singh Arya"
+              role="Co-founder"
+              image="/founders/suprit.jpg"
+              bio="Manages Tech & Operations"
             />
             <FounderCard
-              name="Avadhesh Chaudhary"
-              role="Co-Founder & CTO"
-              image=""
-              bio="B.Tech graduate who experienced the admission chaos firsthand and is determined to fix the broken system."
+              name="Kshitij Goel"
+              role="Co-founder"
+              image="/founders/kshitij.png"
+              bio="Manages Sales & Marketing"
             />
           </div>
 
@@ -237,8 +238,8 @@ export default function Example() {
               "I ended up in a mediocre college because no one told me about better options. CollegeProvider ensures no
               student repeats my mistake."
             </blockquote>
-            <p className="text-right mt-4 font-medium">— Avadhesh Chaudhary</p>
-          </div>
+            <p className="text-right mt-4 font-medium">— Suprit Singh Arya</p>
+          </div> 
         </div>
       </section> */}
 
@@ -250,7 +251,7 @@ export default function Example() {
             For students, by students. <br />
             Free early access for the first 1,000 sign-ups!
           </p>
-          <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50">
+          <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50" href="/">
             Get Started Now
           </Button>
           <p className="mt-8 flex items-center justify-center text-blue-100">
