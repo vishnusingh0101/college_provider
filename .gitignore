@@ -15,3 +15,6 @@
 
 # skip dist folder
 frontend/dist
+
+# skip README
+README.md
