@@ -6,6 +6,11 @@ const scheduleCallSchema = new mongoose.Schema({
         ref: 'User', 
         required: true 
     },
+    participantName: { 
+        type: String, 
+        required: true, 
+        trim: true 
+    },
     participant: {
         type: mongoose.Schema.Types.ObjectId,
         refPath: 'participantModel',

@@ -4,14 +4,20 @@ import CircleLoader from "react-spinners/CircleLoader";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CS from "../../services/CallScheduler";
+import SearchAlumni from "../../components/alumni/searchAlumni";
 
 
 function AlumniCards() {
   const [selectedAlumni, setSelectedAlumni] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
   const [alumniData, setAlumniData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { apiUrl, token } = useAuth();
+  const {apiUrl, token} = useAuth();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+  const totalPages = Math.ceil(alumniData.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  
 
   useEffect(() => {
     const fetchAlumniData = async () => {
@@ -24,6 +30,7 @@ function AlumniCards() {
           }
         });
         setAlumniData(response.data.data);
+        setFilteredAlumni(response.data.data);
       } catch (error) {
         console.error('Error fetching student data:', error);
       } finally {
@@ -34,16 +41,9 @@ function AlumniCards() {
     fetchAlumniData();
   }, []);
 
-  const filteredAlumni = alumniData.filter(
-    (alumni) =>
-      alumni.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      alumni.currentcompany.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      alumni.college.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      alumni.course.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      alumni.joblocation.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      alumni.currentjobrole.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      alumni.expertise.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const [filteredAlumni, setFilteredAlumni] = useState(alumniData);
+  const currentAlumni = filteredAlumni.slice(indexOfFirstItem, indexOfLastItem);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -57,32 +57,17 @@ function AlumniCards() {
           </p>
           
           {/* Search input */}
-          <div className="mt-8 max-w-md mx-auto">
-            <div className="relative rounded-md shadow-sm">
-              <input
-                type="text"
-                className="block w-full rounded-md border-0 py-3 px-4 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
-                placeholder="Search by name, company, or expertise..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                <svg
-                  className="h-5 w-5 text-gray-400"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-              </div>
-            </div>
-          </div>
+          <SearchAlumni
+            data={alumniData}
+            onFilterChange={(filtered) => {
+              setFilteredAlumni(filtered);
+              setCurrentPage(1);
+            }}
+            onReset={() => {
+              setFilteredAlumni(alumniData);
+              setCurrentPage(1);
+            }}
+          />
         </div>
 
         {/* Alumni cards grid */}
@@ -91,13 +76,13 @@ function AlumniCards() {
                  <CircleLoader size={50} color="#3B82F6" loading={loading} />
                  <p className="text-gray-500 mt-4">Loading ...</p>
                </div>
-        ) : filteredAlumni.length === 0 ? (
+        ) : currentAlumni.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-xl text-gray-500">No alumni found matching your search.</p>
           </div>
         ): (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredAlumni.map((alumni, index) => (
+          {currentAlumni.map((alumni, index) => (
             <AlumniCard
               key={index}
               alumni={alumni}
@@ -122,6 +107,99 @@ function AlumniCards() {
           </div>
         </div>
       )}
+
+      <div className="flex justify-center mt-8 space-x-2 flex-wrap">
+          {/* Prev Button */}
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 border rounded ${
+              currentPage === 1 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
+            }`}
+          >
+            Prev
+          </button>
+            
+          {/* First Page */}
+          {currentPage > 2 && (
+            <>
+              <button
+                onClick={() => setCurrentPage(1)}
+                className="px-4 py-2 border rounded bg-white text-gray-600"
+              >
+                1
+              </button>
+              {currentPage > 3 && <span className="px-2 text-gray-400">...</span>}
+            </>
+          )}
+        
+          {/* Previous Page */}
+          {currentPage > 1 && (
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              className="px-4 py-2 border rounded bg-white text-gray-600"
+            >
+              {currentPage - 1}
+            </button>
+          )}
+        
+          {/* Current Page */}
+          <button className="px-4 py-2 border rounded bg-indigo-600 text-white">
+            {currentPage}
+          </button>
+        
+          {/* Next Page */}
+          {currentPage < totalPages && (
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              className="px-4 py-2 border rounded bg-white text-gray-600"
+            >
+              {currentPage + 1}
+            </button>
+          )}
+        
+          {/* Last Page */}
+          {currentPage < totalPages - 1 && (
+            <>
+              {currentPage < totalPages - 2 && <span className="px-2 text-gray-400">...</span>}
+              <button
+                onClick={() => setCurrentPage(totalPages)}
+                className={`px-4 py-2 border rounded ${
+                  currentPage === totalPages ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600'
+                }`}
+              >
+                {totalPages}
+              </button>
+            </>
+          )}
+        
+          {/* Next Button */}
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 border rounded ${
+              currentPage === totalPages ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
+            }`}
+          >
+            Next
+          </button>
+        </div>
+        {/* Pagination Info */}
+        <div className="flex justify-center mt-4">
+          <p className="text-gray-600">
+            Showing{" "}
+            <span className="text-indigo-600 font-medium">
+              {Math.min((currentPage - 1) * itemsPerPage + 1, alumniData.length)}
+            </span>{" "}
+            -{" "}
+            <span className="text-indigo-600 font-medium">
+              {Math.min(currentPage * itemsPerPage, alumniData.length)}
+            </span>{" "}
+            of{" "}
+            <span className="text-indigo-600 font-medium">{alumniData.length}</span>{" "}
+            Alumni
+          </p>
+        </div>
     </div>
   );
 }
@@ -194,6 +272,7 @@ function AlumniCard({ alumni, onClick }) {
             </svg>
             <div>
               <p className="font-medium">{alumni.college}</p>
+              <p className="text-md">{alumni.course}</p>
               <p className="text-sm text-gray-500">{alumni.graduationyear}</p>
             </div>
           </div>

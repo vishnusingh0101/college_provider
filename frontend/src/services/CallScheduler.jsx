@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { useAuth } from '../context/AuthContext';
 import HashLoader from "react-spinners/HashLoader";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -15,6 +16,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
   const { apiUrl, currentDate, decodedToken, token } = useAuth();
   const [loading, setLoading] = useState(false);
   const [loadingSlots, setLoadingSlots] = useState(false);
+  const Navigate = useNavigate();
 
   // State for selections
   const [callType, setCallType] = useState("");
@@ -22,7 +24,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const [selectedSlot, setSelectedSlot] = useState("");
   const [slots, setSlots] = useState([]);
-  const [bookedSlot, setBookedSlots] = useState();
+  // const [bookedSlot, setBookedSlots] = useState();
   const closePopup = () => onStateChange(false);
 
   useEffect(() => {
@@ -47,16 +49,16 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
             'Authorization': token
           }
         });
-  
+        // console.log(response.data.data);
         const bookedCalls = response.data.data;
         // Extract only hours from ISO datetime string
         bookedHours = bookedCalls.map(call => {
           const date = new Date(call.dateTime);
-          const time = date.getHours()-5;
+          const time = date.getHours();
           return time<0 ? time+24 : time; // Only the hour part
         });
   
-        setBookedSlots(bookedCalls); // Optional if you need full data elsewhere
+        // setBookedSlots(bookedCalls); // Optional if you need full data elsewhere
       } catch (error) {
         console.error('Error fetching Slots data:', error);
       } finally {
@@ -222,8 +224,6 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
 
     } catch (error) {
       console.error("Order failed:", error);
-    } finally {
-      setLoading(false);
     }
   }
   
@@ -256,15 +256,21 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
       if(response.status === 201 ) {
         // setLoading(false);
         setIsSubmitted(true);
+        setTimeout(() => {
+          onStateChange(false);
+        }, 1500);
+        setLoading(false);
+        Navigate("/profile");
       }
-      setTimeout(() => {
-        onStateChange(false);
-      }, 1500);
+      
     } catch (error) {
       console.error("Error scheduling call:", error.response.data.message);
       if(error.response.data.message === "You already have a call at this time."){
         alert("You already have a call at this time book another slot");
       }
+    }
+    finally {
+      setLoading(false);
     }
   };
 

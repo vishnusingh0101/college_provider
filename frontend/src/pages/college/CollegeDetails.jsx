@@ -11,6 +11,7 @@ export default function CollegeDetails(){
     const [showMore, setShowMore] = useState(false);
     const [collegeData, setCollegeData] = useState([]);
     const { apiUrl, token } = useAuth();
+    const [activeTab, setActiveTab] = useState("Alumni")
 
     useEffect(() => {
     const fetchCollegeData = async () => {
@@ -200,96 +201,29 @@ export default function CollegeDetails(){
                 )}
               </div>
 
-
-
-
-              {/* Alumni Section */}
-              <Alumni />
-              {/* {id=="67ff21820af3eeb3e5f10e06" && ( */}
-                {/* <section className="my-12">
-                <h2 className="text-xl font-bold mb-6">Alumni</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {AlumniData.map((i) => (
-                    <div key={`alumni-${i.Name}`} className="border border-gray-300 rounded-lg p-6">
-                      <div className="flex items-stretch gap-3 mb-4">
-                        <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden">
-                          <img src={i.Profile} alt="Alumni" className="h-full w-full object-cover" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium">{i.Name}</h3>
-                          <p className="text-sm line-clamp-1 text-gray-600">{i.Bio}</p>
-                          <p className="text-sm line-clamp-1 text-gray-600">{i.Expertise}</p>
-                        </div>
-                      </div>
-                      <DescriptionItem description={i.Description} />
-                      <button onClick={openPopup} className="w-full my-4 py-2 px-4 bg-[#5751e1] hover:bg-[#2c26b0] text-white rounded-md transition-colors">
-                        Schedule a Call
+              <section className="mt-8">
+                <div className="border-b border-gray-200">
+                  <div className="flex gap-8">
+                    {["Alumni", "Student"].map((tab) => (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab)}
+                        className={`py-2 px-1 text-gray-600 border-b-2 transition-colors ${
+                          activeTab === tab
+                            ? "border-[#5751e1] text-[#5751e1] font-medium"
+                            : "border-transparent hover:border-gray-300"
+                        }`}
+                      >
+                        {tab}
                       </button>
-                      {isOpen && ( <CS participantId={i._id} participantModel="alumnilist" onStateChange={closePopup} /> )}
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </section> */}
-              {/* )} */}
-              
-              {/* Faculty Section */}
-              {/* <section className="mb-12">
-                <h2 className="text-xl font-bold mb-6">Faculty</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[1, 2, 3].map((i) => (
-                    <div key={`faculty-${i}`} className="border border-gray-300 rounded-lg p-6">
-                      <div className="flex items-start gap-3 mb-4">
-                        <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden">
-                          <img src="/placeholder-avatar.jpg" alt="Faculty" className="h-full w-full object-cover" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium">Aditya Dev</h3>
-                          <p className="text-sm text-gray-600">Department: AIML</p>
-                        </div>
-                      </div>
-                      <div className="mb-4">
-                        <h4 className="font-medium mb-1">About</h4>
-                        <p className="text-sm text-gray-600">
-                          Alumni are former students of a college or university who have graduated and moved on to their
-                          professional or personal pursuits.
-                        </p>
-                      </div>
-                      <button className="w-full py-2 px-4 bg-[#5751e1] hover:bg-[#2c26b0] text-white rounded-md transition-colors">
-                        Schedule a Call
-                      </button>
-                    </div>
-                  ))}
+                <div className="mt-6">
+                  {activeTab === "Alumni" && <Alumni />}
+                  {activeTab === "Student" && <Student />}
                 </div>
-              </section> */}
-              
-              {/* Students Section */}
-              <Student />
-              {/* {id=="67ff21820af3eeb3e5f10e06" && ( */}
-              {/* <section className="my-12">
-                <h2 className="text-xl font-bold mb-6">Students</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {StudentData.map((i) => (
-                    <div key={`alumni-${i}`} className="border border-gray-300 rounded-lg p-6">
-                      <div className="flex items-start gap-3 mb-4">
-                        <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden">
-                          <img src={i.Profile} alt="Alumni" className="h-full w-full object-cover" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium">{i.Name}</h3>
-                          <p className="text-sm line-clamp-1 text-gray-600">{i.Bio}</p>
-                          <p className="text-sm line-clamp-1 text-gray-600">{i.Expertise}</p>
-                        </div>
-                      </div>
-                      <DescriptionItem description={i.Description} />
-                      <button onClick={openPopup2} className="w-full my-4 py-2 px-4 bg-[#5751e1] hover:bg-[#2c26b0] text-white rounded-md transition-colors">
-                        Schedule a Call
-                      </button>
-                      {isOpen2 && ( <CS participantId={i._id} participantModel="studentlist" onStateChange={closePopup2} /> )}
-                    </div>
-                  ))}
-                </div>
-              </section> */}
-              {/* )} */}
+              </section>
             </div>
           </div>
         </>
