@@ -27,104 +27,65 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
   // const [bookedSlot, setBookedSlots] = useState();
   const closePopup = () => onStateChange(false);
 
-  useEffect(() => {
-    const generateAvailableSlots = async () => {
-      const now = new Date();
-      const currentHour = now.getHours();
-      const nextHour = currentHour + 1;
-      const startHour = Math.max(nextHour, 9);
-      const endHour = 21;
-  
-      // Fetch booked calls
-      let bookedHours = [];
-      try {
-        setLoadingSlots(true);
-        const response = await axios.get(`${apiUrl}user/getParticipantCalls`, {
-          params: { 
-            participantId,
-            date: currentDate
-          },
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
-          }
-        });
-        // console.log(response.data.data);
-        const bookedCalls = response.data.data;
-        // Extract only hours from ISO datetime string
-        bookedHours = bookedCalls.map(call => {
-          const date = new Date(call.dateTime);
-          const time = date.getHours();
-          return time<0 ? time+24 : time; // Only the hour part
-        });
-  
-        // setBookedSlots(bookedCalls); // Optional if you need full data elsewhere
-      } catch (error) {
-        console.error('Error fetching Slots data:', error);
-      } finally {
-        setLoadingSlots(false);
-      }
-  
-      // Generate only available slots
-      const availableSlots = [];
-  
-      for (let hour = startHour; hour < endHour; hour++) {
-        if (!bookedHours.includes(hour)) {
-          const start = new Date(now);
-          start.setHours(hour, 0, 0, 0);
-  
-          const end = new Date(now);
-          end.setHours(hour + 1, 0, 0, 0);
-  
-          availableSlots.push({
-            id: `${String(hour).padStart(2, '0')}:00`,
-            label: `${formatTime(start)} - ${formatTime(end)}`
-          });
-        }
-      }
-  
-      setSlots(availableSlots);
-    };
-  
-    const formatTime = (date) => {
-      return date.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-    };
-  
-    generateAvailableSlots();
-  }, []);
-  
-
-
   // useEffect(() => {
-  //   const generateAvailableSlots = () => {
+  //   const generateAvailableSlots = async () => {
   //     const now = new Date();
   //     const currentHour = now.getHours();
   //     const nextHour = currentHour + 1;
-    
   //     const startHour = Math.max(nextHour, 9);
   //     const endHour = 21;
-    
-  //     const availableSlots = [];
-    
-  //     for (let hour = startHour; hour < endHour; hour++) {
-  //       const start = new Date(now);
-  //       start.setHours(hour, 0, 0, 0);
-    
-  //       const end = new Date(now);
-  //       end.setHours(hour + 1, 0, 0, 0);
-    
-  //       availableSlots.push({
-  //         id: `${hour}:00`,
-  //         label: `${formatTime(start)} - ${formatTime(end)}`,
+  
+  //     // Fetch booked calls
+  //     let bookedHours = [];
+  //     try {
+  //       setLoadingSlots(true);
+  //       const response = await axios.get(`${apiUrl}user/getParticipantCalls`, {
+  //         params: { 
+  //           participantId,
+  //           date: selectedDate
+  //         },
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           'Authorization': token
+  //         }
   //       });
+  //       // console.log(response.data.data);
+  //       const bookedCalls = response.data.data;
+  //       // Extract only hours from ISO datetime string
+  //       bookedHours = bookedCalls.map(call => {
+  //         const date = new Date(call.dateTime);
+  //         const time = date.getHours();
+  //         return time<0 ? time+24 : time; // Only the hour part
+  //       });
+  
+  //       // setBookedSlots(bookedCalls); // Optional if you need full data elsewhere
+  //     } catch (error) {
+  //       console.error('Error fetching Slots data:', error);
+  //     } finally {
+  //       setLoadingSlots(false);
   //     }
+  
+  //     // Generate only available slots
+  //     const availableSlots = [];
+  
+  //     for (let hour = startHour; hour < endHour; hour++) {
+  //       if (!bookedHours.includes(hour)) {
+  //         const start = new Date(now);
+  //         start.setHours(hour, 0, 0, 0);
+  
+  //         const end = new Date(now);
+  //         end.setHours(hour + 1, 0, 0, 0);
+  
+  //         availableSlots.push({
+  //           id: `${String(hour).padStart(2, '0')}:00`,
+  //           label: `${formatTime(start)} - ${formatTime(end)}`
+  //         });
+  //       }
+  //     }
+  
   //     setSlots(availableSlots);
   //   };
-    
+  
   //   const formatTime = (date) => {
   //     return date.toLocaleTimeString([], {
   //       hour: "2-digit",
@@ -132,30 +93,74 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
   //       hour12: true,
   //     });
   //   };
-    
-
-  //   const fetchBookedSlots = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:3000/user/getParticipantCalls", {
-  //         params: { 
-  //           participantId,
-  //           date: currentDate
-  //         },
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           'Authorization': token
-  //         }
-  //       });
-  //       console.log(response.data.data);
-  //       setBookedSlots(response.data.data);
-  //     } catch (error) {
-  //       console.error('Error fetching Slots data:', error);
-  //     }
-  //   };
-
+  
   //   generateAvailableSlots();
-  //   fetchBookedSlots();
-  // }, []);
+  // }, [selectedDate]);
+  
+  useEffect(() => {
+  const generateAvailableSlots = async () => {
+    const now = new Date();
+    const isToday = selectedDate === new Date().toISOString().split("T")[0];
+    const currentHour = now.getHours();
+    const nextHour = currentHour + 1;
+    const startHour = isToday ? Math.max(nextHour, 9) : 9;
+    const endHour = 21;
+
+    let bookedHours = [];
+    try {
+      setLoadingSlots(true);
+      const response = await axios.get(`${apiUrl}user/getParticipantCalls`, {
+        params: {
+          participantId,
+          date: selectedDate
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      });
+
+      const bookedCalls = response.data.data;
+      bookedHours = bookedCalls.map(call => {
+        const date = new Date(call.dateTime);
+        return date.getHours();
+      });
+    } catch (error) {
+      console.error("Error fetching booked slots:", error);
+    } finally {
+      setLoadingSlots(false);
+    }
+
+    const availableSlots = [];
+    for (let hour = startHour; hour < endHour; hour++) {
+      if (!bookedHours.includes(hour)) {
+        const start = new Date(selectedDate);
+        start.setHours(hour, 0, 0, 0);
+
+        const end = new Date(selectedDate);
+        end.setHours(hour + 1, 0, 0, 0);
+
+        availableSlots.push({
+          id: `${String(hour).padStart(2, '0')}:00`,
+          label: `${formatTime(start)} - ${formatTime(end)}`
+        });
+      }
+    }
+
+    setSlots(availableSlots);
+  };
+
+  const formatTime = (date) => {
+    return date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
+
+  generateAvailableSlots();
+}, [selectedDate]);  // re-run when selectedDate changes
+
 
   const paymentHandler = async (e) => {
 
@@ -164,7 +169,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
       return;
     }
 
-    const amount = 100;
+    const amount = 99;
     const currency = "INR";
 
     try {
@@ -181,7 +186,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
       );
 
       var options = {
-        "key": "rzp_test_Q4FFlTHxLzXm7T",
+        "key": "rzp_live_8cJnVP96G6dCeR",
         amount,
         currency,
         "name": "CollegeConnect",
@@ -210,13 +215,13 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
       };
       var rzp1 = new window.Razorpay(options);
       rzp1.on('payment.failed', function (response){
-        alert(response.error.code);
+        // alert(response.error.code);
         alert(response.error.description);
-        alert(response.error.source);
-        alert(response.error.step);
-        alert(response.error.reason);
-        alert(response.error.metadata.order_id);
-        alert(response.error.metadata.payment_id);
+        // alert(response.error.source);
+        // alert(response.error.step);
+        // alert(response.error.reason);
+        // alert(response.error.metadata.order_id);
+        // alert(response.error.metadata.payment_id);
       });
       rzp1.open();
       e.preventDefault();
@@ -224,6 +229,8 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
 
     } catch (error) {
       console.error("Order failed:", error);
+    } finally {
+      setLoading(false);
     }
   }
   
@@ -244,6 +251,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
     };
   
     try {
+      setLoading(true);
       const response = await axios.post(`${apiUrl}user/ScheduleCall`, requestData,
         {
           headers: {
@@ -275,14 +283,71 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
   };
 
 
-  // const dates = [
-  //   { id: "2025-04-01", label: "Tue 01-April-2025", slots: 10 },
-  //   { id: "2025-04-02", label: "Wed 02-April-2025", slots: 17 },
-  //   { id: "2025-04-03", label: "Thu 03-April-2025", slots: 17 },
-  //   { id: "2025-04-04", label: "Fri 04-April-2025", slots: 17 },
-  //   { id: "2025-04-05", label: "Sat 05-April-2025", slots: 17 },
-  //   { id: "2025-04-06", label: "Sun 06-April-2025", slots: 17 },
-  // ]
+  const getNext6Days = () => {
+    const days = [];
+    const today = new Date();
+
+    for (let i = 0; i < 6; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+
+      days.push({
+        id: date.toISOString().split('T')[0], // Format: YYYY-MM-DD
+        label: date.toDateString().slice(0, 10), // Example: "Mon Jun 10"
+      });
+    }
+
+    return days;
+  };
+
+
+  const [dates, setDates] = useState(getNext6Days());
+  const [slotSummary, setSlotSummary] = useState({});
+
+  const fetchSlotCountForDate = async (date) => {
+  try {
+    const now = new Date();
+    const isToday = date === new Date().toISOString().split("T")[0];
+    const currentHour = now.getHours();
+    const nextHour = currentHour + 1;
+    const startHour = isToday ? Math.max(nextHour, 9) : 9;
+    const endHour = 21;
+
+    const response = await axios.get(`${apiUrl}user/getParticipantCalls`, {
+      params: { participantId, date },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      }
+    });
+
+    const bookedCalls = response.data.data || [];
+    const bookedHours = bookedCalls.map((call) => new Date(call.dateTime).getHours());
+
+    let available = 0;
+    for (let hour = startHour; hour < endHour; hour++) {
+      if (!bookedHours.includes(hour)) available++;
+    }
+
+    return available;
+  } catch (err) {
+    console.error(`Failed to fetch for ${date}`, err);
+    return 0;
+  }
+};
+
+  useEffect(() => {
+  const fetchSlotSummary = async () => {
+    const allSummaries = {};
+    for (const date of getNext6Days()) {
+      const count = await fetchSlotCountForDate(date.id);
+      allSummaries[date.id] = count;
+    }
+    setSlotSummary(allSummaries);
+  };
+
+  fetchSlotSummary();
+}, []);
 
   return (
     <AnimatePresence>
@@ -507,7 +572,7 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
                   <div className="border-t border-gray-200 pt-6"></div>
                         
                   {/* Select date */}
-                  {/* <div className="space-y-4">
+                  <div className="space-y-4">
                     <h2 className="text-xl font-semibold">Select date</h2>
                     <div className="relative">
                       <div className="grid sm:grid-cols-2 pb-2 gap-4">
@@ -518,12 +583,12 @@ function CallScheduler({participantId, participantModel, onStateChange}) {
                             onClick={() => setSelectedDate(date.id)}
                           >
                             <div className="font-medium">{date.label}</div>
-                            <div className="text-sm text-blue-500">{date.slots} slots available</div>
+                            <div className="text-sm text-blue-500">{slotSummary[date.id]} slots available</div>
                           </div>
                         ))}
                       </div>
                     </div>
-                  </div> */}
+                  </div> 
                       
                   {/* slots */}
                   <div className="space-y-4">

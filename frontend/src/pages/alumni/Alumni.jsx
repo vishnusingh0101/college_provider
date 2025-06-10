@@ -14,7 +14,6 @@ function AlumniCards() {
   const {apiUrl, token} = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
-  const totalPages = Math.ceil(alumniData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   
@@ -43,6 +42,8 @@ function AlumniCards() {
 
   const [filteredAlumni, setFilteredAlumni] = useState(alumniData);
   const currentAlumni = filteredAlumni.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredAlumni.length / itemsPerPage);
+
 
 
   return (
@@ -189,14 +190,14 @@ function AlumniCards() {
           <p className="text-gray-600">
             Showing{" "}
             <span className="text-indigo-600 font-medium">
-              {Math.min((currentPage - 1) * itemsPerPage + 1, alumniData.length)}
+              {Math.min((currentPage - 1) * itemsPerPage + 1, filteredAlumni.length)}
             </span>{" "}
             -{" "}
             <span className="text-indigo-600 font-medium">
-              {Math.min(currentPage * itemsPerPage, alumniData.length)}
+              {Math.min(currentPage * itemsPerPage, filteredAlumni.length)}
             </span>{" "}
             of{" "}
-            <span className="text-indigo-600 font-medium">{alumniData.length}</span>{" "}
+            <span className="text-indigo-600 font-medium">{filteredAlumni.length}</span>{" "}
             Alumni
           </p>
         </div>

@@ -68,6 +68,11 @@ export default function Footer(){
                     <Youtube className="h-6 w-6" />
                   </a>
                 </div>
+                <div>
+                <Link to="/about-us#join-us" className="text-white hover:text-gray-300">
+                <h3 className="text-lg font-semibold mt-4">Join Our Platform</h3>
+                </Link>
+              </div>
               </div>
             </div>
             <div className="mt-8 border-t border-white pt-8 text-center text-sm text-white">

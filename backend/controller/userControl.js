@@ -441,7 +441,7 @@ exports.scheduleCall = async (req, res) => {
 
             return `${formattedHour}:${minutes} ${suffix}`;
         };
-        const timeString = getAMPMTime(`${date} ${time}`);
+        const timeString = `${date} at ${getAMPMTime(`${date} ${time}`)}`;
 
         try {
             const userMessage = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nSee you there! 😊`;
