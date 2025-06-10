@@ -35,11 +35,13 @@ const userRoute = require('./routes/user');
 const passwordRoute = require('./routes/password');
 const collegeRoute = require('./routes/getdata');
 const paymentRoute = require('./routes/payment');
+const aboutRoute = require('./routes/aboutus');
 
 app.use('/user', userRoute);
 app.use('/password', passwordRoute);
 app.use('/college', collegeRoute);
 app.use('/payment', paymentRoute);
+app.use('/about', aboutRoute);
 
 // === STATIC FRONTEND SERVE ===
 const distPath = path.join(__dirname, '../frontend/dist');
