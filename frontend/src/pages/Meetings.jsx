@@ -1,5 +1,6 @@
-    import React, { useState, useEffect } from "react";
+    import { useState, useEffect } from "react";
     import { format, parseISO } from "date-fns";
+    import { formatInTimeZone } from "date-fns-tz";
     import axios from "axios";
     import { useAuth } from '../context/AuthContext';
     import ClipLoader from "react-spinners/ClipLoader";
@@ -153,10 +154,11 @@
     
     // Meeting Card Component
     const MeetingCard = ({ meeting }) => {
-      const meetingDate = parseISO(meeting.dateTime);
+      const meetingDate = meeting.dateTime;
       const { isoIST } = useAuth();
-      const endTime = new Date(meetingDate.getTime() + meeting.duration * 60000);
-      const currentTime = parseISO(isoIST).getTime();
+      const endTime = new Date(parseISO(meeting.dateTime).getTime() + meeting.duration * 60000);
+      const IST_TIMEZONE = 'asia/Kolkata';
+
       return (
         <div className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden flex flex-col h-full">
           <div className="p-4 border-b border-gray-200">
@@ -171,12 +173,12 @@
           <div className="p-4 flex-grow space-y-4">
             <div className="flex items-center gap-2 text-sm">
               <CalendarIcon />
-              <span className="text-gray-700">{format(meetingDate, "EEEE, MMMM d, yyyy")}</span>
+              <span className="text-gray-700">{formatInTimeZone(meetingDate, IST_TIMEZONE, "EEEE, MMMM d, yyyy")}</span>
             </div>
             <div className="flex items-center gap-2 text-sm">
               <ClockIcon />
               <span className="text-gray-700">
-                {format(meetingDate, "h:mm a")} - {format(endTime, "h:mm a")} ({meeting.duration} min)
+                {formatInTimeZone(meetingDate, IST_TIMEZONE, "h:mm a")} - {formatInTimeZone(endTime, IST_TIMEZONE, "h:mm a")} ({meeting.duration} min)
               </span>
             </div>
             <div className="flex items-center gap-2 text-sm">
@@ -184,19 +186,7 @@
               <span className="text-gray-700">{meeting.callType} Call</span>
             </div>
     
-            {/* <div className="flex flex-col gap-3 mt-4">
-              <div className="flex items-center gap-3">
-                <Avatar 
-                  src={meeting.callerAvatar} 
-                  alt="Caller" 
-                  fallback={meeting.callerName?.charAt(0) || "C"} 
-                />
-                <div>
-                  <p className="text-sm font-medium text-gray-900">{meeting.callerName || "Caller"}</p>
-                  <p className="text-xs text-gray-500">Host</p>
-                </div>
-              </div>
-    
+            <div className="flex flex-col gap-3 mt-4">
               <div className="flex items-center gap-3">
                 <Avatar 
                   src={meeting.participantAvatar} 
@@ -205,10 +195,10 @@
                 />
                 <div>
                   <p className="text-sm font-medium text-gray-900">{meeting.participantName || "Participant"}</p>
-                  <p className="text-xs text-gray-500">{meeting.participantModel}</p>
+                  <p className="text-xs text-gray-500">{meeting.participantModel==="studentlist"? "Student":"Alumni"}</p>
                 </div>
               </div>
-            </div> */}
+            </div> 
           </div>
           <div className="p-4 border-t border-gray-200">
             {/* {meeting.status === "Scheduled" ? ( */}
@@ -216,10 +206,11 @@
                 {/* <button className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                   Reschedule
                 </button> */}
-                { (meetingDate.getTime()+(60*60*1000)) < currentTime ?
+                { (parseISO(meetingDate).getTime() ) < parseISO(isoIST).getTime() ?
                 (<button className="w-full px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 Completed
-              </button>) :(
+              </button>) :
+              (
                 <a
                   href={meeting.meetLink}
                   target="_blank"
@@ -247,7 +238,7 @@
 
     // Main MeetingCards Component
     const MeetingCards = () => {
-      const [activeTab, setActiveTab] = useState("all");
+      const [activeTab, setActiveTab] = useState("Meetings");
       const [meetings, setMeetings] = useState([]);
       const [loading, setLoading] = useState(true);
       const { apiUrl, userProfile, decodedToken, token } = useAuth();
@@ -274,8 +265,11 @@
         fetchMeetings();
       }, [decodedToken?.userId]);
     
-      const filteredMeetings = meetings.filter((meeting) => {
-        if (activeTab === "all") return true;
+
+      const filteredMeetings = [...meetings]
+      .sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime))
+      .filter((meeting) => {
+        if (activeTab === "Meetings") return true;
         return meeting.status.toLowerCase() === activeTab.toLowerCase();
       });
     

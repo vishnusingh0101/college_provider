@@ -13,7 +13,7 @@ const day1 = pad1(now.getDate());
 const currentDate = `${year1}-${month1.padStart(2, '0')}-${day1.padStart(2, '0')}`;
 
 const istOffset = 5.5 * 60 * 60 * 1000; // IST offset in milliseconds
-const istNow = new Date(now.getTime() - istOffset);
+const istNow = new Date(now.getTime()- istOffset);
 const localDate = new Date(istNow);
 // Convert to ISO string manually using India timezone
 const pad = (n) => n.toString().padStart(2, '0');

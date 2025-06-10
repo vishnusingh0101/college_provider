@@ -412,6 +412,7 @@ exports.scheduleCall = async (req, res) => {
 
         const newCall = new ScheduleCall({
             caller: userId,
+            participantName: participant.name,
             participant: participantId,
             participantModel,
             dateTime,
@@ -440,7 +441,7 @@ exports.scheduleCall = async (req, res) => {
 
             return `${formattedHour}:${minutes} ${suffix}`;
         };
-        const timeString = getAMPMTime(`${date} ${time}`);
+        const timeString = `${date} at ${getAMPMTime(`${date} ${time}`)}`;
 
         try {
             const userMessage = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nSee you there! 😊`;
@@ -462,7 +463,7 @@ exports.scheduleCall = async (req, res) => {
         // Notify Participant
         try {
             const participantName = participant.name || participant.Name || 'there';
-            const participantMsg = `Hi ${participantName}, you've been scheduled for a College Provider call.\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nCheers!`;
+            const participantMsg = `Hi ${participantName}, you've been scheduled for a College Provider call.\n\n🧑‍🎓 Aspirant Name: ${user.name}\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nCheers!`;
 
             const phone = participant.phone || participant.MobileNumber;
             const email = participant.mail || participant.Mail;

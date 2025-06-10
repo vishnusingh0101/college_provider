@@ -1,6 +1,7 @@
 import { MailIcon, PhoneIcon } from '@heroicons/react/outline'
 import { useEffect, useState } from "react"
 import { AlertTriangle, BookOpen, CheckCircle, Compass, GraduationCap, Heart, XCircle } from "lucide-react"
+import { Link } from 'react-router-dom'
 
 // Pure React button component to replace the Next.js component
 const Button = ({ children, className, size, onClick }) => {
@@ -32,6 +33,21 @@ export default function Example() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  function handleJoinUs(e) {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const data = {
+      name: formData.get("name"),
+      college: formData.get("college"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      joinAs: formData.get("join-as"),
+      About: formData.get("about"),
+    }
+    console.log("Form submitted:", data)
+    // Here you can handle the form submission, e.g., send data to your backend
+  }
 
   return (
     <div className="bg-white">
@@ -99,12 +115,14 @@ export default function Example() {
             <div
               className={`transition-all duration-700 delay-300 ${animateItems ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-10"}`}
             >
+            <Link to="/alumni">
               <Button
                 size="lg"
                 className="bg-white text-blue-700 hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-500/20 transform hover:-translate-y-1 transition-all duration-300 font-bold"
               >
                 Get Started Now
               </Button>
+              </Link>
             </div>
 
             <div
@@ -213,8 +231,8 @@ export default function Example() {
       </section>
 
       {/* Founders Section */}
-      <section className="py-1 px-4 bg-white">
-      {/* <section className="py-16 px-4 bg-white">
+      {/* <section className="py-1 px-4 bg-white"> */}
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Our Founders</h2>
 
@@ -233,7 +251,7 @@ export default function Example() {
             />
           </div>
 
-          <div className="mt-12 bg-gray-100 p-6 rounded-lg max-w-3xl mx-auto">
+          <div className="mt-22 bg-gray-100 p-6 rounded-lg max-w-3xl mx-auto">
             <blockquote className="italic text-gray-700 text-lg">
               "I ended up in a mediocre college because no one told me about better options. CollegeProvider ensures no
               student repeats my mistake."
@@ -241,7 +259,7 @@ export default function Example() {
             <p className="text-right mt-4 font-medium">— Suprit Singh Arya</p>
           </div> 
         </div>
-      </section> */}
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-b from-indigo-800 to-indigo-600 text-white">
@@ -251,9 +269,11 @@ export default function Example() {
             For students, by students. <br />
             Free early access for the first 1,000 sign-ups!
           </p>
+          <Link to="/alumni">
           <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50" href="/">
             Get Started Now
           </Button>
+          </Link>
           <p className="mt-8 flex items-center justify-center text-blue-100">
             <Heart className="h-5 w-5 mr-2" /> Made with love for Indian students
           </p>
@@ -266,9 +286,9 @@ export default function Example() {
 
         <div className="bg-warm-gray-50">
           <div className="py-10 sm:py-24 lg:py-32">
-            <div className="relative max-w-7xl mx-auto pl-4 pr-8 sm:px-6 lg:px-8">
-              <h1 className="text-4xl font-extrabold tracking-tight text-warm-gray-900 sm:text-5xl lg:text-6xl">
-                Get in touch
+            <div id='join-us' className="relative max-w-7xl mx-auto pl-4 pr-8 sm:px-6 lg:px-8">
+              <h1 className="text-xl font-bold tracking-tight text-warm-gray-900 sm:text-2xl lg:text-4xl">
+                Wants to join CollegeProvider as an Alumni or Student
               </h1>
               {/* <p className="mt-6 text-xl text-stone-500 max-w-3xl">
                 Vel nunc non ut montes, viverra tempor. Proin lectus nibh phasellus morbi non morbi. In elementum urna
@@ -282,7 +302,7 @@ export default function Example() {
         <section className="bg-white" aria-labelledby="contact-heading">
           <div className="absolute w-full h-1/2 bg-warm-gray-50" aria-hidden="true" />
           {/* Decorative dot pattern */}
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <svg
               className="absolute z-0 top-0 right-0 transform -translate-y-16 translate-x-1/2 sm:translate-x-1/4 md:-translate-y-24 lg:-translate-y-72"
               width={404}
@@ -305,17 +325,16 @@ export default function Example() {
               </defs>
               <rect width={404} height={384} fill="url(#64e643ad-2176-4f86-b3d7-f2c5da3b6a6d)" />
             </svg>
-          </div>
+          </div> */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-white shadow-xl">
               <h2 id="contact-heading" className="sr-only">
-                Contact us
+                Join us
               </h2>
 
-              <div className="grid grid-cols-1 lg:grid-cols-3">
+              <div className="grid">
                 {/* Contact information */}
-                <div className="z-2 overflow-hidden py-10 px-6 bg-indigo-700 sm:px-10 xl:p-12">
-                  {/* Decorative angle backgrounds */}
+                {/* <div className="z-2 overflow-hidden py-10 px-6 bg-indigo-700 sm:px-10 xl:p-12">
                   <div className="absolute inset-0 pointer-events-none sm:hidden" aria-hidden="true">
                     <svg
                       className="absolute inset-0 w-full h-full"
@@ -413,10 +432,10 @@ export default function Example() {
                     </svg>
                   </div>
                   <h3 className="text-lg font-medium text-white">Contact information</h3>
-                  {/* <p className="mt-6 text-base text-teal-50 max-w-3xl">
+                  <p className="mt-6 text-base text-teal-50 max-w-3xl">
                     Nullam risus blandit ac aliquam justo ipsum. Quam mauris volutpat massa dictumst amet. Sapien tortor
                     lacus arcu.
-                  </p> */}
+                  </p>
                   <dl className="mt-8 space-y-6">
                     <dt>
                       <span className="sr-only">Phone number</span>
@@ -467,36 +486,36 @@ export default function Example() {
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div> */}
 
                 {/* Contact form */}
                 <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12 z-10">
-                  <h3 className="text-lg font-medium text-warm-gray-900">Send us a message</h3>
-                  <form action="#" method="POST" className="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                  <h3 className="text-lg font-medium text-warm-gray-900">Fill form and join us</h3>
+                  <form onSubmit={handleJoinUs} className="mt-6 gap-y-6">
                     <div>
-                      <label htmlFor="first-name" className="block text-sm font-medium text-warm-gray-900">
-                        First name
+                      <label htmlFor="name" className="block text-sm font-medium text-warm-gray-900">
+                        Name
                       </label>
-                      <div className="mt-1">
+                      <div className="my-2">
                         <input
                           type="text"
-                          name="first-name"
-                          id="first-name"
+                          name="name"
+                          id="name"
                           autoComplete="given-name"
                           className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-warm-gray-300 rounded-md"
                         />
                       </div>
                     </div>
                     <div>
-                      <label htmlFor="last-name" className="block text-sm font-medium text-warm-gray-900">
-                        Last name
+                      <label htmlFor="college" className="block text-sm font-medium text-warm-gray-900">
+                        College
                       </label>
-                      <div className="mt-1">
+                      <div className="my-2">
                         <input
                           type="text"
-                          name="last-name"
-                          id="last-name"
-                          autoComplete="family-name"
+                          name="college"
+                          id="college"
+                          autoComplete="organization"
                           className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-warm-gray-300 rounded-md"
                         />
                       </div>
@@ -505,7 +524,7 @@ export default function Example() {
                       <label htmlFor="phone" className="block text-sm font-medium text-warm-gray-900">
                         Phone
                       </label>
-                      <div className="flex mt-1">
+                      <div className="flex my-2">
                       <div className="flex items-center bg-white px-3 text-gray-900">
                         +91
                       </div>
@@ -514,7 +533,8 @@ export default function Example() {
                           name="phone"
                           type="phone"
                           required
-                          autoComplete="tel"        className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-warm-gray-300 rounded-md"
+                          autoComplete="tel" 
+                          className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-warm-gray-300 rounded-md"
                         />
                       </div>
                     </div>
@@ -527,7 +547,7 @@ export default function Example() {
                           Optional
                         </span>
                       </div>
-                      <div className="mt-1">
+                      <div className="my-2">
                         <input
                           type="text"
                           name="email"
@@ -539,31 +559,50 @@ export default function Example() {
                       </div>
                     </div>
                     <div className="sm:col-span-2">
-                      <label htmlFor="subject" className="block text-sm font-medium text-warm-gray-900">
-                        Subject
-                      </label>
-                      <div className="mt-1">
-                        <input
-                          type="text"
-                          name="subject"
-                          id="subject"
-                          className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-warm-gray-300 rounded-md"
-                        />
+                      <div className="my-2">
+                        <label
+                          htmlFor="join-as"
+                          className="block text-sm font-medium text-black"
+                        >
+                          Join as:
+                        </label>
+                        <div className="relative mt-2">
+                          <select
+                            name="join-as"
+                            id="join-as"
+                            className="appearance-none w-1/2 px-4 mx-2 py-2 pr-10 text-sm bg-white border border-gray-300 dark:border-gray-600 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out"
+                          >
+                            <option value="Alumni">Alumni</option>
+                            <option value="Student">Student</option>
+                          </select>
+                          <div className="pointer-events-none absolute inset-y-0 right-1/2 flex items-center text-gray-400">
+                            <svg
+                              className="h-4 w-4 transform transition-transform duration-300 ease-in-out"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    
                     <div className="sm:col-span-2">
                       <div className="flex justify-between">
-                        <label htmlFor="message" className="block text-sm font-medium text-warm-gray-900">
-                          Message
+                        <label htmlFor="about" className="block text-sm font-medium text-warm-gray-900">
+                          About
                         </label>
                         <span id="message-max" className="text-sm text-warm-gray-500">
                           Max. 500 characters
                         </span>
                       </div>
-                      <div className="mt-1">
+                      <div className="my-2">
                         <textarea
-                          id="message"
-                          name="message"
+                          id="about"
+                          name="about"
                           rows={4}
                           className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 border border-warm-gray-300 rounded-md  focus:ring-indigo-500 focus:border-indigo-500"
                           aria-describedby="message-max"

@@ -17,4 +17,4 @@ const AlumniSchema = new Schema({
     mail: { type: String, trim: true, lowercase: true }
 }, { timestamps: true });
 
-module.exports = mongoose.model('alumni', AlumniSchema);
+module.exports = mongoose.model('alumnilist', AlumniSchema);

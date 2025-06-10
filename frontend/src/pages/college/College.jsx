@@ -27,8 +27,7 @@ const Property = () => {
   const totalPages = Math.ceil(collegeData.length / itemsPerPage);
 
   // Check if filter has been applied
-  const isFiltered = collegeData.length !== allCollegeData.length || 
-                     JSON.stringify(collegeData) !== JSON.stringify(allCollegeData);
+  const isFiltered = collegeData.length !== allCollegeData.length || JSON.stringify(collegeData) !== JSON.stringify(allCollegeData);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -135,144 +134,144 @@ const Property = () => {
           ))}
         </div>
         {/* <div className="flex justify-center mt-8 space-x-2 flex-wrap">
-  <button
-    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-    disabled={currentPage === 1}
-    className={`px-4 py-2 border rounded ${
-      currentPage === 1 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
-    }`}
-  >
-    Prev
-  </button>
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 border rounded ${
+              currentPage === 1 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
+            }`}
+          >
+            Prev
+          </button>
 
-  {Array.from({ length: totalPages }, (_, i) => i + 1)
-    .filter(page =>
-      page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)
-    )
-    .reduce((acc, page, idx, arr) => {
-      if (idx > 0 && page - arr[idx - 1] > 1) acc.push('...');
-      acc.push(page);
-      return acc;
-    }, [])
-    .map((item, index) =>
-      item === '...' ? (
-        <span key={index} className="px-3 py-2 text-gray-400 select-none">...</span>
-      ) : (
-        <button
-          key={item}
-          onClick={() => setCurrentPage(item)}
-          className={`px-4 py-2 border rounded ${
-            currentPage === item ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600'
-          }`}
-        >
-          {item}
-        </button>
-      )
-    )}
+          {Array.from({ length: totalPages }, (_, i) => i + 1)
+            .filter(page =>
+              page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)
+            )
+            .reduce((acc, page, idx, arr) => {
+              if (idx > 0 && page - arr[idx - 1] > 1) acc.push('...');
+              acc.push(page);
+              return acc;
+            }, [])
+            .map((item, index) =>
+              item === '...' ? (
+                <span key={index} className="px-3 py-2 text-gray-400 select-none">...</span>
+              ) : (
+                <button
+                  key={item}
+                  onClick={() => setCurrentPage(item)}
+                  className={`px-4 py-2 border rounded ${
+                    currentPage === item ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600'
+                  }`}
+                >
+                  {item}
+                </button>
+              )
+            )}
 
-  <button
-    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-    disabled={currentPage === totalPages}
-    className={`px-4 py-2 border rounded ${
-      currentPage === totalPages ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
-    }`}
-  >
-    Next
-  </button>
-</div> */}
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 border rounded ${
+              currentPage === totalPages ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
+            }`}
+          >
+            Next
+          </button>
+        </div> */}
         <div className="flex justify-center mt-8 space-x-2 flex-wrap">
-  {/* Prev Button */}
-  <button
-    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-    disabled={currentPage === 1}
-    className={`px-4 py-2 border rounded ${
-      currentPage === 1 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
-    }`}
-  >
-    Prev
-  </button>
+          {/* Prev Button */}
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 border rounded ${
+              currentPage === 1 ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
+            }`}
+          >
+            Prev
+          </button>
+            
+          {/* First Page */}
+          {currentPage > 2 && (
+            <>
+              <button
+                onClick={() => setCurrentPage(1)}
+                className="px-4 py-2 border rounded bg-white text-gray-600"
+              >
+                1
+              </button>
+              {currentPage > 3 && <span className="px-2 text-gray-400">...</span>}
+            </>
+          )}
+        
+          {/* Previous Page */}
+          {currentPage > 1 && (
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              className="px-4 py-2 border rounded bg-white text-gray-600"
+            >
+              {currentPage - 1}
+            </button>
+          )}
+        
+          {/* Current Page */}
+          <button className="px-4 py-2 border rounded bg-indigo-600 text-white">
+            {currentPage}
+          </button>
+        
+          {/* Next Page */}
+          {currentPage < totalPages && (
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              className="px-4 py-2 border rounded bg-white text-gray-600"
+            >
+              {currentPage + 1}
+            </button>
+          )}
+        
+          {/* Last Page */}
+          {currentPage < totalPages - 1 && (
+            <>
+              {currentPage < totalPages - 2 && <span className="px-2 text-gray-400">...</span>}
+              <button
+                onClick={() => setCurrentPage(totalPages)}
+                className={`px-4 py-2 border rounded ${
+                  currentPage === totalPages ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600'
+                }`}
+              >
+                {totalPages}
+              </button>
+            </>
+          )}
+        
+          {/* Next Button */}
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 border rounded ${
+              currentPage === totalPages ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
+            }`}
+          >
+            Next
+          </button>
+        </div>
 
-  {/* First Page */}
-  {currentPage > 2 && (
-    <>
-      <button
-        onClick={() => setCurrentPage(1)}
-        className="px-4 py-2 border rounded bg-white text-gray-600"
-      >
-        1
-      </button>
-      {currentPage > 3 && <span className="px-2 text-gray-400">...</span>}
-    </>
-  )}
-
-  {/* Previous Page */}
-  {currentPage > 1 && (
-    <button
-      onClick={() => setCurrentPage(currentPage - 1)}
-      className="px-4 py-2 border rounded bg-white text-gray-600"
-    >
-      {currentPage - 1}
-    </button>
-  )}
-
-  {/* Current Page */}
-  <button className="px-4 py-2 border rounded bg-indigo-600 text-white">
-    {currentPage}
-  </button>
-
-  {/* Next Page */}
-  {currentPage < totalPages && (
-    <button
-      onClick={() => setCurrentPage(currentPage + 1)}
-      className="px-4 py-2 border rounded bg-white text-gray-600"
-    >
-      {currentPage + 1}
-    </button>
-  )}
-
-  {/* Last Page */}
-  {currentPage < totalPages - 1 && (
-    <>
-      {currentPage < totalPages - 2 && <span className="px-2 text-gray-400">...</span>}
-      <button
-        onClick={() => setCurrentPage(totalPages)}
-        className={`px-4 py-2 border rounded ${
-          currentPage === totalPages ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600'
-        }`}
-      >
-        {totalPages}
-      </button>
-    </>
-  )}
-
-  {/* Next Button */}
-  <button
-    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-    disabled={currentPage === totalPages}
-    className={`px-4 py-2 border rounded ${
-      currentPage === totalPages ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-600'
-    }`}
-  >
-    Next
-  </button>
-</div>
-
-{/* Pagination Info */}
-<div className="flex justify-center mt-4">
-  <p className="text-gray-600">
-    Showing{" "}
-    <span className="text-indigo-600 font-medium">
-      {Math.min((currentPage - 1) * itemsPerPage + 1, collegeData.length)}
-    </span>{" "}
-    -{" "}
-    <span className="text-indigo-600 font-medium">
-      {Math.min(currentPage * itemsPerPage, collegeData.length)}
-    </span>{" "}
-    of{" "}
-    <span className="text-indigo-600 font-medium">{collegeData.length}</span>{" "}
-    colleges
-  </p>
-</div>
+        {/* Pagination Info */}
+        <div className="flex justify-center mt-4">
+          <p className="text-gray-600">
+            Showing{" "}
+            <span className="text-indigo-600 font-medium">
+              {Math.min((currentPage - 1) * itemsPerPage + 1, collegeData.length)}
+            </span>{" "}
+            -{" "}
+            <span className="text-indigo-600 font-medium">
+              {Math.min(currentPage * itemsPerPage, collegeData.length)}
+            </span>{" "}
+            of{" "}
+            <span className="text-indigo-600 font-medium">{collegeData.length}</span>{" "}
+            colleges
+          </p>
+        </div>
 
 
       </main>

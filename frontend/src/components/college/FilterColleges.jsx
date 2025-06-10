@@ -33,21 +33,6 @@ const Banner = ({data, onFilterChange, onReset}) => {
     onFilterChange(filteredData);
   }
 };
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   // console.log("Searching:", { searchTerm, location, course })
-  //   if (searchTerm === "" && location === "") {
-  //     onReset(); // Call the reset function if the search query is empty
-  //   } else {
-  //     // Filter the data based on the search query
-  //     const filteredData = data.filter((item) =>
-  //       location===""?item.title.toLowerCase().includes(searchTerm.toLowerCase()):item.location.toLowerCase()===location.toLowerCase() && item.title.toLowerCase().includes(searchTerm.toLowerCase())
-  //     );
-
-  //     // Call the parent component's callback to send the filtered data
-  //     onFilterChange(filteredData);
-  //   }
-  // }
 
 
   return (
