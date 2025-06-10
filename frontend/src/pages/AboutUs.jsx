@@ -2,6 +2,10 @@ import { MailIcon, PhoneIcon } from '@heroicons/react/outline'
 import { useEffect, useState } from "react"
 import { AlertTriangle, BookOpen, CheckCircle, Compass, GraduationCap, Heart, XCircle } from "lucide-react"
 import { Link } from 'react-router-dom'
+import ClipLoader from "react-spinners/ClipLoader";
+import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
+
 
 // Pure React button component to replace the Next.js component
 const Button = ({ children, className, size, onClick }) => {
@@ -19,6 +23,16 @@ const Button = ({ children, className, size, onClick }) => {
 export default function Example() {
   const [scrolled, setScrolled] = useState(false)
   const [animateItems, setAnimateItems] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const { apiUrl } = useAuth();
+  const [formData, setFormData] = useState({
+    name: '',
+    college: '',
+    phone: '',
+    email: '',
+    joinAs: '',
+    about: '',
+  });
 
   useEffect(() => {
     // Trigger initial animations after component mounts
@@ -34,19 +48,43 @@ export default function Example() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  function handleJoinUs(e) {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  async function handleJoinUs(e) {
     e.preventDefault()
-    const formData = new FormData(e.target)
-    const data = {
-      name: formData.get("name"),
-      college: formData.get("college"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      joinAs: formData.get("join-as"),
-      About: formData.get("about"),
+
+    try {
+      setLoading(true);
+      const res = await axios.post(`${apiUrl}about/join-us`, formData);
+
+      if (res.status === 201) {
+        alert("Thank you for joining us! We will get back to you soon.");
+        setFormData({
+          name: '',
+          college: '',
+          phone: '',
+          email: '',
+          joinAs: '',
+          about: '',
+        });
+      }
+    } catch (error) {
+      if (error.response) {
+        const { status, data } = error.response;
+
+        if (status === 400 || status === 409) {
+          alert(data.message);
+        } else if (status === 500) {
+          alert("Something went wrong. Please try again later.");
+        }
+      } else {
+        console.error("Network error:", error);
+      }
+    } finally {
+      setLoading(false);
     }
-    console.log("Form submitted:", data)
-    // Here you can handle the form submission, e.g., send data to your backend
   }
 
   return (
@@ -287,7 +325,7 @@ export default function Example() {
         <div className="bg-warm-gray-50">
           <div className="py-10 sm:py-24 lg:py-32">
             <div id='join-us' className="relative max-w-7xl mx-auto pl-4 pr-8 sm:px-6 lg:px-8">
-              <h1 className="text-xl font-bold tracking-tight text-warm-gray-900 sm:text-2xl lg:text-4xl">
+              <h1 className="text-xl text-gray-800 font-bold tracking-tight text-warm-gray-900 sm:text-2xl lg:text-4xl">
                 Wants to join CollegeProvider as an Alumni or Student
               </h1>
               {/* <p className="mt-6 text-xl text-stone-500 max-w-3xl">
@@ -491,6 +529,12 @@ export default function Example() {
                 {/* Contact form */}
                 <div className="py-10 px-6 sm:px-10 lg:col-span-2 xl:p-12 z-10">
                   <h3 className="text-lg font-medium text-warm-gray-900">Fill form and join us</h3>
+                  {loading ? (
+                    <div className="flex flex-col items-center justify-center py-10">
+                      <ClipLoader size={50} color="#3B82F6" loading={loading} />
+                      <p className="text-gray-500 mt-4">Submitting details...</p>
+                    </div>
+                  ) : (
                   <form onSubmit={handleJoinUs} className="mt-6 gap-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-warm-gray-900">
@@ -501,6 +545,7 @@ export default function Example() {
                           type="text"
                           name="name"
                           id="name"
+                          onChange={handleChange}
                           autoComplete="given-name"
                           className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-warm-gray-300 rounded-md"
                         />
@@ -515,6 +560,7 @@ export default function Example() {
                           type="text"
                           name="college"
                           id="college"
+                          onChange={handleChange}
                           autoComplete="organization"
                           className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-warm-gray-300 rounded-md"
                         />
@@ -533,6 +579,7 @@ export default function Example() {
                           name="phone"
                           type="phone"
                           required
+                          onChange={handleChange}
                           autoComplete="tel" 
                           className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-warm-gray-300 rounded-md"
                         />
@@ -552,6 +599,7 @@ export default function Example() {
                           type="text"
                           name="email"
                           id="email"
+                          onChange={handleChange}
                           autoComplete="email"
                           className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-warm-gray-300 rounded-md"
                           aria-describedby="email-optional"
@@ -561,17 +609,19 @@ export default function Example() {
                     <div className="sm:col-span-2">
                       <div className="my-2">
                         <label
-                          htmlFor="join-as"
+                          htmlFor="joinAs"
                           className="block text-sm font-medium text-black"
                         >
                           Join as:
                         </label>
                         <div className="relative mt-2">
                           <select
-                            name="join-as"
-                            id="join-as"
+                            name="joinAs"
+                            id="joinAs"
+                            onChange={handleChange}
                             className="appearance-none w-1/2 px-4 mx-2 py-2 pr-10 text-sm bg-white border border-gray-300 dark:border-gray-600 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 ease-in-out"
                           >
+                            <option value="Alumni">Select</option>
                             <option value="Alumni">Alumni</option>
                             <option value="Student">Student</option>
                           </select>
@@ -603,6 +653,7 @@ export default function Example() {
                         <textarea
                           id="about"
                           name="about"
+                          onChange={handleChange}
                           rows={4}
                           className="py-3 px-4 block w-full shadow-sm text-warm-gray-900 border border-warm-gray-300 rounded-md  focus:ring-indigo-500 focus:border-indigo-500"
                           aria-describedby="message-max"
@@ -619,6 +670,7 @@ export default function Example() {
                       </button>
                     </div>
                   </form>
+                  )}
                 </div>
               </div>
             </div>
