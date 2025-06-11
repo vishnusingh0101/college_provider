@@ -42,7 +42,7 @@ exports.submitJoinUsForm = async (req, res) => {
         await newEntry.save();
 
         await sendEmail({
-            to: 'paramsharma3431@gmail.com', // Change to required email
+            to: 'providerteam.in@gmail.com', // Change to required email
             subject: 'New Join Us Form Submission',
             html: `
                 <h2>New Submission Received</h2>

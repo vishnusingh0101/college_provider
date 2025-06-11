@@ -7,3 +7,4 @@ const joinUsController = require('../controller/about');
 router.post('/join-us', joinUsController.submitJoinUsForm);
 
 module.exports = router;
+
