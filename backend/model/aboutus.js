@@ -27,7 +27,7 @@ const joinUsSchema = new mongoose.Schema({
     joinAs: {
         type: String,
         required: true,
-        enum: ['Volunteer', 'Partner', 'Intern', 'Other'],
+        enum: ['Alumni', 'Student'],
         trim: true
     },
     about: {

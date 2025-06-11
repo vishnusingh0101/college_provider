@@ -1,5 +1,5 @@
-const JoinUs = require('../models/JoinUs');
-const sendEmail = require('../utils/sendEmail');
+const JoinUs = require('../model/aboutus');
+const { sendEmail } = require('../utils/sendEmail');
 
 function isValidPhoneNumber(phone) {
     return /^\d{10}$/.test(phone);
@@ -42,7 +42,7 @@ exports.submitJoinUsForm = async (req, res) => {
         await newEntry.save();
 
         await sendEmail({
-            to: 'admin@example.com', // Change to required email
+            to: 'providerteam.in@gmail.com', // Change to required email
             subject: 'New Join Us Form Submission',
             html: `
                 <h2>New Submission Received</h2>

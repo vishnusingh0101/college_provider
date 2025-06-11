@@ -444,7 +444,17 @@ exports.scheduleCall = async (req, res) => {
         const timeString = `${date} at ${getAMPMTime(`${date} ${time}`)}`;
 
         try {
-            const userMessage = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nSee you there! 😊`;
+            // const userMessage = `Hey ${user.name || 'there'}, your call is scheduled successfully!\n\n📅 Date: ${date}\n⏰ Time: ${time}\n⌛ Duration: ${duration} mins\n🔗 Meeting Link: ${meetLink}\n\nSee you there! 😊`;
+            const userHtmlMessage = `
+              <p>Hey ${user.name || 'there'}, your call is scheduled successfully!</p>
+              <p>
+                📅 <strong>Date:</strong> ${date}<br>
+                ⏰ <strong>Time:</strong> ${time}<br>
+                ⌛ <strong>Duration:</strong> ${duration} mins<br>
+                🔗 <strong>Meeting Link:</strong> <a href="${meetLink}">${meetLink}</a>
+              </p>
+              <p>See you there! 😊</p>
+            `;
 
             if (user.phone) {
                 const counsellorName = participant.name || participant.Name || 'there';
@@ -454,7 +464,7 @@ exports.scheduleCall = async (req, res) => {
             }
 
             if (user.mail) {
-                await sendEmail(user.mail, "Your College Provider Call is Scheduled", userMessage);
+                await sendEmail(user.mail, "Your College Provider Call is Scheduled", userHtmlMessage);
             }
         } catch (err) {
             console.error("Failed to notify user:", err.message);
